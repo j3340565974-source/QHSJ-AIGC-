@@ -356,7 +356,7 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
 
     if has("小说", "长篇小说", "网文", "章节", "故事大纲", "小说大纲"):
         direct.add("novel_writing")
-    if has("剧本", "剧作", "分场", "对白", "台词", "编剧") and not constraints["writing_only"]:
+    if has("剧本", "剧作", "分场", "对白", "台词", "编剧", "短剧") and not constraints["writing_only"]:
         direct.add("screenwriting")
     if has("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list") and not constraints["explicit_no_storyboard"]:
         direct.add("storyboard")
@@ -384,9 +384,11 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("aesthetics_style")
     if has("音效", "声音设计", "环境音", "拟音", "配音", "配乐", "旁白", "声音分层"):
         direct.add("audio_design")
+    if has("表演", "微表情", "演技", "眼神", "情绪外化", "facs", "表情设计", "表演指导", "情绪转折"):
+        direct.add("performance_emotion")
     if has("api", "接口", "json请求", "请求参数", "端点", "webhook"):
         direct.add("api_integration")
-    if has("外部skill", "claude code", "codex", "dify", "coze", "智能体集成", "agent集成", "安装skill"):
+    if has("外部skill", "claude code", "codex", "dify", "coze", "智能体集成", "agent集成", "安装skill", "千问", "豆包", "扣子"):
         direct.add("external_skill_integration")
     if has("参考图", "参考视频", "反推", "反向工程", "拍摄方案") and (has("参考", "反推") or "reverse" in norm):
         direct.add("reverse_engineering")
@@ -409,8 +411,10 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
     )
     if short_video_content_intent:
         direct.add("short_video_content")
-    if has("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配"):
+    if has("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配", "抖音", "小红书", "B站", "快手", "视频号", "tiktok", "youtube shorts"):
         direct.add("platform_adaptation")
+    if has("七段式", "输出格式", "json输出", "双区输出", "格式化输出", "输出模板", "输出格式要求"):
+        direct.add("output_formatting")
     if has("从创意到成片", "完整制作", "全流程制作", "全链路交付", "一整套全流程"):
         direct.add("full_production")
     if has("角色卡", "四视图", "角色定妆", "角色外观", "角色脸型") and has("一致", "资产", "设定", "人物"):
