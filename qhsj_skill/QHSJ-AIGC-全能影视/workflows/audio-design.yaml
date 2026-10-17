@@ -1,0 +1,31 @@
+# 声音与配音工作流（Audio Design）
+name: audio-design
+version: "3.0.0"
+description: 统一对白、表演节拍、环境音、拟音、配乐与混音层次
+triggers: [声音设计, 音效设计, 配音设计, 旁白设计, 声音分层]
+stages:
+  - id: AU0
+    name: 声音意图与媒介识别
+    inputs: 剧本、分镜、视频提示词或声音需求
+    outputs: 声音目标、声音来源、对白语言和限制
+    modules: [references/13-audio-sound.md, references/11-audio-voice.md]
+  - id: AU1
+    name: 对白与表演同步
+    inputs: 声音意图、角色状态、时长
+    outputs: 台词节拍、停顿、语速、气口和表演锚点
+    modules: [references/qh-dialogue-speed-check.md, references/qh-dialogue-doctor-7d.md, references/qh-vo-os-weaving.md]
+    depends_on: [AU0]
+  - id: AU2
+    name: 环境音与音效分层（并行）
+    inputs: 场景、动作、材质与空间
+    outputs: 环境底噪、动作拟音、重点音效和空间混响
+    modules: [references/11-audio-sound.md, references/qh-seedance-audio.md]
+    parallel: true
+    depends_on: [AU0]
+  - id: AU3
+    name: 同步与质量检查
+    inputs: 对白、环境音、音效、时长
+    outputs: 声音时间轴、冲突与缺口清单
+    modules: [references/13-quality-gates.md, references/qa-checklist-320.md]
+    depends_on: [AU1, AU2]
+final_outputs: [声音设计说明, 台词/音效时间轴, 混音层次建议, 同步检查清单]

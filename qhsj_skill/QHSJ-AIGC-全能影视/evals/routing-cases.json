@@ -1,0 +1,1013 @@
+{
+  "version": "3.0.0",
+  "description": "覆盖中文白话、多意图叠加、否定约束、资产先行和版本锁定、工作流闭包、资源与章节图闭包、全路由审计及回归。",
+  "cases": [
+    {
+      "id": "novel-001",
+      "request": "写一篇玄幻长篇小说大纲，检查人物动机逻辑",
+      "must_include_capabilities": [
+        "novel_writing",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "writing"
+      ]
+    },
+    {
+      "id": "screenplay-001",
+      "request": "把这段剧本拆成逐镜分镜表，并给每镜生成视频提示词",
+      "must_include_capabilities": [
+        "screenwriting",
+        "storyboard",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "script-to-screen",
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "storyboard-only-001",
+      "request": "只要分镜，不需要提示词",
+      "must_include_capabilities": [
+        "storyboard"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "storyboard-only"
+      ]
+    },
+    {
+      "id": "image-prompt-001",
+      "request": "给我一段图片提示词，做成冷艳赛博朋克女性机械人",
+      "must_include_capabilities": [
+        "image_prompt",
+        "aesthetics_style",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "video-prompt-001",
+      "request": "生成真人电影级视频提示词，包含时间码、动作、表情和运镜",
+      "must_include_capabilities": [
+        "video_prompt",
+        "prompt_engineering",
+        "storyboard",
+        "cinematography"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "model-adaptation-001",
+      "request": "把这段视频提示词改写成Seedance和可灵都能使用的模型语法",
+      "must_include_capabilities": [
+        "model_adaptation",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "model-adaptation"
+      ]
+    },
+    {
+      "id": "asset-first-001",
+      "request": "先做角色四视图资产板，再设计场景和道具资产包",
+      "must_include_capabilities": [
+        "character_design",
+        "asset_first",
+        "aesthetics_style"
+      ],
+      "must_include_workflows": [
+        "asset-first"
+      ]
+    },
+    {
+      "id": "reverse-001",
+      "request": "根据参考图反推图片提示词，一比一还原人物衣服和构图",
+      "must_include_capabilities": [
+        "reverse_engineering",
+        "image_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "action-001",
+      "request": "设计一段写实武打动作戏，拆解攻防节拍、镜头和受力反馈",
+      "must_include_capabilities": [
+        "action_choreography",
+        "spatial_continuity",
+        "cinematography"
+      ],
+      "must_include_workflows": [
+        "action-design"
+      ]
+    },
+    {
+      "id": "audio-001",
+      "request": "给这段短片设计环境音、拟音、配音、对白停顿和配乐层次",
+      "must_include_capabilities": [
+        "audio_design",
+        "performance_emotion"
+      ],
+      "must_include_workflows": [
+        "audio-design"
+      ]
+    },
+    {
+      "id": "short-video-001",
+      "request": "为抖音做一个竖屏短视频口播脚本，强化开头三秒和结尾转化",
+      "must_include_capabilities": [
+        "short_video_content",
+        "platform_adaptation",
+        "screenwriting"
+      ],
+      "must_include_workflows": [
+        "platform-short-video"
+      ]
+    },
+    {
+      "id": "continuity-001",
+      "request": "修复分镜里人物位置不一致、越轴和镜头接不上问题",
+      "must_include_capabilities": [
+        "spatial_continuity",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "continuity-repair"
+      ]
+    },
+    {
+      "id": "api-001",
+      "request": "检查API契约和JSON请求示例，设计自动化接口集成",
+      "must_include_capabilities": [
+        "api_integration",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "api-integration"
+      ]
+    },
+    {
+      "id": "agent-001",
+      "request": "帮我把外部Skill接入Claude Code、Codex和Dify，设计Agent集成步骤",
+      "must_include_capabilities": [
+        "external_skill_integration",
+        "api_integration"
+      ],
+      "must_include_workflows": [
+        "api-integration"
+      ]
+    },
+    {
+      "id": "skill-audit-001",
+      "request": "完整审计这个Skill，查清缺失路由、逻辑矛盾、代码bug和没有覆盖的模块",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "general_orchestration",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "qa"
+      ]
+    },
+    {
+      "id": "full-pipeline-001",
+      "request": "从创意到成片，完整制作一条短片，包含剧本、资产、分镜、提示词和质检",
+      "must_include_capabilities": [
+        "full_production",
+        "screenwriting",
+        "storyboard",
+        "video_prompt",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "full-production"
+      ]
+    },
+    {
+      "id": "performance-001",
+      "request": "把角色恐惧和愤怒外化成微表情、呼吸、眼神和肢体反应",
+      "must_include_capabilities": [
+        "performance_emotion",
+        "character_design"
+      ],
+      "must_include_workflows": [
+        "asset-first"
+      ]
+    },
+    {
+      "id": "aesthetics-001",
+      "request": "为古风玄幻场景制定色彩体系、灯光方案和导演风格视觉基因",
+      "must_include_capabilities": [
+        "aesthetics_style",
+        "cinematography",
+        "prompt_engineering"
+      ]
+    },
+    {
+      "id": "vfx-001",
+      "request": "设计魔法粒子、爆炸特效和真实物理模拟，避免漂浮和穿模",
+      "must_include_capabilities": [
+        "vfx_physics",
+        "cinematography",
+        "spatial_continuity"
+      ]
+    },
+    {
+      "id": "output-format-001",
+      "request": "按标准表格模板整理最终交付，给出双区输出格式和字段定义",
+      "must_include_capabilities": [
+        "output_formatting",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "project-state-001",
+      "request": "设计项目状态文件，管理跨轮次上下文、设定锁和制作台账",
+      "must_include_capabilities": [
+        "project_state_management",
+        "general_orchestration"
+      ]
+    },
+    {
+      "id": "platform-001",
+      "request": "把视频内容适配TikTok、B站和小红书，分别调整字幕安全区和比例",
+      "must_include_capabilities": [
+        "platform_adaptation",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "safety-001",
+      "request": "检查原创性、版权风险和平台合规，列出需要替换的内容",
+      "must_include_capabilities": [
+        "safety_originality",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "novel-state-001",
+      "request": "续写下一章，但不能改变世界观、人物关系和已埋伏笔",
+      "must_include_capabilities": [
+        "novel_writing",
+        "project_state_management",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "image-no-storyboard-001",
+      "request": "不要分镜，只生成一张图片提示词",
+      "must_include_capabilities": [
+        "image_prompt",
+        "prompt_engineering"
+      ],
+      "must_exclude_capabilities": [
+        "storyboard"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "plain-camera-001",
+      "request": "给我安排一个低机位推镜，人物从画面左侧进入后停在窗边",
+      "must_include_capabilities": [
+        "cinematography",
+        "spatial_continuity"
+      ]
+    },
+    {
+      "id": "character-consistency-001",
+      "request": "角色脸型、发色、服装和配饰必须跨镜头一致，建立视觉锚点",
+      "must_include_capabilities": [
+        "character_design",
+        "asset_first",
+        "spatial_continuity"
+      ]
+    },
+    {
+      "id": "prompt-compile-001",
+      "request": "优化提示词，拆成正向提示词和负面提示词，避免模型跑偏",
+      "must_include_capabilities": [
+        "prompt_engineering",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "novel-only-001",
+      "request": "只写小说，不做视觉设计，直接续写章节",
+      "must_include_capabilities": [
+        "novel_writing"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "storyboard"
+      ]
+    },
+    {
+      "id": "reverse-video-001",
+      "request": "分析一段参考视频的镜头节奏和场面调度，反推拍摄方案",
+      "must_include_capabilities": [
+        "reverse_engineering",
+        "cinematography",
+        "spatial_continuity"
+      ]
+    },
+    {
+      "id": "sound-only-001",
+      "request": "只做音效设计，不需要生成视频提示词",
+      "must_include_capabilities": [
+        "audio_design"
+      ],
+      "must_exclude_capabilities": [
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "audio-design"
+      ]
+    },
+    {
+      "id": "api-model-001",
+      "request": "通过API调用目标视频模型，构造请求参数并校验返回结果",
+      "must_include_capabilities": [
+        "api_integration",
+        "model_adaptation"
+      ]
+    },
+    {
+      "id": "route-parallel-001",
+      "request": "同时设计角色定妆图、动作戏分镜、音效层次和视频模型适配",
+      "must_include_capabilities": [
+        "character_design",
+        "action_choreography",
+        "storyboard",
+        "audio_design",
+        "model_adaptation"
+      ]
+    },
+    {
+      "id": "prompt-audit-001",
+      "request": "检查这份提示词具体哪里不清楚，逐项标注并修复",
+      "must_include_capabilities": [
+        "quality_assurance",
+        "prompt_engineering"
+      ]
+    },
+    {
+      "id": "creative-qa-001",
+      "request": "检查小说大纲的因果链、人物动机和伏笔回收是否自洽",
+      "must_include_capabilities": [
+        "novel_writing",
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "no-full-pipeline-001",
+      "request": "不要全流程，只给我一个短视频提示词",
+      "must_include_capabilities": [
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_exclude_workflows": [
+        "full-production"
+      ]
+    },
+    {
+      "id": "coverage-cap-general_orchestration",
+      "request": "分析一下需求",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ]
+    },
+    {
+      "id": "coverage-cap-novel_writing",
+      "request": "故事怎么写",
+      "must_include_capabilities": [
+        "novel_writing"
+      ]
+    },
+    {
+      "id": "coverage-cap-screenwriting",
+      "request": "场面调度剧本",
+      "must_include_capabilities": [
+        "screenwriting"
+      ]
+    },
+    {
+      "id": "coverage-cap-short_video_content",
+      "request": "短视频文案",
+      "must_include_capabilities": [
+        "short_video_content"
+      ]
+    },
+    {
+      "id": "coverage-cap-storyboard",
+      "request": "分镜头脚本",
+      "must_include_capabilities": [
+        "storyboard"
+      ]
+    },
+    {
+      "id": "coverage-cap-cinematography",
+      "request": "镜头怎么拍",
+      "must_include_capabilities": [
+        "cinematography"
+      ]
+    },
+    {
+      "id": "coverage-cap-spatial_continuity",
+      "request": "180度轴线",
+      "must_include_capabilities": [
+        "spatial_continuity"
+      ]
+    },
+    {
+      "id": "coverage-cap-character_design",
+      "request": "角色三视图",
+      "must_include_capabilities": [
+        "character_design"
+      ]
+    },
+    {
+      "id": "coverage-cap-performance_emotion",
+      "request": "AU动作单元",
+      "must_include_capabilities": [
+        "performance_emotion"
+      ]
+    },
+    {
+      "id": "coverage-cap-aesthetics_style",
+      "request": "韦斯安德森",
+      "must_include_capabilities": [
+        "aesthetics_style"
+      ]
+    },
+    {
+      "id": "coverage-cap-image_prompt",
+      "request": "出图提示词",
+      "must_include_capabilities": [
+        "image_prompt"
+      ]
+    },
+    {
+      "id": "coverage-cap-video_prompt",
+      "request": "视频生成提示",
+      "must_include_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "coverage-cap-prompt_engineering",
+      "request": "提示词怎么写",
+      "must_include_capabilities": [
+        "prompt_engineering"
+      ]
+    },
+    {
+      "id": "coverage-cap-model_adaptation",
+      "request": "模型专用语法",
+      "must_include_capabilities": [
+        "model_adaptation"
+      ]
+    },
+    {
+      "id": "coverage-cap-reverse_engineering",
+      "request": "参考图反推",
+      "must_include_capabilities": [
+        "reverse_engineering"
+      ]
+    },
+    {
+      "id": "coverage-cap-asset_first",
+      "request": "角色资产板",
+      "must_include_capabilities": [
+        "asset_first"
+      ]
+    },
+    {
+      "id": "coverage-cap-audio_design",
+      "request": "声音提示词",
+      "must_include_capabilities": [
+        "audio_design"
+      ]
+    },
+    {
+      "id": "coverage-cap-quality_assurance",
+      "request": "哪里有问题",
+      "must_include_capabilities": [
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "coverage-cap-safety_originality",
+      "request": "原创性检查",
+      "must_include_capabilities": [
+        "safety_originality"
+      ]
+    },
+    {
+      "id": "coverage-cap-platform_adaptation",
+      "request": "发布到平台",
+      "must_include_capabilities": [
+        "platform_adaptation"
+      ]
+    },
+    {
+      "id": "coverage-cap-api_integration",
+      "request": "接口怎么接",
+      "must_include_capabilities": [
+        "api_integration"
+      ]
+    },
+    {
+      "id": "coverage-cap-external_skill_integration",
+      "request": "安装这个skill",
+      "must_include_capabilities": [
+        "external_skill_integration"
+      ]
+    },
+    {
+      "id": "coverage-cap-project_state_management",
+      "request": "人物关系表",
+      "must_include_capabilities": [
+        "project_state_management"
+      ]
+    },
+    {
+      "id": "coverage-cap-output_formatting",
+      "request": "输出成表格",
+      "must_include_capabilities": [
+        "output_formatting"
+      ]
+    },
+    {
+      "id": "coverage-cap-skill_architecture_audit",
+      "request": "Skill整改",
+      "must_include_capabilities": [
+        "skill_architecture_audit"
+      ]
+    },
+    {
+      "id": "coverage-cap-full_production",
+      "request": "从创意到成片",
+      "must_include_capabilities": [
+        "full_production"
+      ]
+    },
+    {
+      "id": "coverage-wf-full-production",
+      "request": "从创意到成片",
+      "must_include_workflows": [
+        "full-production"
+      ]
+    },
+    {
+      "id": "coverage-wf-script-to-screen",
+      "request": "把剧本拆成分镜",
+      "must_include_workflows": [
+        "script-to-screen"
+      ]
+    },
+    {
+      "id": "coverage-wf-asset-first",
+      "request": "角色资产板",
+      "must_include_workflows": [
+        "asset-first"
+      ]
+    },
+    {
+      "id": "coverage-wf-reverse-engineering",
+      "request": "参考视频反推",
+      "must_include_workflows": [
+        "reverse-engineering"
+      ]
+    },
+    {
+      "id": "coverage-wf-visual-prompt",
+      "request": "prompt",
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "coverage-wf-model-adaptation",
+      "request": "适配Seedance",
+      "must_include_workflows": [
+        "model-adaptation"
+      ]
+    },
+    {
+      "id": "coverage-wf-platform-short-video",
+      "request": "短视频平台方案",
+      "must_include_workflows": [
+        "platform-short-video"
+      ]
+    },
+    {
+      "id": "coverage-wf-continuity-repair",
+      "request": "人物位置不一致",
+      "must_include_workflows": [
+        "continuity-repair"
+      ]
+    },
+    {
+      "id": "coverage-wf-api-integration",
+      "request": "Agent集成",
+      "must_include_workflows": [
+        "api-integration"
+      ]
+    },
+    {
+      "id": "compound-full-stack-001",
+      "request": "把一个悬疑故事做成完整短片，写剧本、设计角色四视图、拆逐镜分镜、生成视频提示词、配音音效、适配Seedance并检查连续性",
+      "must_include_capabilities": [
+        "screenwriting",
+        "character_design",
+        "asset_first",
+        "storyboard",
+        "video_prompt",
+        "prompt_engineering",
+        "audio_design",
+        "model_adaptation",
+        "spatial_continuity",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "full-production",
+        "asset-first",
+        "script-to-screen",
+        "visual-prompt",
+        "audio-design",
+        "model-adaptation",
+        "continuity-repair"
+      ]
+    },
+    {
+      "id": "negation-image-not-storyboard-002",
+      "request": "不要分镜，不要视频提示词，只要一张图的图片提示词，人物服装保持参考图一致",
+      "must_include_capabilities": [
+        "image_prompt",
+        "character_design",
+        "reverse_engineering"
+      ],
+      "must_exclude_capabilities": [
+        "storyboard",
+        "video_prompt"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "skill-routing-audit-003",
+      "request": "帮我把这个Skill所有板块补齐自动路由，检查所有文件和章节是否连通，修复代码并做全量回归测试",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance",
+        "general_orchestration"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "audio-only-negation-004",
+      "request": "只设计配音、环境音和背景音乐，不要分镜，也不要图片或视频提示词",
+      "must_include_capabilities": [
+        "audio_design"
+      ],
+      "must_exclude_capabilities": [
+        "storyboard",
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "audio-design"
+      ]
+    },
+    {
+      "id": "exact-reference-file-005",
+      "request": "请读取 references/qh-facs-au-dictionary.md 并根据其中的 AU 编码设计面部微表情",
+      "must_include_capabilities": [
+        "performance_emotion"
+      ],
+      "must_include_workflows": [
+        "intent-analysis"
+      ]
+    },
+    {
+      "id": "vague-request-fallback-006",
+      "request": "把这个弄得更专业一些",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_include_workflows": [
+        "intent-analysis"
+      ]
+    },
+    {
+      "id": "full-route-colloquial-001",
+      "request": "帮我做成百分百全路由，所有板块全部覆盖，全部都要增上连通，要能全面分析理解用户的要求。",
+      "must_include_capabilities": [
+        "general_orchestration",
+        "skill_architecture_audit",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "full-route-colloquial-002",
+      "request": "不管我怎么用白话表达，都要把所有模块、知识文件、章节和代码接上路由，不能漏掉任何板块。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "full-route-colloquial-003",
+      "request": "请检查这套技能的路由闭环，补齐未连接的资源和工作流，运行全包审计并回归验证。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "full-route-colloquial-004",
+      "request": "全面理解用户所有子需求，自动叠加相关功能模块，确保全部板块都可达但不要无关模块乱入。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "general_orchestration"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "full-route-no-unrelated-creative-dispatch-001",
+      "request": "帮我把整套 Skill 做成百分百全路由，所有板块、知识库章节、工作流和代码都要连通；运行全包审计和回归测试，不要生成图片或视频提示词。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance",
+        "general_orchestration"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt",
+        "full-production"
+      ]
+    },
+    {
+      "id": "full-route-plain-language-closure-005",
+      "request": "我要每个板块都能被找到和调用，任何白话需求都先分析目标，再叠加需要的路由，所有文件都不能漏。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "general_orchestration"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ]
+    },
+    {
+      "id": "full-route-audit-does-not-mean-execute-all-006",
+      "request": "检查所有模块是否有路由，不要实际生成小说、分镜、图片或视频内容。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt",
+        "full-production",
+        "writing",
+        "script-to-screen",
+        "storyboard-only"
+      ],
+      "must_exclude_capabilities": [
+        "novel_writing",
+        "storyboard",
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering",
+        "full_production"
+      ]
+    },
+    {
+      "id": "image-prompt-no-visual-overroute-003",
+      "request": "给我一段图片提示词，做成冷艳赛博朋克女性机械人",
+      "must_include_capabilities": [
+        "image_prompt",
+        "aesthetics_style",
+        "prompt_engineering"
+      ],
+      "must_exclude_capabilities": [
+        "video_prompt",
+        "model_adaptation",
+        "reverse_engineering",
+        "spatial_continuity"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ],
+      "must_exclude_workflows": [
+        "storyboard-only",
+        "full-production"
+      ]
+    },
+    {
+      "id": "asset-lock-composite-003",
+      "request": "做完人物和场景资产，锁定版本，再把分镜图引用已锁定的人物图和场景图",
+      "must_include_capabilities": [
+        "character_design",
+        "asset_first",
+        "asset_locking",
+        "spatial_continuity"
+      ],
+      "must_include_workflows": [
+        "asset-first",
+        "asset-lock"
+      ],
+      "must_exclude_workflows": [
+        "storyboard-only"
+      ]
+    },
+    {
+      "id": "seedance-adapt-video-prompt-003",
+      "request": "把这段视频提示词改写适配 Seedance",
+      "must_include_capabilities": [
+        "video_prompt",
+        "model_adaptation",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "model-adaptation",
+        "visual-prompt"
+      ],
+      "must_exclude_workflows": [
+        "full-production",
+        "platform-short-video"
+      ]
+    },
+    {
+      "id": "audio-only-negative-003",
+      "request": "只做音效设计，不需要视频提示词，也不要图片提示词或分镜",
+      "must_include_capabilities": [
+        "audio_design"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering",
+        "storyboard"
+      ],
+      "must_include_workflows": [
+        "audio-design"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt",
+        "storyboard-only",
+        "script-to-screen"
+      ]
+    },
+    {
+      "id": "audit-closure-no-media-003",
+      "request": "把整套 Skill 的所有板块、知识库章节、工作流和代码全部接通，运行全包审计和回归测试，不要生成小说、图片或视频提示词。",
+      "must_include_capabilities": [
+        "skill_architecture_audit",
+        "quality_assurance",
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "novel_writing",
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering",
+        "full_production"
+      ],
+      "must_include_workflows": [
+        "intent-analysis",
+        "qa"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt",
+        "full-production",
+        "writing",
+        "storyboard-only"
+      ]
+    },
+    {
+      "id": "storyboard-only-no-prompt-003",
+      "request": "只要分镜，不需要提示词",
+      "must_include_capabilities": [
+        "storyboard"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "storyboard-only"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "short-video-single-prompt-not-full-production-003",
+      "request": "不要全流程，只给我一个短视频提示词",
+      "must_include_capabilities": [
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ],
+      "must_exclude_workflows": [
+        "full-production",
+        "platform-short-video"
+      ]
+    },
+    {
+      "id": "asset-first-lock-before-storyboard-image-004",
+      "request": "先生成并锁定人物资产和场景资产，然后制作分镜图，并让每一张分镜图引用已锁定的人物图和场景图",
+      "must_include_capabilities": [
+        "character_design",
+        "asset_first",
+        "asset_locking",
+        "spatial_continuity"
+      ],
+      "must_include_workflows": [
+        "asset-first",
+        "asset-lock"
+      ],
+      "must_exclude_workflows": [
+        "storyboard-only"
+      ]
+    },
+    {
+      "id": "colloquial-asset-first-before-storyboard-005",
+      "request": "我想做一个会在雨夜巷子里遇到旧友的电影感短视频，人物要保持一致，先设计人物和场景图，再做分镜，最后生成可灵视频提示词",
+      "must_include_capabilities": [
+        "asset_first",
+        "asset_locking",
+        "character_design",
+        "storyboard",
+        "spatial_continuity",
+        "video_prompt",
+        "model_adaptation",
+        "prompt_engineering"
+      ],
+      "must_exclude_capabilities": [],
+      "must_include_workflows": [
+        "asset-first",
+        "asset-lock",
+        "script-to-screen",
+        "model-adaptation",
+        "visual-prompt"
+      ],
+      "must_exclude_workflows": [
+        "storyboard-only"
+      ]
+    }
+  ],
+  "coverage_note": "静态资源/章节/能力/工作流闭包与已收录的白话用例可验证；对任意未见自然语言的理解仍由宿主模型的 intent-analysis 语义层负责，不能以固定关键词测试宣称数学意义上的百分之百语义准确。"
+}

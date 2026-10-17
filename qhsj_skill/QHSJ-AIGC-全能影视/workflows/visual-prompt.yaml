@@ -1,0 +1,44 @@
+# 视觉提示词生成工作流
+# 只要图片/视频提示词，不要完整项目
+
+name: visual-prompt
+version: "3.0.0"
+description: 快速生成图片或视频提示词
+
+stages:
+  - id: V0
+    name: 意图提取
+    inputs: 用户白话描述
+    outputs: 六大维度提取（时代/地域/题材/次文化/艺术运动/情绪）
+    modules:
+      - 06-aesthetics-style
+
+  - id: V1
+    name: 质感基底选择
+    inputs: 意图
+    outputs: 质感基底（真人摄影/3D CG/混合）
+    modules:
+      - 07-prompt-engineering
+
+  - id: V2
+    name: 视觉参数编译（并行）
+    inputs: 意图 + 基底
+    outputs: 完整提示词
+    modules:
+      - 07-prompt-engineering（主体/构图/光影/色彩/材质）
+      - 03-cinematography（镜头参数）
+      - 06-aesthetics-style（风格叠加）
+      - 08-model-adapters（平台适配）
+    parallel: true
+
+  - id: V3
+    name: 输出适配
+    inputs: 编译好的提示词
+    outputs: 目标平台格式的完整提示词
+    modules:
+      - 08-model-adapters
+
+final_outputs:
+  - 正向提示词
+  - 负向提示词（或正向锁定句）
+  - 可调参数说明

@@ -1,0 +1,37 @@
+# 动作设计与打斗编排工作流（Action Design）
+name: action-design
+version: "3.0.0"
+description: 从动作目标到空间正确、受力合理、节奏清晰的动作分镜与提示词
+triggers: [打斗设计, 动作戏, 武打分镜, 战斗动作, 动作预演]
+stages:
+  - id: AC0
+    name: 动作目标与安全边界
+    inputs: 用户动作意图、人物能力、场景条件
+    outputs: 动作目标、失败条件、禁止新增项、强度等级
+    modules: [references/qh-combat-direction-engine.md, references/qh-authentic-martial-taxonomy.md]
+  - id: AC1
+    name: 空间与站位锁定
+    inputs: 动作目标、场景图、人物锚点
+    outputs: 站位声明、轴线、进退路线、可用空间
+    modules: [references/03-spatial-engine.md, references/qh-blocking-positioning-master.md, references/qh-spatial-deduction-engine.md]
+    depends_on: [AC0]
+  - id: AC2
+    name: 动作拆解与攻防节拍
+    inputs: 空间状态、角色能力
+    outputs: 起势、攻势、防御、命中/落空、受力反馈、恢复状态
+    modules: [references/09-action-system.md, references/qh-martial-action-encyclopedia.md, references/qh-fight-storyboard-dsl.md, references/qh-combat-rhythm-defense3state.md]
+    depends_on: [AC1]
+  - id: AC3
+    name: 摄影与物理反馈（并行）
+    inputs: 动作节拍
+    outputs: 机位、运镜、遮挡、惯性、碰撞、布料与环境反馈
+    modules: [references/qh-action-cinematography-breakdown.md, references/qh-video-physics-precision.md, references/12-vfx-motion-physics.md]
+    parallel: true
+    depends_on: [AC2]
+  - id: AC4
+    name: 逐镜输出与质量门禁
+    inputs: 动作节拍、摄影、空间和物理结果
+    outputs: 动作分镜、视频提示词、错误归因与修复清单
+    modules: [references/08-storyboard-directing.md, references/04-dual-output-protocol.md, references/13-quality-gates.md, references/qh-quality-gate-review.md]
+    depends_on: [AC3]
+final_outputs: [动作目标卡, 空间/轴线声明, 动作节拍表, 动作分镜, 可选视频提示词, 质量检查报告]

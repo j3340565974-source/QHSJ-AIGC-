@@ -1,0 +1,30 @@
+# API与智能体集成工作流（API & Agent Integration）
+name: api-integration
+version: "3.0.0"
+description: 从能力需求到接口契约、参数校验、平台适配、安全边界与集成测试
+triggers: [API集成, 接口请求, Agent集成, 安装Skill, 外部工具集成]
+stages:
+  - id: API0
+    name: 需求和宿主能力盘点
+    inputs: 目标宿主、可用工具、输入输出、网络/文件权限
+    outputs: 能力矩阵、工具约束、缺失依赖清单
+    modules: [references/qh-agent-platform-adapters.md, references/qh-external-skill-integration.md, references/compatibility-matrix.md]
+  - id: API1
+    name: 接口契约与请求结构
+    inputs: 能力矩阵和数据流
+    outputs: 请求/响应schema、错误码、重试策略和超时边界
+    modules: [references/api-contracts.md, references/api-request-patterns-160.md]
+    depends_on: [API0]
+  - id: API2
+    name: 集成与参数验证
+    inputs: 接口契约
+    outputs: 适配层、字段验证、错误处理与日志约定
+    modules: [references/06-model-adaptation.md, references/08-model-adapters.md, scripts/validate_prompt.py]
+    depends_on: [API1]
+  - id: API3
+    name: 安全和回归测试
+    inputs: 适配实现与集成场景
+    outputs: 测试矩阵、失败回退方案、部署说明
+    modules: [references/15-safety-compliance.md, references/failure-playbook-220.md, references/qa-checklist-320.md]
+    depends_on: [API2]
+final_outputs: [接口契约, 参数示例, 错误处理规则, 集成测试矩阵, 宿主兼容性说明]
