@@ -294,11 +294,14 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual(result["resource_route_candidate_count"], len(registry["resources"]))
 
     def test_every_reference_is_documented_in_both_indexes(self):
+        # 双索引 = references/index.md（人类可读目录）+ routing/route-registry.json（机器注册表）。
+        # SKILL.md 不再内嵌逐文件索引，避免主入口膨胀至数百 KB 撑爆上下文。
         reference_files = sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / "references").glob("*.md"))
-        skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+        registry = json.loads((ROOT / "routing" / "route-registry.json").read_text(encoding="utf-8"))
+        registry_paths = {r.get("file") or r.get("path") for r in registry.get("resources", [])}
         index_text = (ROOT / "references" / "index.md").read_text(encoding="utf-8")
         for rel in reference_files:
-            self.assertIn(rel, skill_text, f"SKILL.md references 目录漏项：{rel}")
+            self.assertIn(rel, registry_paths, f"route-registry.json 漏登记：{rel}")
             self.assertIn(Path(rel).name, index_text, f"references/index.md 漏项：{rel}")
 
 

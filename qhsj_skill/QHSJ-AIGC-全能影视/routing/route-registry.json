@@ -3238,7 +3238,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "ca75185763b8e6542f15e7c5d26b8655fd8019323f0138bdf53b8a88ff441745",
+      "sha256": "59419137d49d88e55c8327215e3b50bdec759049bd80f8fd261aba88cc2bd68a",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -3309,7 +3309,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "79244c1685d235956915fbd8d287b8c9d3fae34d28fc10664ca4103366fef1d3",
+      "sha256": "2fcffdf0cbbf2d4f3f0858e31c1c8a2eb55d8f0863f6c897d9304690f8a8dedf",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -136626,7 +136626,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "58ae618af5be271de7ab30321a50ded56a4e09af2bd8c7fe64c7b959d8f6dbba",
+      "sha256": "a77345b96305dc53d89f9b88762a1adea77ed1b228897d34c05cdbae7e07e81a",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "quality_assurance"

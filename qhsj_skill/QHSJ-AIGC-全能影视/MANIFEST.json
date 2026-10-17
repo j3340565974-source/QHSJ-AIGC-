@@ -30,8 +30,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 9523,
-      "sha256": "ca75185763b8e6542f15e7c5d26b8655fd8019323f0138bdf53b8a88ff441745",
+      "size_bytes": 10311,
+      "sha256": "59419137d49d88e55c8327215e3b50bdec759049bd80f8fd261aba88cc2bd68a",
       "category": "md"
     },
     {
@@ -48,8 +48,8 @@
     },
     {
       "path": "SKILL.md",
-      "size_bytes": 282927,
-      "sha256": "79244c1685d235956915fbd8d287b8c9d3fae34d28fc10664ca4103366fef1d3",
+      "size_bytes": 48494,
+      "sha256": "2fcffdf0cbbf2d4f3f0858e31c1c8a2eb55d8f0863f6c897d9304690f8a8dedf",
       "category": "md"
     },
     {
@@ -1897,7 +1897,7 @@
     {
       "path": "routing/route-registry.json",
       "size_bytes": 3615685,
-      "sha256": "04ffdc164aba3b16e15b6c4fe46c8df9df13bc63dcdfdf68136bc7a258921e1c",
+      "sha256": "5d50d95a76c498cd64f072b1732e595a4a307d4d9ebdabbbb19278dd38a14488",
       "category": "data"
     },
     {
@@ -1974,8 +1974,8 @@
     },
     {
       "path": "tests/test_skill.py",
-      "size_bytes": 28072,
-      "sha256": "58ae618af5be271de7ab30321a50ded56a4e09af2bd8c7fe64c7b959d8f6dbba",
+      "size_bytes": 28424,
+      "sha256": "a77345b96305dc53d89f9b88762a1adea77ed1b228897d34c05cdbae7e07e81a",
       "category": "file"
     },
     {

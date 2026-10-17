@@ -20,6 +20,12 @@
 - **15-qhsj-master-engine.md 去重与修复**：修复 12 种打斗风格体系畸形标题（`#` 误作表格头），还原为标准 Markdown 表格；移除与「系统提示词完整版」及详细系统章节重复的精简核心系统块（保留「一句话总纲」与 Python 自动运行代码）；清理 BOM 字符；新增文件目录（TOC）便于导航。
 - **依赖说明**：明确 `PyYAML` 与 `jsonschema` 为审计脚本可选依赖，未安装时只跳过对应解析不影响其余检查。
 
+### 上下文瘦身修复（解决"上下窗饱满/无法运行"）
+- **SKILL.md 从 282KB 精简至 48KB**（4065 行 → 451 行）：移除内嵌的 342 条逐文件参考索引（与 `references/index.md`、`route-registry.json` 重复），改为指向索引与脚本检索。
+- **修正加载指令**：禁止整读 3.6MB 的 `route-registry.json` 与 241KB 的 `index.md`；路由改用 `scripts/route_request.py`（机器脚本不占 LLM 上下文），知识库按关键词 `grep` 定位后只读命中的 1–2 篇。
+- 新增「上下文预算铁律」：单次最多加载 2 篇 reference；机器注册表仅供脚本读取。
+- 更新 `tests/test_skill.py`：双索引校验改为 `references/index.md` + `route-registry.json`，不再强制 SKILL.md 内嵌全量索引。
+
 ### 验收边界
 
 - 自动化检查通过仅证明本发行包中被检查的结构、路由契约与回归样例通过；不构成对所有未见自然语言、外部模型生成结果或所有宿主环境的绝对无缺陷保证。
