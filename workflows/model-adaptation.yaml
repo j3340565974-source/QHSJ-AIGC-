@@ -1,0 +1,30 @@
+# 模型适配工作流（Model Adaptation）
+name: model-adaptation
+version: "3.0.0"
+description: 保留创作语义与硬约束，按目标图像/视频模型编译语法
+triggers: [模型适配, 平台适配, 适配Seedance, 适配可灵, 适配Veo, 模型语法转换]
+stages:
+  - id: MA0
+    name: 目标模型与任务类型识别
+    inputs: 原始提示词、任务目标、目标平台（如有）
+    outputs: 目标模型、输入模态、时长/比例/参考资产限制
+    modules: [references/model-atlas.md, references/model-matrix-expanded.md, references/compatibility-matrix.md]
+  - id: MA1
+    name: 能力与语法证据核对
+    inputs: 目标模型和任务类型
+    outputs: 已确认能力、未确认能力、语法限制与日期
+    modules: [references/model-adapter-cards.md, references/qh-agent-platform-adapters.md, references/qh-seedance-pipeline.md]
+    depends_on: [MA0]
+  - id: MA2
+    name: 语义不变编译
+    inputs: 原始提示词、硬约束和模型限制
+    outputs: 目标平台格式、变量/参数和负面约束
+    modules: [references/06-model-adaptation.md, references/08-model-adapters.md, references/11-prompt-engineering.md]
+    depends_on: [MA1]
+  - id: MA3
+    name: 回归与失败预防
+    inputs: 编译结果
+    outputs: 语义差异清单、兼容风险、校验报告
+    modules: [references/failure-playbook-220.md, references/13-quality-gates.md, scripts/validate_prompt.py]
+    depends_on: [MA2]
+final_outputs: [模型适配提示词, 参数说明, 兼容性与时效性声明, 回归检查报告]

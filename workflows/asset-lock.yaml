@@ -1,0 +1,51 @@
+# QHSJ 独立资产锁定与引用工作流
+name: asset-lock
+version: "3.0.0"
+description: 专门管理人物、场景、道具资产规格、参考图、版本锁与分镜引用，避免跨镜头漂移。
+triggers:
+  - 人物资产锁定
+  - 角色资产锁定
+  - 场景资产锁定
+  - 资产冻结
+  - 锁定人物和场景
+  - 先锁定角色和场景
+  - 分镜资产引用角色图
+  - 分镜图引用场景图
+  - 资产版本锁定
+  - 先做人设和场景再分镜
+  - 人物场景资产定稿后再分镜
+  - 分镜图引用已锁定场景图
+  - 分镜图引用已锁定人物图
+  - 角色外观不要变化
+  - 场景布局不要变化
+entry_conditions:
+  - 用户提出锁定资产、跨镜引用、版本管理或资产漂移修复。
+inputs: [Canon, asset_state, reference assets, downstream shots]
+outputs: [asset specification, canonical asset versions, lock ledger, dependency impact report]
+stages:
+  - id: L0
+    name: 资产来源和版本清点
+    inputs: [现有资产文件, Canon, 项目状态]
+    outputs: [资产目录, 版本冲突表, 缺失文件表]
+    modules: [references/qhsj-asset-locking-protocol.md, references/asset-ledger.md]
+  - id: L1
+    name: 锁定字段和可变字段定义
+    inputs: [资产目录, 用户约束]
+    outputs: [不可变字段, 可变字段, 版本策略]
+    modules: [references/qhsj-asset-locking-protocol.md, templates/asset-lock-ledger.md]
+  - id: L2
+    name: 图像/规格质量核验
+    inputs: [资产图和规格]
+    outputs: [身份一致性、拓扑一致性、来源一致性和材质检查]
+    modules: [references/p1-asset-validation-cases-500.md, references/16-quality-gates.md]
+  - id: L3
+    name: 锁定资产引用与下游依赖扫描
+    inputs: [通过核验的资产版本, 分镜/提示词/图像产物]
+    outputs: [锁定台账, asset_dependency_index, needs_recheck 清单]
+    modules: [references/qhsj-asset-locking-protocol.md, references/qhsj-spatial-gaze-distance-ledger.md, schemas/project-state.schema.json]
+  - id: L4
+    name: 修复与回归
+    inputs: [缺陷清单, 受影响产物]
+    outputs: [修复记录, 相关产物回归报告]
+    modules: [references/qhsj-multiagent-review-protocol.md, references/16-quality-gates.md]
+final_outputs: [资产锁定台账, 规范版本引用清单, 下游依赖影响报告, 未解决项]

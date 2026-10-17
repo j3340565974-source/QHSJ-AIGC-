@@ -1,0 +1,30 @@
+# 空间与连续性修复工作流（Continuity Repair）
+name: continuity-repair
+version: "3.0.0"
+description: 针对人物、空间、动作、道具、光线、镜头轴线和段间状态进行定位修复
+triggers: [连续性修复, 空间穿帮修复, 人物位置不一致, 角色一致性检查, 镜头接不上]
+stages:
+  - id: CR0
+    name: 内容类型和边界识别
+    inputs: 剧本、分镜、提示词、生成结果描述或多段视频计划
+    outputs: 项目事实、场景/镜头范围、用户禁止改动项
+    modules: [references/decision-protocol.md, references/continuity-state-library.md]
+  - id: CR1
+    name: 连续性状态重建
+    inputs: 相关场次、镜头和资产记录
+    outputs: 起态/终态、人物位置、道具状态、轴线与光向
+    modules: [references/03-spatial-engine.md, references/04-spatial-continuity.md, references/qh-spatial-reference-system-V3.md, references/asset-ledger.md]
+    depends_on: [CR0]
+  - id: CR2
+    name: 问题定位与最小修复
+    inputs: 连续性状态表和故障现象
+    outputs: 根因、影响范围、最小变更方案
+    modules: [references/failure-playbook-220.md, references/qa-checklist-320.md, references/qh-quality-gate-review.md]
+    depends_on: [CR1]
+  - id: CR3
+    name: 回归测试与交付
+    inputs: 修复后的内容
+    outputs: 修复差异、通过项、残余风险
+    modules: [references/13-quality-gates.md, references/14-quality-evolution.md]
+    depends_on: [CR2]
+final_outputs: [连续性状态表, 根因报告, 最小修复版本, 回归检查报告]

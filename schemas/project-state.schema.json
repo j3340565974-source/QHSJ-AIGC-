@@ -1,0 +1,730 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QHSJ AIGC 全能影视 项目状态 Schema",
+  "description": "QHSJ AIGC 全能影视的项目状态、Canon、资产生命周期、锁定字段、空间关系、生产阶段与质量回归结构。",
+  "type": "object",
+  "required": [
+    "project_id",
+    "intent",
+    "created_at"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "项目唯一标识"
+    },
+    "project_name": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string",
+      "default": "3.0.0"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "in_progress",
+        "blocked",
+        "review",
+        "completed",
+        "archived"
+      ],
+      "default": "draft"
+    },
+    "intent": {
+      "type": "object",
+      "description": "将用户白话转为明确交付目标和约束；user_input 必须保留原始意图，不得由规范化摘要覆盖。",
+      "required": [
+        "user_input"
+      ],
+      "properties": {
+        "user_input": {
+          "type": "string",
+          "minLength": 1
+        },
+        "normalized_goal": {
+          "type": "string"
+        },
+        "task_type": {
+          "type": "string",
+          "enum": [
+            "novel",
+            "screenplay",
+            "short_video",
+            "storyboard",
+            "image_prompt",
+            "video_prompt",
+            "reverse",
+            "full_pipeline",
+            "qa",
+            "action_design",
+            "audio_design",
+            "asset_design",
+            "prompt",
+            "model_adaptation",
+            "skill_audit",
+            "api_integration",
+            "continuity_repair",
+            "platform_adaptation",
+            "unknown",
+            "asset_locking",
+            "multiagent_review",
+            "character_asset",
+            "scene_asset",
+            "storyboard_asset"
+          ]
+        },
+        "deliverables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "hard_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "negative_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_platform": {
+          "type": "string"
+        },
+        "target_model": {
+          "type": "string"
+        },
+        "aspect_ratio": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "default": "zh-CN"
+        },
+        "output_format": {
+          "type": "string"
+        },
+        "word_count_target": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deadline_or_runtime": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "routing_state": {
+      "type": "object",
+      "properties": {
+        "selected_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "dependency_closure": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "selected_workflows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "parallel_groups": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "excluded_routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "route_id": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "route_id",
+              "reason"
+            ]
+          }
+        },
+        "router_version": {
+          "type": "string"
+        }
+      }
+    },
+    "canon": {
+      "type": "object",
+      "description": "不可更改的世界事实、设定和术语；变更必须有明确的用户授权和变更记录。",
+      "properties": {
+        "world_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeline": {
+          "type": "array",
+          "items": {}
+        },
+        "character_facts": {
+          "type": "object"
+        },
+        "terminology": {
+          "type": "object"
+        },
+        "immutable_facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "change_log": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "story_state": {
+      "type": "object",
+      "properties": {
+        "goal": {
+          "type": "string"
+        },
+        "conflict": {
+          "type": "string"
+        },
+        "stakes": {
+          "type": "string"
+        },
+        "foreshadowing": {
+          "type": "array",
+          "items": {}
+        },
+        "resolved_threads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_threads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "asset_state": {
+      "type": "object",
+      "description": "角色、场景、道具、画面和分镜资产的规范登记、版本、锁定状态及依赖；禁止无记录修改 locked 资产。",
+      "properties": {
+        "characters": {
+          "type": "object",
+          "description": "以稳定 character_id 为键，保存角色规格与版本。"
+        },
+        "scenes": {
+          "type": "object",
+          "description": "以稳定 scene_id 为键，保存场景结构、固定锚点和可移动对象。"
+        },
+        "props": {
+          "type": "object",
+          "description": "以稳定 prop_id 为键，保存尺寸级别、材质、初始状态与持有关系。"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/asset_record"
+          }
+        },
+        "asset_locks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "review",
+                  "locked",
+                  "locked_provisional",
+                  "superseded",
+                  "blocked",
+                  "needs_recheck"
+                ]
+              },
+              "locked_fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mutable_fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "reference_uri": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "approved_by": {
+                "type": "string"
+              },
+              "approved_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "validation_status": {
+                "type": "string",
+                "enum": [
+                  "pending",
+                  "passed",
+                  "passed_with_warnings",
+                  "failed",
+                  "blocked"
+                ]
+              },
+              "change_impact": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "asset_id",
+              "version",
+              "status",
+              "locked_fields",
+              "mutable_fields"
+            ]
+          }
+        },
+        "visual_bible": {
+          "type": "object",
+          "description": "项目统一的颜色、材质、光线、摄影媒介、风格禁区与画幅规则。"
+        },
+        "asset_dependency_index": {
+          "type": "object",
+          "description": "资产变更后用于查询下游场景、分镜、提示词和生成结果。"
+        }
+      }
+    },
+    "spatial_state": {
+      "type": "object",
+      "properties": {
+        "current_scene": {
+          "type": "string"
+        },
+        "anchors": {
+          "type": "array",
+          "items": {}
+        },
+        "axis": {
+          "type": "string"
+        },
+        "positions": {
+          "type": "object"
+        },
+        "camera": {
+          "type": "object"
+        },
+        "screen_direction": {
+          "type": "object"
+        },
+        "continuity_locks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coordinate_system": {
+          "type": "object",
+          "description": "坐标原点、轴向、单位、尺度来源或估算声明。"
+        },
+        "fixed_anchors": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "actor_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/actor_state"
+          }
+        },
+        "gaze_relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "subject_id": {
+                "type": "string"
+              },
+              "target_id": {
+                "type": "string"
+              },
+              "head_direction": {
+                "type": "string"
+              },
+              "eye_direction": {
+                "type": "string"
+              },
+              "screen_direction": {
+                "type": "string"
+              },
+              "time_range": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "subject_id",
+              "target_id"
+            ]
+          }
+        },
+        "distance_constraints": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "camera_state": {
+          "type": "object",
+          "description": "摄影机坐标/相对位置、高度、朝向、轴线侧、焦段和移动轨迹。"
+        },
+        "shot_state_transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from_shot_id": {
+                "type": "string"
+              },
+              "to_shot_id": {
+                "type": "string"
+              },
+              "match_status": {
+                "type": "string",
+                "enum": [
+                  "matched",
+                  "intentional_jump",
+                  "mismatch",
+                  "unverified"
+                ]
+              },
+              "exception_reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "from_shot_id",
+              "to_shot_id",
+              "match_status"
+            ]
+          }
+        }
+      }
+    },
+    "performance_state": {
+      "type": "object",
+      "properties": {
+        "emotion_curve": {
+          "type": "array",
+          "items": {}
+        },
+        "current_mood": {
+          "type": "object"
+        },
+        "action_phase": {
+          "type": "string"
+        },
+        "performance_locks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "production_state": {
+      "type": "object",
+      "properties": {
+        "current_stage": {
+          "type": "string"
+        },
+        "completed_stages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blocked_stages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "external_calls": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "qa_state": {
+      "type": "object",
+      "properties": {
+        "passed_gates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "failed_items": {
+          "type": "array",
+          "items": {}
+        },
+        "residual_risks": {
+          "type": "array",
+          "items": {}
+        },
+        "last_reviewed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_run",
+            "passed",
+            "passed_with_warnings",
+            "failed",
+            "blocked"
+          ]
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true,
+  "definitions": {
+    "asset_record": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "asset_type",
+        "version",
+        "status"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_type": {
+          "type": "string",
+          "enum": [
+            "character",
+            "scene",
+            "prop",
+            "wardrobe",
+            "vehicle",
+            "creature",
+            "shot_asset",
+            "other"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "review",
+            "locked",
+            "locked_provisional",
+            "superseded",
+            "blocked",
+            "needs_recheck"
+          ]
+        },
+        "specification": {
+          "type": "object"
+        },
+        "canonical_prompt": {
+          "type": "string"
+        },
+        "reference_uri": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "locked_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mutable_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "used_by": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "validation_status": {
+          "type": "string"
+        },
+        "change_log": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "actor_state": {
+      "type": "object",
+      "required": [
+        "character_id"
+      ],
+      "properties": {
+        "character_id": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "screen_position": {
+          "type": "string"
+        },
+        "body_orientation": {
+          "type": "string"
+        },
+        "head_orientation": {
+          "type": "string"
+        },
+        "gaze_target_id": {
+          "type": "string"
+        },
+        "eye_line": {
+          "type": "string"
+        },
+        "stance": {
+          "type": "string"
+        },
+        "center_of_mass": {
+          "type": "string"
+        },
+        "held_prop_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "distance_constraints": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "action_phase": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

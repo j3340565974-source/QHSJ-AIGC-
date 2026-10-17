@@ -1,0 +1,94 @@
+# QHSJ 完整影视生产管线
+name: full-production
+version: "3.0.0"
+description: 从创意到影视交付的分阶段生产管线；资产先行，先锁角色和场景，再进入分镜资产/视频提示词阶段。
+triggers: [完整项目, 完整短片, 从创意到成片, 全流程制作, 一整套, 全链路交付, 从剧本到视频]
+entry_conditions:
+  - 只有显式完整制作意图才启用全管线。
+  - 用户的否定/只做约束优先于管线的可选阶段。
+  - 实际图像/视频/音频生成仅在宿主工具可用并成功返回时记为完成。
+inputs: [创意, 用户硬约束, 参考资产, 平台/模型信息, 项目状态]
+outputs: [需求 Canon, 故事/剧本, 资产包, 空间账本, 分镜, 提示词/媒体产物（按请求）, QA 与版本包]
+stages:
+  - id: P0
+    name: 意图、Canon 与制作策略
+    inputs: [原始创意]
+    outputs: [结构化意图, 交付矩阵, 技术/资源约束, 制作计划]
+    modules: [workflows/intent-analysis.yaml, references/01-director-thinking-core.md, references/qhsj-multiagent-review-protocol.md]
+    gates: [需求拆解无遗漏, 用户禁止项明确]
+  - id: P1
+    name: 故事开发与剧本门控
+    inputs: [Canon, 创意目标]
+    outputs: [故事结构, 剧本, 场次表, 人物与道具变化]
+    modules: [references/01-novel-screenplay.md, references/qh-screenplay-gate-engine.md, references/qh-cinematic-dramaturgy-rules.md]
+    gates: [叙事因果, 角色动机, 场次目标, 对白可执行性]
+  - id: P2
+    name: 资产清单、视觉 Bible 与规格
+    inputs: [剧本/场次, 参考图, 用户角色/场景设定]
+    outputs: [资产 ID 清单, 角色规格, 场景规格, 道具规格, 视觉 Bible, 锁定字段]
+    modules: [references/qhsj-asset-locking-protocol.md, references/05-character-performance.md, references/06-aesthetics-style.md, references/qh-scene-design-handbook.md]
+    parallel: true
+    gates: [所有关键资产有 ID 和规范规格]
+  - id: P3
+    name: 角色资产图与场景资产图生成/核验/锁定
+    inputs: [资产规格]
+    outputs: [规范资产图或可投喂提示词, 版本锁, 资产一致性报告]
+    modules: [workflows/asset-first.yaml, references/qhsj-asset-locking-protocol.md, references/p1-asset-validation-cases-500.md, templates/asset-lock-ledger.md]
+    gates: [角色多视图一致, 场景拓扑一致, 道具身份一致, P0/P1 已修复]
+    on_fail: 返回 P2 更新规格或重新生成；不允许绕过资产锁进入分镜资产阶段
+  - id: P4
+    name: 空间底图与连续性推演
+    inputs: [锁定的场景/角色/道具资产]
+    outputs: [坐标约定, 固定锚点, 角色位置/朝向/视线, 距离约束, 摄影机可行区]
+    modules: [references/qhsj-spatial-gaze-distance-ledger.md, references/qh-spatial-deduction-engine.md, references/continuity-state-library.md, templates/spatial-continuity-ledger.md]
+    gates: [空间尺度来源清楚, 人物与场景关系可验证]
+  - id: P5
+    name: 分镜与动作/表演计划
+    inputs: [剧本/场次, 锁定资产, 空间底图]
+    outputs: [文字分镜, 镜头起终态, 动作/视线/表演/声音标记]
+    modules: [references/02-storyboard-directing.md, references/03-cinematography.md, references/05-character-performance.md, references/10-action-choreography.md, references/12-vfx-motion-physics.md]
+    condition: [按任务需要调用动作、武术、VFX模块]
+    gates: [动作时长可实现, 站位与轴线正确, 表演有可见/可听依据]
+  - id: P6
+    name: 可选分镜资产构建
+    condition: 用户需要故事板图片、关键帧或每镜资产图
+    inputs: [分镜, 锁定角色/场景/道具资产 ID 与版本, 空间账本]
+    outputs: [分镜资产, 逐镜参考引用矩阵]
+    modules: [references/qhsj-asset-locking-protocol.md, references/qhsj-spatial-gaze-distance-ledger.md, templates/storyboard-board.md]
+    gates: [不重新设计锁定角色, 不改变场景拓扑, 每镜写清允许变化字段]
+  - id: P7
+    name: 提示词编译与目标模型适配
+    condition: 用户需要图片/视频提示词或实际媒体生成
+    inputs: [已通过 QA 的分镜, 锁定资产引用, 模型能力证据]
+    outputs: [模型中立提示词, 图片/视频提示词, 适配差异和兼容风险]
+    modules: [references/07-prompt-engineering.md, references/08-model-adapters.md, references/model-atlas.md, references/model-matrix-expanded.md, references/14-ultimate-video-prompt.md]
+    gates: [不修改 Canon/锁定资产, 时效性声明已核验或标注待验证]
+  - id: P8
+    name: 声音/VFX/后期计划
+    condition: 用户要求音频、特效或后期声音/视觉设计
+    inputs: [分镜时间轴, 动作/环境状态, 交付媒介]
+    outputs: [声音分层、配音节拍、VFX参数和后期清单]
+    modules: [references/11-audio-voice.md, references/12-vfx-motion-physics.md, references/qh-vfx-parametric-library.md]
+    gates: [音画时间对齐, 特效有空间/光照/受力因果]
+  - id: P9
+    name: 多智能体/多角色 QA 与修复回归
+    inputs: [所有实际生成的产物及源文件]
+    outputs: [问题分级, 根因, 补丁, 回归报告, 未解决项]
+    modules: [references/16-quality-gates.md, references/qhsj-multiagent-review-protocol.md, scripts/audit_package.py, scripts/validate_prompt.py]
+    gates: [无未处理 P0/P1, 资源和资产依赖一致, 真实执行状态已记录]
+    on_fail: 按根因返回受影响阶段，不重做无关通过项
+  - id: P10
+    name: 交付打包与状态更新
+    inputs: [通过门禁的成品/提示词/报告]
+    outputs: [交付清单, 版本标记, 项目状态更新, 风险与待生成项]
+    modules: [schemas/project-state.schema.json, schemas/storyboard.schema.json, templates/asset-lock-ledger.md]
+    gates: [逐项对照需求验收, 未执行项明确标记]
+final_outputs:
+  - 需求和 Canon 清单
+  - 故事/剧本与场次表
+  - 角色/场景/道具资产规格、图像引用或生成提示词
+  - 资产锁定台账与空间连续性账本
+  - 文字分镜；按需生成分镜资产
+  - 按请求提供图片/视频提示词、模型适配或实际媒体产物
+  - 声音/VFX/后期方案（按需）
+  - QA、回归与交付状态报告

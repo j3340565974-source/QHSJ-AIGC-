@@ -1,0 +1,49 @@
+# 纯写作模式工作流
+# 只要小说/剧本，不要视觉内容
+
+name: writing
+version: "3.0.0"
+description: 专注文学创作
+
+stages:
+  - id: W0
+    name: 创意判定
+    inputs: 用户创意/题材/要求
+    outputs: 赛道判定、高概念Logline
+    modules:
+      - 01-novel-screenplay
+
+  - id: W1
+    name: 骨架与人物
+    inputs: 高概念
+    outputs: 故事骨架、人物三层次欲望、弧光设计
+    modules:
+      - 01-novel-screenplay
+
+  - id: W2
+    name: 结构搭建
+    inputs: 骨架 + 人物
+    outputs: 大纲/场次表/章节结构
+    modules:
+      - 01-novel-screenplay
+
+  - id: W3
+    name: 正文写作
+    inputs: 大纲
+    outputs: 正文内容
+    modules:
+      - 01-novel-screenplay
+
+  - id: W4
+    name: 质量自检
+    inputs: 成稿
+    outputs: 剧情缺口诊断报告、修改建议
+    modules:
+      - 13-quality-gates（QG1叙事质量）
+
+final_outputs:
+  - 高概念Logline
+  - 故事大纲
+  - 人物设定表
+  - 正文内容
+  - 质量诊断报告

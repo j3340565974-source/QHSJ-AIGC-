@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">QHSJ AIGC Film</title>
+  <desc id="desc">QHSJ AIGC all-in-one film production skill, version 3.0.0</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#25205b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#72e4ff"/>
+      <stop offset="100%" stop-color="#b9a1ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="58" fill="url(#bg)"/>
+  <path d="M84 128 L428 128 M84 384 L428 384" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <circle cx="256" cy="208" r="108" fill="none" stroke="url(#accent)" stroke-width="9"/>
+  <circle cx="256" cy="208" r="88" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <text x="256" y="232" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="65" font-weight="700" letter-spacing="1">QHSJ</text>
+  <text x="256" y="340" text-anchor="middle" fill="url(#accent)" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="4">AIGC FILM</text>
+  <text x="256" y="368" text-anchor="middle" fill="#cbd5e1" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="1.5">ALL-IN-ONE PRODUCTION SKILL</text>
+  <text x="256" y="414" text-anchor="middle" fill="#94a3b8" font-family="Arial, Helvetica, sans-serif" font-size="17" letter-spacing="2">VERSION 3.0.0</text>
+</svg>

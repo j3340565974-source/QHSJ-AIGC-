@@ -1,0 +1,45 @@
+# 纯分镜模式工作流
+# 只要分镜表，不要提示词
+
+name: storyboard-only
+version: "3.0.0"
+description: 专注分镜表制作
+
+stages:
+  - id: SB0
+    name: 剧本/素材分析
+    inputs: 剧本/故事描述
+    outputs: 场次划分、节拍点
+    modules:
+      - 01-novel-screenplay
+
+  - id: SB1
+    name: 空间推演
+    inputs: 场次
+    outputs: 站位、轴线、机位设计
+    modules:
+      - 04-spatial-continuity
+
+  - id: SB2
+    name: 逐镜拆解（并行）
+    inputs: 场次 + 空间设计
+    outputs: 完整分镜表
+    modules:
+      - 02-storyboard-directing
+      - 03-cinematography
+      - 05-character-performance
+      - 10-action-choreography（动作戏时）
+    parallel: true
+
+  - id: SB3
+    name: 节奏优化
+    inputs: 分镜表初稿
+    outputs: 节奏优化建议、补镜/删镜建议
+    modules:
+      - 13-quality-gates
+
+final_outputs:
+  - 场次表
+  - 站位声明
+  - 完整分镜表
+  - 导演阐述
