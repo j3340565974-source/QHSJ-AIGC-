@@ -1007,6 +1007,55 @@
       "must_exclude_workflows": [
         "storyboard-only"
       ]
+    },
+    {
+      "id": "short-trigger-platform-001",
+      "request": "抖音发布",
+      "must_include_capabilities": [
+        "platform_adaptation"
+      ]
+    },
+    {
+      "id": "short-trigger-platform-002",
+      "request": "小红书运营",
+      "must_include_capabilities": [
+        "platform_adaptation"
+      ]
+    },
+    {
+      "id": "short-trigger-perf-001",
+      "request": "表演指导",
+      "must_include_capabilities": [
+        "performance_emotion"
+      ]
+    },
+    {
+      "id": "short-trigger-perf-002",
+      "request": "微表情设计",
+      "must_include_capabilities": [
+        "performance_emotion"
+      ]
+    },
+    {
+      "id": "short-trigger-format-001",
+      "request": "七段式输出",
+      "must_include_capabilities": [
+        "output_formatting"
+      ]
+    },
+    {
+      "id": "short-trigger-skill-001",
+      "request": "千问集成",
+      "must_include_capabilities": [
+        "external_skill_integration"
+      ]
+    },
+    {
+      "id": "short-trigger-drama-001",
+      "request": "短剧创作",
+      "must_include_capabilities": [
+        "screenwriting"
+      ]
     }
   ],
   "coverage_note": "静态资源/章节/能力/工作流闭包与已收录的白话用例可验证；对任意未见自然语言的理解仍由宿主模型的 intent-analysis 语义层负责，不能以固定关键词测试宣称数学意义上的百分之百语义准确。"

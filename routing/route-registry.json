@@ -3238,7 +3238,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "ca75185763b8e6542f15e7c5d26b8655fd8019323f0138bdf53b8a88ff441745",
+      "sha256": "59419137d49d88e55c8327215e3b50bdec759049bd80f8fd261aba88cc2bd68a",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -3309,7 +3309,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "79244c1685d235956915fbd8d287b8c9d3fae34d28fc10664ca4103366fef1d3",
+      "sha256": "2fcffdf0cbbf2d4f3f0858e31c1c8a2eb55d8f0863f6c897d9304690f8a8dedf",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -3395,7 +3395,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "135f6d58410051937c73f1cdb2acc9c665ad5d5a14c09153da72887b36f9e6fb",
+      "sha256": "ab3373f6cc3a2827d968b1777566a06ad557ab0d8a300dd0197a51daf40432ac",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "quality_assurance"
@@ -136396,7 +136396,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "101a15d8b44b03f77af60832132706a9d7ce5b2e3d81cab8c309f565129cfc8b",
+      "sha256": "cc978cdac5a529d5e9babc28f7d8214b2918c5f060d45e5be6da44fdd2683baf",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -136626,7 +136626,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "58ae618af5be271de7ab30321a50ded56a4e09af2bd8c7fe64c7b959d8f6dbba",
+      "sha256": "a77345b96305dc53d89f9b88762a1adea77ed1b228897d34c05cdbae7e07e81a",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "quality_assurance"
