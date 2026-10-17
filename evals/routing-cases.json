@@ -1088,6 +1088,91 @@
       "must_exclude_capabilities": [
         "video_prompt"
       ]
+    },
+    {
+      "id": "audio-negation-001",
+      "request": "不要音效",
+      "must_exclude_capabilities": [
+        "audio_design"
+      ]
+    },
+    {
+      "id": "audio-negation-002",
+      "request": "只要画面不要配音",
+      "must_exclude_capabilities": [
+        "audio_design"
+      ]
+    },
+    {
+      "id": "image-short-trigger-001",
+      "request": "只要图片不要视频",
+      "must_include_capabilities": [
+        "image_prompt"
+      ],
+      "must_exclude_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "image-short-trigger-002",
+      "request": "出图",
+      "must_include_capabilities": [
+        "image_prompt"
+      ]
+    },
+    {
+      "id": "asset-lock-bare-001",
+      "request": "锁定",
+      "must_include_capabilities": [
+        "asset_locking"
+      ]
+    },
+    {
+      "id": "asset-lock-context-001",
+      "request": "先锁定再分镜",
+      "must_include_capabilities": [
+        "asset_locking",
+        "storyboard"
+      ]
+    },
+    {
+      "id": "video-colloquial-001",
+      "request": "做个片子",
+      "must_include_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "asset-first-short-002",
+      "request": "先资产再分镜",
+      "must_include_capabilities": [
+        "asset_first",
+        "storyboard"
+      ]
+    },
+    {
+      "id": "compound-pipeline-001",
+      "request": "古风武侠短剧，先资产再分镜再视频",
+      "must_include_capabilities": [
+        "asset_first",
+        "storyboard",
+        "video_prompt",
+        "aesthetics_style"
+      ]
+    },
+    {
+      "id": "vfx-negation-001",
+      "request": "不要特效",
+      "must_exclude_capabilities": [
+        "vfx_physics"
+      ]
+    },
+    {
+      "id": "action-negation-001",
+      "request": "不要武打动作",
+      "must_exclude_capabilities": [
+        "action_choreography"
+      ]
     }
   ],
   "coverage_note": "静态资源/章节/能力/工作流闭包与已收录的白话用例可验证；对任意未见自然语言的理解仍由宿主模型的 intent-analysis 语义层负责，不能以固定关键词测试宣称数学意义上的百分之百语义准确。"

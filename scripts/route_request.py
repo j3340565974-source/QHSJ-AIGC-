@@ -250,6 +250,11 @@ def explicit_output_constraints(text: str, norm: str) -> dict[str, bool]:
         no_video_prompt = True
         no_prompt_engineering = True
 
+    no_audio = has_any([
+        "不要音效", "不需要音效", "不做音效", "不设计音效", "不要声音", "不需要声音", "不做声音设计",
+        "不要配音", "不需要配音", "不做配音", "不要配乐", "不需要配乐", "不要音频", "不需要音频",
+        "不要声音设计", "不需要声音设计", "不要拟音", "不需要拟音", "不要环境音", "不需要环境音",
+    ]) or negates_any(["音效", "声音设计", "配音", "配乐", "拟音", "环境音", "声音分层", "音频"])
     no_storyboard = has_any([
         "不要分镜", "不需要分镜", "不做分镜", "不生成分镜", "不需要分镜表", "不要镜头表", "不需要镜头表",
         "不要故事板", "不需要故事板",
@@ -291,6 +296,7 @@ def explicit_output_constraints(text: str, norm: str) -> dict[str, bool]:
         "explicit_no_video_prompt": no_video_prompt,
         "explicit_no_prompt_engineering": no_prompt_engineering,
         "audio_only": audio_only,
+        "explicit_no_audio": no_audio,
         "explicit_no_storyboard": no_storyboard,
         "explicit_no_full_project": no_full,
         "audit_only": audit_only,
@@ -360,9 +366,9 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("screenwriting")
     if has("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list") and not constraints["explicit_no_storyboard"]:
         direct.add("storyboard")
-    if (has("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂", "做视频", "生成视频", "制作视频", "出视频", "视频生成", "视频创作", "出个视频", "做个视频") or (has("视频") and not phrase_is_negated(text, "视频") and has("做", "生成", "制作", "出", "只要", "需要"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
+    if (has("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂", "做视频", "生成视频", "制作视频", "出视频", "视频生成", "视频创作", "出个视频", "做个视频", "片子", "影片", "再视频", "然后视频", "接着视频") or (has("视频") and not phrase_is_negated(text, "视频") and has("做", "生成", "制作", "出", "只要", "需要", "再", "然后", "接着"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
         direct.add("video_prompt")
-    if has("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
+    if (has("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词", "出图", "生图") or (has("图片", "图像", "一张图", "几张图") and not phrase_is_negated(text, "图片") and not phrase_is_negated(text, "图像") and has("做", "生成", "制作", "出", "只要", "需要", "再", "然后", "接着", "给我"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
         direct.add("image_prompt")
     if (has("提示词工程", "负面提示词", "正向提示词", "灯光方案", "视觉基因") or (has("提示词") and not phrase_is_negated(text, "提示词")) or (has("prompt") and not phrase_is_negated(text, "prompt"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_prompt_engineering", False):
         direct.add("prompt_engineering")
@@ -376,15 +382,15 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("quality_assurance")
     if has("角色四视图", "角色卡", "角色设定", "人物设定", "角色脸型", "发色", "服装和配饰", "角色定妆", "人物外观", "角色一致性", "人物服装", "角色服装", "服饰造型", "人物造型") or (has("角色") and has("恐惧", "愤怒", "微表情", "表演", "眼神", "呼吸")):
         direct.add("character_design")
-    if has("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具", "角色四视图", "人物四视图", "角色三视图", "人物三视图"):
+    if has("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具", "角色四视图", "人物四视图", "角色三视图", "人物三视图", "先资产", "先出资产", "资产先行"):
         direct.add("asset_first")
-    if has("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复", "角色锁定", "人物锁定", "锁定角色", "锁定人物", "场景锁定", "锁定场景") or (has("人物资产", "角色资产", "场景资产") and has("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")):
+    if has("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复", "角色锁定", "人物锁定", "锁定角色", "锁定人物", "场景锁定", "锁定场景") or (has("人物资产", "角色资产", "场景资产") and has("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")) or (has("锁定") and has("角色", "人物", "场景", "资产", "分镜", "视图", "道具") and not phrase_is_negated(text, "锁定")) or (has("锁定") and not phrase_is_negated(text, "锁定") and not has("焦点", "目标", "镜头锁定", "锁焦")):
         direct.add("asset_locking")
     if has("古风", "国风", "赛博朋克", "冷艳", "导演风格", "视觉基因", "色彩体系", "配色", "美术指导", "灯光方案"):
         direct.add("aesthetics_style")
-    if has("音效", "声音设计", "环境音", "拟音", "配音", "配乐", "旁白", "声音分层"):
+    if has("音效", "声音设计", "环境音", "拟音", "配音", "配乐", "旁白", "声音分层") and not constraints.get("explicit_no_audio", False):
         direct.add("audio_design")
-    if has("表演", "微表情", "演技", "眼神", "情绪外化", "facs", "表情设计", "表演指导", "情绪转折"):
+    if has("表演", "微表情", "演技", "眼神", "情绪外化", "facs", "表情设计", "表演指导", "情绪转折") and not phrase_is_negated(text, "表演") and not phrase_is_negated(text, "微表情"):
         direct.add("performance_emotion")
     if has("api", "接口", "json请求", "请求参数", "端点", "webhook"):
         direct.add("api_integration")
@@ -394,9 +400,9 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("reverse_engineering")
     if has("参考图", "参考视频", "参考素材") and has("保持一致", "完全一致", "一比一还原", "按图还原", "照着", "参考图一致", "还原人物", "复刻构图", "保持角色一致"):
         direct.add("reverse_engineering")
-    if has("武打", "打斗", "动作戏", "攻防", "战斗动作", "受力反馈", "动作预演"):
+    if has("武打", "打斗", "动作戏", "攻防", "战斗动作", "受力反馈", "动作预演") and not phrase_is_negated(text, "武打") and not phrase_is_negated(text, "打斗") and not phrase_is_negated(text, "动作戏"):
         direct.add("action_choreography")
-    if has("粒子", "爆炸特效", "特效", "物理模拟", "穿模", "重力", "惯性"):
+    if has("粒子", "爆炸特效", "特效", "物理模拟", "穿模", "重力", "惯性") and not phrase_is_negated(text, "特效") and not phrase_is_negated(text, "粒子"):
         direct.add("vfx_physics")
     if has("项目状态", "状态文件", "跨轮次", "设定锁", "人物关系", "已埋伏笔", "世界观连续性", "项目记忆"):
         direct.add("project_state_management")
@@ -573,6 +579,8 @@ def select_workflows(text: str, norm: str, registry: dict[str, Any], constraints
         if wid == "visual-prompt" and (constraints.get("explicit_no_prompt") or (constraints.get("explicit_no_image_prompt") and constraints.get("explicit_no_video_prompt"))):
             return True
         if wid == "visual-prompt" and constraints.get("explicit_no_video_prompt") and not constraints.get("explicit_no_image_prompt") and "image_prompt" not in capabilities:
+            return True
+        if wid == "audio-design" and constraints.get("explicit_no_audio"):
             return True
         if wid == "storyboard-only" and constraints.get("explicit_no_storyboard"):
             return True

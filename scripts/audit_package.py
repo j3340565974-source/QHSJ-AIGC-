@@ -64,7 +64,7 @@ def main() -> int:
         try: registry=json.loads(registry_path.read_text(encoding="utf-8"))
         except Exception as exc: registry={}; errors.append(f"路由注册表 JSON 解析失败：{exc}")
 
-    files={p.relative_to(ROOT).as_posix():p for p in ROOT.rglob("*") if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"}
+    files={p.relative_to(ROOT).as_posix():p for p in ROOT.rglob("*") if p.is_file() and "__pycache__" not in p.parts and ".pytest_cache" not in p.parts and p.suffix != ".pyc"}
     stats["package_files"] = len(files)
 
     # Manifest must cover every shipped file except itself, with current byte sizes and SHA-256.
