@@ -3309,7 +3309,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "2fcffdf0cbbf2d4f3f0858e31c1c8a2eb55d8f0863f6c897d9304690f8a8dedf",
+      "sha256": "9498dc9df187a2e4dccd7a81c1ea7ee07a77b6853b388286c6a952aa0737f4fd",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"
@@ -3395,7 +3395,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "ab3373f6cc3a2827d968b1777566a06ad557ab0d8a300dd0197a51daf40432ac",
+      "sha256": "534bdc34bcd557fa513078f7d3b7bcc9a6247eb68f9faef14c8f5f354ba06a57",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "quality_assurance"
@@ -10753,7 +10753,7 @@
       "status": "retained_source",
       "alias_of": null,
       "load_policy": "deep_audit_or_explicit_source_request",
-      "sha256": "65fb37e2cc2d9200217c34496a7ad2d8c5675d314295ddd2c4faaf611ba01e48",
+      "sha256": "5ec27e0a24551158b58f6f73ae92074084a550c5a52a2c992bcfd290e39d877b",
       "headings": [
         {
           "level": 1,
@@ -97401,7 +97401,7 @@
       "status": "retained_source",
       "alias_of": null,
       "load_policy": "deep_audit_or_explicit_source_request",
-      "sha256": "dd0a735b4bc03b961820312f2010833fae8b4cfa5f0421f5b5bc9b5764427e0b",
+      "sha256": "067ae7606264c3c4123247895daabdaca9c0c9389b851fb8ef3b5dfafe20a273",
       "headings": [
         {
           "level": 1,
@@ -136396,7 +136396,7 @@
       "status": "canonical",
       "alias_of": null,
       "load_policy": "route_by_task",
-      "sha256": "cc978cdac5a529d5e9babc28f7d8214b2918c5f060d45e5be6da44fdd2683baf",
+      "sha256": "25a34bccf4ad2eb7025ccf834e263cd143c85f2238bb5202090aad5e7d966171",
       "headings": [],
       "route_policy": "explicit_path_or_trigger_then_capability_tags",
       "primary_capability": "general_orchestration"

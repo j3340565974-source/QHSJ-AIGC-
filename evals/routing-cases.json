@@ -1056,6 +1056,38 @@
       "must_include_capabilities": [
         "screenwriting"
       ]
+    },
+    {
+      "id": "asset-lock-short-001",
+      "request": "角色锁定后做分镜",
+      "must_include_capabilities": [
+        "asset_locking"
+      ]
+    },
+    {
+      "id": "asset-first-short-001",
+      "request": "角色四视图加分镜",
+      "must_include_capabilities": [
+        "asset_first"
+      ]
+    },
+    {
+      "id": "video-deliverable-001",
+      "request": "不要图片只要视频和音效",
+      "must_include_capabilities": [
+        "video_prompt",
+        "audio_design"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt"
+      ]
+    },
+    {
+      "id": "video-no-overtrigger-001",
+      "request": "我要看视频",
+      "must_exclude_capabilities": [
+        "video_prompt"
+      ]
     }
   ],
   "coverage_note": "静态资源/章节/能力/工作流闭包与已收录的白话用例可验证；对任意未见自然语言的理解仍由宿主模型的 intent-analysis 语义层负责，不能以固定关键词测试宣称数学意义上的百分之百语义准确。"

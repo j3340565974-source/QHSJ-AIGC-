@@ -48,8 +48,8 @@
     },
     {
       "path": "SKILL.md",
-      "size_bytes": 48494,
-      "sha256": "2fcffdf0cbbf2d4f3f0858e31c1c8a2eb55d8f0863f6c897d9304690f8a8dedf",
+      "size_bytes": 48136,
+      "sha256": "9498dc9df187a2e4dccd7a81c1ea7ee07a77b6853b388286c6a952aa0737f4fd",
       "category": "md"
     },
     {
@@ -66,8 +66,8 @@
     },
     {
       "path": "evals/routing-cases.json",
-      "size_bytes": 29499,
-      "sha256": "ab3373f6cc3a2827d968b1777566a06ad557ab0d8a300dd0197a51daf40432ac",
+      "size_bytes": 30246,
+      "sha256": "534bdc34bcd557fa513078f7d3b7bcc9a6247eb68f9faef14c8f5f354ba06a57",
       "category": "data"
     },
     {
@@ -324,8 +324,8 @@
     },
     {
       "path": "references/15-qhsj-master-engine.md",
-      "size_bytes": 449401,
-      "sha256": "65fb37e2cc2d9200217c34496a7ad2d8c5675d314295ddd2c4faaf611ba01e48",
+      "size_bytes": 449469,
+      "sha256": "5ec27e0a24551158b58f6f73ae92074084a550c5a52a2c992bcfd290e39d877b",
       "category": "reference"
     },
     {
@@ -1062,8 +1062,8 @@
     },
     {
       "path": "references/qh-qhsj-system-core.md",
-      "size_bytes": 451897,
-      "sha256": "dd0a735b4bc03b961820312f2010833fae8b4cfa5f0421f5b5bc9b5764427e0b",
+      "size_bytes": 451895,
+      "sha256": "067ae7606264c3c4123247895daabdaca9c0c9389b851fb8ef3b5dfafe20a273",
       "category": "reference"
     },
     {
@@ -1897,7 +1897,7 @@
     {
       "path": "routing/route-registry.json",
       "size_bytes": 3615685,
-      "sha256": "052a805445e70963a020a5f0db6de99d5a3dee7a1cce94adbd94ed3772a042ab",
+      "sha256": "76eb74b9831e89a816f447eb43bff6760d95ff5d36bfebfa447a61b8537d6b66",
       "category": "data"
     },
     {
@@ -1932,8 +1932,8 @@
     },
     {
       "path": "scripts/route_request.py",
-      "size_bytes": 56007,
-      "sha256": "cc978cdac5a529d5e9babc28f7d8214b2918c5f060d45e5be6da44fdd2683baf",
+      "size_bytes": 56426,
+      "sha256": "25a34bccf4ad2eb7025ccf834e263cd143c85f2238bb5202090aad5e7d966171",
       "category": "script"
     },
     {

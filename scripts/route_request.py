@@ -360,7 +360,7 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("screenwriting")
     if has("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list") and not constraints["explicit_no_storyboard"]:
         direct.add("storyboard")
-    if has("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
+    if (has("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂", "做视频", "生成视频", "制作视频", "出视频", "视频生成", "视频创作", "出个视频", "做个视频") or (has("视频") and not phrase_is_negated(text, "视频") and has("做", "生成", "制作", "出", "只要", "需要"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
         direct.add("video_prompt")
     if has("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
         direct.add("image_prompt")
@@ -376,9 +376,9 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("quality_assurance")
     if has("角色四视图", "角色卡", "角色设定", "人物设定", "角色脸型", "发色", "服装和配饰", "角色定妆", "人物外观", "角色一致性", "人物服装", "角色服装", "服饰造型", "人物造型") or (has("角色") and has("恐惧", "愤怒", "微表情", "表演", "眼神", "呼吸")):
         direct.add("character_design")
-    if has("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具"):
+    if has("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具", "角色四视图", "人物四视图", "角色三视图", "人物三视图"):
         direct.add("asset_first")
-    if has("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复") or (has("人物资产", "角色资产", "场景资产") and has("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")):
+    if has("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复", "角色锁定", "人物锁定", "锁定角色", "锁定人物", "场景锁定", "锁定场景") or (has("人物资产", "角色资产", "场景资产") and has("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")):
         direct.add("asset_locking")
     if has("古风", "国风", "赛博朋克", "冷艳", "导演风格", "视觉基因", "色彩体系", "配色", "美术指导", "灯光方案"):
         direct.add("aesthetics_style")
