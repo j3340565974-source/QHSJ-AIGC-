@@ -27,38 +27,94 @@ def normalize(text: str) -> str:
     )
 
 
-def phrase_is_negated(text: str, phrase: str) -> bool:
-    """Detect local negative scope for a phrase without letting one clause erase another.
+_NEGATORS = tuple(normalize(x) for x in [
+    "不需要", "不要", "不做", "不生成", "不想", "不想要", "无需", "不用", "禁止", "别要", "避免", "拒绝", "不必",
+    "别做", "别生成", "别弄", "别给", "免去", "勿", "不采用", "不涉及", "不加", "不配", "别加", "别配",
+    # Colloquial exclusion phrasings for "there is no X requirement" and "remove X".
+    "没有", "别看", "别管", "别用", "莫要", "切勿", "切忌", "去掉", "删除", "删掉", "移除", "去除", "略去", "删去", "取消",
+])
+# Removal verbs placed *immediately after* the phrase ("把运镜去掉") negate it. They are matched
+# only when directly adjacent so that "生成图片，然后删除背景" keeps the image deliverable.
+_REMOVAL_SUFFIX = tuple(normalize(x) for x in ["去掉", "删掉", "删除", "移除", "去除", "删了", "删去", "略去", "砍掉"])
+_SCOPE_BREAKERS = tuple(normalize(x) for x in [
+    "只要", "只需要", "只做", "只生成", "改为", "而是", "但是", "但", "转而", "同时", "并且", "另外", "不过",
+    "只给我", "只输出", "仅给", "仅需", "给我", "想要", "请生成", "帮我生成",
+])
+# Clause boundaries used to keep a negative scope from leaking across sentences.
+# 顿号“、”故意不切分，以便“不要音效、运镜、打斗”这类共享否定的列举仍被整体否定。
+_CLAUSE_SPLIT = re.compile(r"[。！？；，,;!?:\n]+")
 
-    This is a deterministic guard, not a full Chinese syntactic parser. The host intent workflow
-    remains authoritative for ambiguous scope; this helper prevents common modality false positives.
+
+@lru_cache(maxsize=8192)
+def _split_clauses(text: str) -> tuple[str, ...]:
+    return tuple(part for part in _CLAUSE_SPLIT.split(text) if part.strip())
+
+
+def _clause_negates(clause: str, nphrase: str) -> bool:
+    """Return True only when every occurrence of the phrase inside this clause is negated.
+
+    If the same clause also contains a positively requested occurrence, the phrase is not
+    treated as negated, so a trailing “不要分镜表” cannot erase a leading “只要分镜”.
     """
-    ntext = normalize(text)
-    nphrase = normalize(phrase)
-    if not nphrase:
-        return False
-    negators = [normalize(x) for x in ["不需要", "不要", "不做", "不生成", "不想", "无需", "不用", "禁止", "别要", "避免", "拒绝", "不必"]]
-    scope_breakers = [normalize(x) for x in ["只要", "只需要", "只做", "只生成", "改为", "而是", "但是", "但", "转而", "同时", "并且", "另外", "不过", "只给我", "只输出", "仅给", "仅需", "给我", "想要", "请生成", "帮我生成"]]
+    ntext = normalize(clause)
     start = 0
+    found = False
     while True:
         idx = ntext.find(nphrase, start)
         if idx < 0:
-            return False
+            break
+        found = True
         prefix = ntext[max(0, idx - 30):idx]
         last_break = -1
         break_len = 0
-        for breaker in scope_breakers:
+        for breaker in _SCOPE_BREAKERS:
             j = prefix.rfind(breaker)
             if j > last_break:
                 last_break = j
                 break_len = len(breaker)
         if last_break >= 0:
             prefix = prefix[last_break + break_len:]
-        for neg in negators:
-            j = prefix.rfind(neg)
-            if j >= 0 and len(prefix) - (j + len(neg)) <= 9:
-                return True
+        # A single-character negator attached directly to the phrase (e.g. 不+生成图片,
+        # 别+配音) negates it, even though it is not a standalone listed negator.
+        negated = bool(prefix) and prefix[-1] in "不别勿没莫"
+        if not negated:
+            for neg in _NEGATORS:
+                j = prefix.rfind(neg)
+                if j >= 0 and len(prefix) - (j + len(neg)) <= 9:
+                    negated = True
+                    break
+        if not negated:
+            # A removal verb placed immediately after the phrase ("把运镜去掉") negates it,
+            # but only when directly adjacent, so "生成图片后删除背景" keeps image_prompt.
+            suffix = ntext[idx + len(nphrase): idx + len(nphrase) + 6]
+            if suffix and any(suffix.startswith(rem) for rem in _REMOVAL_SUFFIX):
+                negated = True
+        if not negated:
+            return False
         start = idx + max(1, len(nphrase))
+    return found
+
+
+@lru_cache(maxsize=30000)
+def phrase_is_negated(text: str, phrase: str) -> bool:
+    """Detect negative scope with clause-local isolation.
+
+    A phrase is negated only when every clause that mentions it negates it there; any clause
+    that requests it positively wins, so “不要运镜，就要个静态视频提示词” keeps video_prompt.
+    This is a deterministic guard, not a full Chinese syntactic parser. The host intent workflow
+    remains authoritative for ambiguous scope; this helper prevents common modality false positives.
+    """
+    nphrase = normalize(phrase)
+    if not nphrase:
+        return False
+    saw_phrase = False
+    for clause in _split_clauses(text):
+        if nphrase not in normalize(clause):
+            continue
+        saw_phrase = True
+        if not _clause_negates(clause, nphrase):
+            return False
+    return saw_phrase
 
 
 @lru_cache(maxsize=1)
@@ -250,15 +306,15 @@ def explicit_output_constraints(text: str, norm: str) -> dict[str, bool]:
         no_video_prompt = True
         no_prompt_engineering = True
 
-    no_audio = has_any([
-        "不要音效", "不需要音效", "不做音效", "不设计音效", "不要声音", "不需要声音", "不做声音设计",
-        "不要配音", "不需要配音", "不做配音", "不要配乐", "不需要配乐", "不要音频", "不需要音频",
-        "不要声音设计", "不需要声音设计", "不要拟音", "不需要拟音", "不要环境音", "不需要环境音",
-    ]) or negates_any(["音效", "声音设计", "配音", "配乐", "拟音", "环境音", "声音分层", "音频"])
-    no_storyboard = has_any([
-        "不要分镜", "不需要分镜", "不做分镜", "不生成分镜", "不需要分镜表", "不要镜头表", "不需要镜头表",
-        "不要故事板", "不需要故事板",
-    ]) or negates_any(["分镜", "分镜表", "镜头表", "故事板", "storyboard"])
+    # The exact deny list “不要分镜…” would also match inside “只要分镜不要分镜表”, so the storyboard
+    # exclusion goes through clause-scoped negation with a positive rescue: a positively requested
+    # storyboard term keeps the deliverable even if a narrower variant (分镜表) is negated.
+    _storyboard_terms = ["分镜", "分镜表", "镜头表", "故事板", "storyboard"]
+    storyboard_negated = negates_any(_storyboard_terms)
+    storyboard_requested_positively = any(
+        normalize(x) in norm and not phrase_is_negated(text, x) for x in _storyboard_terms
+    )
+    no_storyboard = storyboard_negated and not storyboard_requested_positively
     storyboard_requested = has_any(["只要分镜", "只做分镜", "只要分镜表", "分镜表", "镜头表", "逐镜分镜", "逐镜拆解"])
     no_full = has_any(["不需要完整项目", "不要全流程", "不要完整制作", "只要一个提示词", "只要一张图", "不要完整项目", "不做全流程"])
     writing_only = has_any(["只要小说", "只写小说", "不要视觉设计", "不做视觉设计", "只要剧本", "只写剧本"])
@@ -296,7 +352,6 @@ def explicit_output_constraints(text: str, norm: str) -> dict[str, bool]:
         "explicit_no_video_prompt": no_video_prompt,
         "explicit_no_prompt_engineering": no_prompt_engineering,
         "audio_only": audio_only,
-        "explicit_no_audio": no_audio,
         "explicit_no_storyboard": no_storyboard,
         "explicit_no_full_project": no_full,
         "audit_only": audit_only,
@@ -321,6 +376,9 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         for trigger in list(dict.fromkeys(standard_triggers + semantic_triggers)):
             tnorm = normalize(trigger)
             if not tnorm or tnorm not in norm:
+                continue
+            # A locally negated mention ("不要音效") must not score that capability up.
+            if phrase_is_negated(text, trigger):
                 continue
             if len(tnorm) <= 3 and any(
                 len(normalize(other)) > len(tnorm) and tnorm in normalize(other) and normalize(other) in norm
@@ -351,7 +409,7 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
                     score += 1
         scores[cid] = int(round(score))
         hits[cid] = matched
-        strong_semantic_hit = any(normalize(x) in norm and len(normalize(x)) >= 5 and normalize(x) not in generic_semantics for x in semantic_triggers)
+        strong_semantic_hit = any(normalize(x) in norm and len(normalize(x)) >= 5 and normalize(x) not in generic_semantics and not phrase_is_negated(text, x) for x in semantic_triggers)
         if score >= 3 or (len(set(matched)) >= 2 and score >= 2.5) or strong_semantic_hit:
             direct.add(cid)
 
@@ -360,71 +418,94 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
     def has(*phrases: str) -> bool:
         return any(normalize(x) in norm for x in phrases)
 
-    if has("小说", "长篇小说", "网文", "章节", "故事大纲", "小说大纲"):
+    def pos(*phrases: str) -> bool:
+        # Positive presence: the phrase appears and is not inside a local negated scope.
+        # A single "不要X" / "别做X" must not suppress an otherwise positively requested
+        # deliverable, and must not fabricate a deliverable the user explicitly excluded.
+        return any(normalize(x) in norm and not phrase_is_negated(text, x) for x in phrases)
+
+    if pos("小说", "长篇小说", "网文", "章节", "故事大纲", "小说大纲"):
         direct.add("novel_writing")
-    if has("剧本", "剧作", "分场", "对白", "台词", "编剧", "短剧") and not constraints["writing_only"]:
+    if pos("剧本", "剧作", "分场", "对白", "台词", "编剧") and not constraints["writing_only"]:
         direct.add("screenwriting")
-    if has("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list") and not constraints["explicit_no_storyboard"]:
+    if pos("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list",
+           "分个镜", "分一下镜", "做分镜", "出分镜", "拆镜", "拆成分镜") and not constraints["explicit_no_storyboard"]:
         direct.add("storyboard")
-    if (has("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂", "做视频", "生成视频", "制作视频", "出视频", "视频生成", "视频创作", "出个视频", "做个视频", "片子", "影片", "再视频", "然后视频", "接着视频") or (has("视频") and not phrase_is_negated(text, "视频") and has("做", "生成", "制作", "出", "只要", "需要", "再", "然后", "接着"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
+    if pos("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂",
+           "做个片子", "做片子", "拍个片子", "做个视频", "做视频", "生成视频", "一段视频", "做条视频", "拍个视频",
+           "做一个视频", "做个小视频", "小视频", "搞个片子", "片子", "来段视频", "整段视频", "做段视频", "生视频") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
         direct.add("video_prompt")
-    if (has("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词", "出图", "生图") or (has("图片", "图像", "一张图", "几张图") and not phrase_is_negated(text, "图片") and not phrase_is_negated(text, "图像") and has("做", "生成", "制作", "出", "只要", "需要", "再", "然后", "接着", "给我"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
+    if pos("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词",
+           "只要图片", "只要图", "出张图", "出一张图", "生图", "出图", "生成图片", "生成图像", "画一张", "画张图",
+           "来张图", "来一张图", "来图", "大图", "插画", "插图", "画个图", "画一幅") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
         direct.add("image_prompt")
-    if (has("提示词工程", "负面提示词", "正向提示词", "灯光方案", "视觉基因") or (has("提示词") and not phrase_is_negated(text, "提示词")) or (has("prompt") and not phrase_is_negated(text, "prompt"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_prompt_engineering", False):
+    if (pos("提示词工程", "负面提示词", "正向提示词", "灯光方案", "视觉基因") or (has("提示词") and not phrase_is_negated(text, "提示词")) or (has("prompt") and not phrase_is_negated(text, "prompt"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_prompt_engineering", False):
         direct.add("prompt_engineering")
-    if has("运镜", "推镜", "拉镜", "低机位", "焦段", "景别", "摄影机", "摄影方案", "镜头节奏", "构图", "灯光方案"):
+    if pos("运镜", "推镜", "拉镜", "低机位", "焦段", "景别", "摄影机", "摄影方案", "镜头节奏", "构图", "灯光方案",
+           "机位", "镜头语言", "运镜方案", "分镜语言"):
         direct.add("cinematography")
-    if has("视频提示词", "文生视频", "图生视频") and has("时间码", "动作", "表情", "运镜", "镜头") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
+    if pos("视频提示词", "文生视频", "图生视频") and pos("时间码", "动作", "表情", "运镜", "镜头") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
         direct.add("storyboard")
-    if has("站位", "轴线", "越轴", "人物位置", "位置不一致", "空间关系", "场面调度", "镜头接不上", "走位", "连续性"):
+    if pos("站位", "轴线", "越轴", "人物位置", "位置不一致", "空间关系", "场面调度", "镜头接不上", "走位", "连续性"):
         direct.add("spatial_continuity")
-    if has("检查", "审查", "质检", "找bug", "查bug", "找漏洞", "修复", "排查", "逻辑矛盾", "一致性检查", "是否自洽", "避免漂浮", "避免穿模"):
+    if pos("检查", "审查", "质检", "找bug", "查bug", "找漏洞", "修复", "排查", "逻辑矛盾", "一致性检查", "是否自洽", "避免漂浮", "避免穿模"):
         direct.add("quality_assurance")
-    if has("角色四视图", "角色卡", "角色设定", "人物设定", "角色脸型", "发色", "服装和配饰", "角色定妆", "人物外观", "角色一致性", "人物服装", "角色服装", "服饰造型", "人物造型") or (has("角色") and has("恐惧", "愤怒", "微表情", "表演", "眼神", "呼吸")):
+    if pos("角色四视图", "角色卡", "角色设定", "人物设定", "角色脸型", "发色", "服装和配饰", "角色定妆", "人物外观", "角色一致性", "人物服装", "角色服装", "服饰造型", "人物造型",
+           "角色图", "人物图", "人设图", "角色立绘", "人物立绘", "角色资产图", "人物资产图", "角色造型图", "角色三视图", "人物三视图",
+           "立绘", "三视图", "角色设定图", "人物设定图") or (pos("角色") and pos("恐惧", "愤怒", "微表情", "表演", "眼神", "呼吸")):
         direct.add("character_design")
-    if has("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具", "角色四视图", "人物四视图", "角色三视图", "人物三视图", "先资产", "先出资产", "资产先行"):
-        direct.add("asset_first")
-    if has("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复", "角色锁定", "人物锁定", "锁定角色", "锁定人物", "场景锁定", "锁定场景") or (has("人物资产", "角色资产", "场景资产") and has("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")) or (has("锁定") and has("角色", "人物", "场景", "资产", "分镜", "视图", "道具") and not phrase_is_negated(text, "锁定")) or (has("锁定") and not phrase_is_negated(text, "锁定") and not has("焦点", "目标", "镜头锁定", "锁焦")):
-        direct.add("asset_locking")
-    if has("古风", "国风", "赛博朋克", "冷艳", "导演风格", "视觉基因", "色彩体系", "配色", "美术指导", "灯光方案"):
-        direct.add("aesthetics_style")
-    if has("音效", "声音设计", "环境音", "拟音", "配音", "配乐", "旁白", "声音分层") and not constraints.get("explicit_no_audio", False):
-        direct.add("audio_design")
-    if has("表演", "微表情", "演技", "眼神", "情绪外化", "facs", "表情设计", "表演指导", "情绪转折") and not phrase_is_negated(text, "表演") and not phrase_is_negated(text, "微表情"):
+    if pos("微表情", "演技", "怎么演", "情绪转折", "情绪曲线", "表演层次", "情绪外化", "身体表演", "表演调度"):
         direct.add("performance_emotion")
-    if has("api", "接口", "json请求", "请求参数", "端点", "webhook"):
+    if pos("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具",
+           "设定图", "先出设定图", "资产设定", "先定稿"):
+        direct.add("asset_first")
+    if pos("资产锁定", "锁定资产", "角色资产锁定", "人物资产锁定", "场景资产锁定", "资产冻结", "锁定人物和场景", "先锁定角色和场景", "分镜资产引用", "资产版本锁定", "资产漂移修复",
+           "锁定角色", "锁定人物", "锁定场景", "锁住角色", "锁住人物", "把角色锁", "把人物锁", "角色锁住") or (pos("人物资产", "角色资产", "场景资产") and pos("先锁定", "锁定后", "版本锁定", "引用资产", "分镜资产")) or (pos("锁住", "锁定", "定型", "锁死", "定死") and pos("别变", "不要变", "不能变", "保持一致", "不变", "统一", "别再变")) or (pos("定型", "锁死", "定死", "固定住") and pos("角色", "人物", "脸", "形象", "外观", "资产", "场景", "设定", "造型", "模样")):
+        direct.add("asset_locking")
+    if pos("古风", "国风", "赛博朋克", "冷艳", "导演风格", "视觉基因", "色彩体系", "配色", "美术指导", "灯光方案",
+           "整体风格", "什么风格", "风格走", "美学", "美术风格", "视觉风格", "画面风格", "色调"):
+        direct.add("aesthetics_style")
+    if pos("音效", "声音设计", "环境音", "拟音", "配音", "配乐", "旁白", "声音分层"):
+        direct.add("audio_design")
+    if pos("api", "接口", "json请求", "请求参数", "端点", "webhook"):
         direct.add("api_integration")
-    if has("外部skill", "claude code", "codex", "dify", "coze", "智能体集成", "agent集成", "安装skill", "千问", "豆包", "扣子"):
+    if pos("外部skill", "claude code", "codex", "dify", "coze", "智能体集成", "agent集成", "安装skill"):
         direct.add("external_skill_integration")
-    if has("参考图", "参考视频", "反推", "反向工程", "拍摄方案") and (has("参考", "反推") or "reverse" in norm):
+    if pos("参考图", "参考视频", "反推", "反向工程", "拍摄方案") and (pos("参考", "反推") or "reverse" in norm):
         direct.add("reverse_engineering")
-    if has("参考图", "参考视频", "参考素材") and has("保持一致", "完全一致", "一比一还原", "按图还原", "照着", "参考图一致", "还原人物", "复刻构图", "保持角色一致"):
+    if pos("参考图", "参考视频", "参考素材") and pos("保持一致", "完全一致", "一比一还原", "按图还原", "照着", "参考图一致", "还原人物", "复刻构图", "保持角色一致"):
         direct.add("reverse_engineering")
-    if has("武打", "打斗", "动作戏", "攻防", "战斗动作", "受力反馈", "动作预演") and not phrase_is_negated(text, "武打") and not phrase_is_negated(text, "打斗") and not phrase_is_negated(text, "动作戏"):
+    if pos("照着这张", "照着这", "按这张图", "按这图", "按图", "同款", "仿一个", "仿一张", "仿造", "复刻") and pos("图", "照片", "画面", "素材", "视频", "片"):
+        direct.add("reverse_engineering")
+    if pos("武打", "打斗", "动作戏", "打戏", "武戏", "攻防", "战斗动作", "受力反馈", "动作预演", "动作设计", "动作编排"):
         direct.add("action_choreography")
-    if has("粒子", "爆炸特效", "特效", "物理模拟", "穿模", "重力", "惯性") and not phrase_is_negated(text, "特效") and not phrase_is_negated(text, "粒子"):
+    if pos("粒子", "爆炸特效", "特效", "物理模拟", "穿模", "重力", "惯性"):
         direct.add("vfx_physics")
-    if has("项目状态", "状态文件", "跨轮次", "设定锁", "人物关系", "已埋伏笔", "世界观连续性", "项目记忆"):
+    if pos("项目状态", "状态文件", "跨轮次", "设定锁", "人物关系", "已埋伏笔", "世界观连续性", "项目记忆"):
         direct.add("project_state_management")
-    if has("seedance", "可灵", "veo", "runway", "sora", "模型语法", "模型适配"):
+    if pos("seedance", "可灵", "veo", "runway", "sora", "模型语法", "模型适配"):
         direct.add("model_adaptation")
-    if has("版权", "原创性", "平台合规", "侵权", "内容审核"):
+    if pos("版权", "原创性", "平台合规", "侵权", "内容审核"):
         direct.add("safety_originality")
     short_video_content_intent = (
-        has("短视频文案", "口播", "抖音脚本", "小红书视频文案", "视频号脚本", "tiktok脚本", "竖屏短剧", "短视频脚本", "短视频平台方案", "开头三秒", "黄金三秒", "完播率", "转粉", "转化率", "短视频选题")
-        or (has("短视频") and has("文案", "脚本", "选题", "开头三秒", "黄金三秒", "完播率", "转粉", "转化率", "口播"))
-        or (has("抖音", "小红书", "视频号", "tiktok") and has("脚本", "文案", "口播", "开头三秒", "短视频发布"))
+        pos("短视频文案", "口播", "抖音脚本", "小红书视频文案", "视频号脚本", "tiktok脚本", "竖屏短剧", "短视频脚本", "短视频平台方案", "开头三秒", "黄金三秒", "完播率", "转粉", "转化率", "短视频选题")
+        or (pos("短视频") and pos("文案", "脚本", "选题", "开头三秒", "黄金三秒", "完播率", "转粉", "转化率", "口播"))
+        or (pos("抖音", "小红书", "视频号", "tiktok") and pos("脚本", "文案", "口播", "开头三秒", "短视频发布"))
+        or pos("做个短视频", "做条短视频", "做一条短视频", "拍个短视频", "拍条短视频", "做个短剧", "做条短剧", "生成短视频", "制作短视频")
     )
     if short_video_content_intent:
         direct.add("short_video_content")
-    if has("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配", "抖音", "小红书", "B站", "快手", "视频号", "tiktok", "youtube shorts"):
+    if pos("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配") or (
+        pos("抖音", "小红书", "视频号", "tiktok", "b站", "快手", "油管", "youtube") and pos("发布", "怎么发", "上传", "运营", "投放", "适配", "涨粉", "引流")
+    ):
         direct.add("platform_adaptation")
-    if has("七段式", "输出格式", "json输出", "双区输出", "格式化输出", "输出模板", "输出格式要求"):
-        direct.add("output_formatting")
-    if has("从创意到成片", "完整制作", "全流程制作", "全链路交付", "一整套全流程"):
+    if pos("从创意到成片", "完整制作", "全流程制作", "全链路交付", "一整套全流程"):
         direct.add("full_production")
-    if has("角色卡", "四视图", "角色定妆", "角色外观", "角色脸型") and has("一致", "资产", "设定", "人物"):
+    if pos("角色卡", "四视图", "角色定妆", "角色外观", "角色脸型") and pos("一致", "资产", "设定", "人物"):
         direct.add("asset_first")
+    if pos("输出格式", "json输出", "双区输出", "导出json", "转成json", "转json", "json格式", "输出成json", "导出excel", "导出表格", "表格输出", "markdown输出",
+           "输出json", "json导出", "json文件", "输出表格", "导出csv", "csv输出"):
+        direct.add("output_formatting")
     # Compound asset-first phrasing appears in many forms. Treat natural wording such as
     # “先设计人物和场景图，再做分镜” as an ordered asset pipeline, even when the user
     # does not use the technical word “资产”. Local negation must suppress only the excluded asset.
@@ -579,8 +660,6 @@ def select_workflows(text: str, norm: str, registry: dict[str, Any], constraints
         if wid == "visual-prompt" and (constraints.get("explicit_no_prompt") or (constraints.get("explicit_no_image_prompt") and constraints.get("explicit_no_video_prompt"))):
             return True
         if wid == "visual-prompt" and constraints.get("explicit_no_video_prompt") and not constraints.get("explicit_no_image_prompt") and "image_prompt" not in capabilities:
-            return True
-        if wid == "audio-design" and constraints.get("explicit_no_audio"):
             return True
         if wid == "storyboard-only" and constraints.get("explicit_no_storyboard"):
             return True

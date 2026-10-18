@@ -1009,169 +1009,343 @@
       ]
     },
     {
-      "id": "short-trigger-platform-001",
-      "request": "抖音发布",
+      "id": "negation-audio-while-video-001",
+      "request": "做个视频，不要音效",
       "must_include_capabilities": [
-        "platform_adaptation"
-      ]
-    },
-    {
-      "id": "short-trigger-platform-002",
-      "request": "小红书运营",
-      "must_include_capabilities": [
-        "platform_adaptation"
-      ]
-    },
-    {
-      "id": "short-trigger-perf-001",
-      "request": "表演指导",
-      "must_include_capabilities": [
-        "performance_emotion"
-      ]
-    },
-    {
-      "id": "short-trigger-perf-002",
-      "request": "微表情设计",
-      "must_include_capabilities": [
-        "performance_emotion"
-      ]
-    },
-    {
-      "id": "short-trigger-format-001",
-      "request": "七段式输出",
-      "must_include_capabilities": [
-        "output_formatting"
-      ]
-    },
-    {
-      "id": "short-trigger-skill-001",
-      "request": "千问集成",
-      "must_include_capabilities": [
-        "external_skill_integration"
-      ]
-    },
-    {
-      "id": "short-trigger-drama-001",
-      "request": "短剧创作",
-      "must_include_capabilities": [
-        "screenwriting"
-      ]
-    },
-    {
-      "id": "asset-lock-short-001",
-      "request": "角色锁定后做分镜",
-      "must_include_capabilities": [
-        "asset_locking"
-      ]
-    },
-    {
-      "id": "asset-first-short-001",
-      "request": "角色四视图加分镜",
-      "must_include_capabilities": [
-        "asset_first"
-      ]
-    },
-    {
-      "id": "video-deliverable-001",
-      "request": "不要图片只要视频和音效",
-      "must_include_capabilities": [
-        "video_prompt",
-        "audio_design"
+        "video_prompt"
       ],
       "must_exclude_capabilities": [
-        "image_prompt"
-      ]
-    },
-    {
-      "id": "video-no-overtrigger-001",
-      "request": "我要看视频",
-      "must_exclude_capabilities": [
-        "video_prompt"
-      ]
-    },
-    {
-      "id": "audio-negation-001",
-      "request": "不要音效",
-      "must_exclude_capabilities": [
         "audio_design"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
       ]
     },
     {
-      "id": "audio-negation-002",
-      "request": "只要画面不要配音",
-      "must_exclude_capabilities": [
-        "audio_design"
-      ]
-    },
-    {
-      "id": "image-short-trigger-001",
-      "request": "只要图片不要视频",
+      "id": "negation-cinematography-001",
+      "request": "不要运镜",
       "must_include_capabilities": [
-        "image_prompt"
+        "general_orchestration"
       ],
       "must_exclude_capabilities": [
-        "video_prompt"
+        "cinematography"
       ]
     },
     {
-      "id": "image-short-trigger-002",
-      "request": "出图",
+      "id": "negation-action-001",
+      "request": "不要打斗",
       "must_include_capabilities": [
-        "image_prompt"
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "action_choreography",
+        "vfx_physics"
       ]
     },
     {
-      "id": "asset-lock-bare-001",
-      "request": "锁定",
+      "id": "negation-vfx-001",
+      "request": "不要爆炸特效",
       "must_include_capabilities": [
-        "asset_locking"
-      ]
-    },
-    {
-      "id": "asset-lock-context-001",
-      "request": "先锁定再分镜",
-      "must_include_capabilities": [
-        "asset_locking",
-        "storyboard"
-      ]
-    },
-    {
-      "id": "video-colloquial-001",
-      "request": "做个片子",
-      "must_include_capabilities": [
-        "video_prompt"
-      ]
-    },
-    {
-      "id": "asset-first-short-002",
-      "request": "先资产再分镜",
-      "must_include_capabilities": [
-        "asset_first",
-        "storyboard"
-      ]
-    },
-    {
-      "id": "compound-pipeline-001",
-      "request": "古风武侠短剧，先资产再分镜再视频",
-      "must_include_capabilities": [
-        "asset_first",
-        "storyboard",
-        "video_prompt",
-        "aesthetics_style"
-      ]
-    },
-    {
-      "id": "vfx-negation-001",
-      "request": "不要特效",
+        "general_orchestration"
+      ],
       "must_exclude_capabilities": [
         "vfx_physics"
       ]
     },
     {
-      "id": "action-negation-001",
-      "request": "不要武打动作",
+      "id": "negation-audio-001",
+      "request": "不要配音",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
       "must_exclude_capabilities": [
+        "audio_design"
+      ]
+    },
+    {
+      "id": "negation-storyboard-001",
+      "request": "别做分镜",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "storyboard"
+      ]
+    },
+    {
+      "id": "negation-image-001",
+      "request": "不生成图片",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt"
+      ]
+    },
+    {
+      "id": "colloquial-image-out-001",
+      "request": "帮我出张图",
+      "must_include_capabilities": [
+        "image_prompt"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "colloquial-image-sheng-001",
+      "request": "给我生图",
+      "must_include_capabilities": [
+        "image_prompt"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "colloquial-video-film-001",
+      "request": "帮我做个片子",
+      "must_include_capabilities": [
+        "video_prompt"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "colloquial-short-video-001",
+      "request": "做个短视频",
+      "must_include_capabilities": [
+        "short_video_content"
+      ],
+      "must_include_workflows": [
+        "platform-short-video"
+      ]
+    },
+    {
+      "id": "colloquial-action-fight-001",
+      "request": "帮我做一个打戏",
+      "must_include_capabilities": [
         "action_choreography"
+      ],
+      "must_include_workflows": [
+        "action-design"
+      ]
+    },
+    {
+      "id": "colloquial-asset-lock-001",
+      "request": "锁定角色和场景",
+      "must_include_capabilities": [
+        "asset_locking"
+      ],
+      "must_include_workflows": [
+        "asset-lock"
+      ]
+    },
+    {
+      "id": "colloquial-asset-lock-002",
+      "request": "把她锁住别变",
+      "must_include_capabilities": [
+        "asset_locking"
+      ],
+      "must_include_workflows": [
+        "asset-lock"
+      ]
+    },
+    {
+      "id": "output-format-json-001",
+      "request": "把结果输出成json",
+      "must_include_capabilities": [
+        "output_formatting"
+      ]
+    },
+    {
+      "id": "compound-negation-video-001",
+      "request": "写剧本并拆成分镜，但不要视频提示词",
+      "must_include_capabilities": [
+        "screenwriting",
+        "storyboard"
+      ],
+      "must_exclude_capabilities": [
+        "video_prompt"
+      ],
+      "must_include_workflows": [
+        "script-to-screen"
+      ]
+    },
+    {
+      "id": "compound-negation-prompt-001",
+      "request": "先做人物和场景图再做分镜，不要提示词",
+      "must_include_capabilities": [
+        "asset_first",
+        "asset_locking",
+        "character_design",
+        "storyboard"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "prompt_engineering"
+      ],
+      "must_include_workflows": [
+        "asset-first",
+        "asset-lock"
+      ],
+      "must_exclude_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "ambiguous-fallback-001",
+      "request": "帮我搞个东西",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "image_prompt",
+        "video_prompt",
+        "storyboard"
+      ]
+    },
+    {
+      "id": "clause-scope-negative-then-positive-001",
+      "request": "不要运镜，就要个静态视频提示词",
+      "must_include_capabilities": [
+        "video_prompt"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "positive-rescues-negated-variant-same-clause-001",
+      "request": "只要分镜不要分镜表",
+      "must_include_capabilities": [
+        "storyboard"
+      ]
+    },
+    {
+      "id": "colloquial-video-sheng-002",
+      "request": "帮我搞一段能生视频的咒语",
+      "must_include_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "colloquial-image-big-002",
+      "request": "来个赛博朋克妹子的大图",
+      "must_include_capabilities": [
+        "image_prompt"
+      ]
+    },
+    {
+      "id": "colloquial-storyboard-split-002",
+      "request": "帮我把这段分个镜",
+      "must_include_capabilities": [
+        "storyboard"
+      ]
+    },
+    {
+      "id": "colloquial-character-latihui-002",
+      "request": "给女主画个立绘",
+      "must_include_capabilities": [
+        "character_design"
+      ]
+    },
+    {
+      "id": "colloquial-performance-face-002",
+      "request": "这个微表情怎么演",
+      "must_include_capabilities": [
+        "performance_emotion"
+      ]
+    },
+    {
+      "id": "colloquial-reverse-copy-002",
+      "request": "照着这张图做一个同款",
+      "must_include_capabilities": [
+        "reverse_engineering"
+      ]
+    },
+    {
+      "id": "colloquial-asset-sheet-002",
+      "request": "先出设定图",
+      "must_include_capabilities": [
+        "asset_first"
+      ]
+    },
+    {
+      "id": "colloquial-asset-lock-003",
+      "request": "把脸定型别再变",
+      "must_include_capabilities": [
+        "asset_locking"
+      ]
+    },
+    {
+      "id": "colloquial-platform-publish-002",
+      "request": "小红书怎么发",
+      "must_include_capabilities": [
+        "platform_adaptation"
+      ]
+    },
+    {
+      "id": "output-format-json-002",
+      "request": "给我输出json",
+      "must_include_capabilities": [
+        "output_formatting"
+      ]
+    },
+    {
+      "id": "negation-none-requirement-001",
+      "request": "没有运镜要求，给个静态画面",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "cinematography"
+      ]
+    },
+    {
+      "id": "negation-postfix-removal-001",
+      "request": "把运镜去掉",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "cinematography"
+      ]
+    },
+    {
+      "id": "negation-colloquial-biekang-001",
+      "request": "别看运镜，就要静态视频提示词",
+      "must_include_capabilities": [
+        "video_prompt"
+      ],
+      "must_include_workflows": [
+        "visual-prompt"
+      ]
+    },
+    {
+      "id": "negation-colloquial-biekang-standalone-001",
+      "request": "别看运镜",
+      "must_include_capabilities": [
+        "general_orchestration"
+      ],
+      "must_exclude_capabilities": [
+        "cinematography"
+      ]
+    },
+    {
+      "id": "negation-remove-audio-001",
+      "request": "没有音效，只要画面",
+      "must_exclude_capabilities": [
+        "audio_design"
+      ]
+    },
+    {
+      "id": "positive-survives-nonadjacent-removal-001",
+      "request": "生成图片然后删除背景",
+      "must_include_capabilities": [
+        "image_prompt"
       ]
     }
   ],

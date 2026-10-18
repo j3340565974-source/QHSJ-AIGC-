@@ -25,7 +25,7 @@ allowed-tools: Read Write Bash WebSearch WebFetch
 无论用户提出单一需求、复合需求、模糊需求、纠错需求或对整套 Skill 的工程整改需求，都必须完成路由判断，不能因为某项能力未出现在旧目录中就跳过。具体执行遵循：
 
 1. 解析用户要的最终交付物，以及“只要/不要/必须/禁止/保留/不修改”等硬约束。
-2. 路由能力表与工作流以本文件第 1.3 节「能力路由表」和第 2.2 节「全部工作流目录」为准；需要精确路由时运行 `python scripts/route_request.py "<用户原话>" --json`（机器脚本，不占 LLM 上下文）。**禁止直接读取 3.6MB 的 `route-registry.json`。**
+2. 路由能力表与工作流以本文件第 1.3 节「能力路由表」和第 2.2 节「全部工作流目录」为准；需要精确路由时运行 `python scripts/route_request.py "<用户原话>" --json`（机器脚本，不占 LLM 上下文）。**禁止直接读取 3.5MB 的 `route-registry.json`。**
 3. 识别所有匹配能力，形成多标签路由；再展开必须依赖，区分必需依赖与可选增强。
 4. 选择一个主工作流；需要时可叠加辅助工作流，但不得因关键词相似就执行与用户输出范围冲突的流程。
 5. 按依赖图安排并行与串行，传递硬约束、项目事实和状态对象。
@@ -56,7 +56,7 @@ allowed-tools: Read Write Bash WebSearch WebFetch
 - **知识库定位**：在 `references/index.md` 中按关键词搜索，或 `grep -rn "关键词" references/`，**只读取命中的 1–2 个文件**。
 - **工作流详情**：按需读取 `workflows/<对应工作流>.yaml`。
 
-> 🚫 **禁止**：整读 `routing/route-registry.json`（3.6MB）、整读 `references/index.md`（241KB）、一次性加载全部 references。详见第 15 节上下文预算铁律。
+> 🚫 **禁止**：整读 `routing/route-registry.json`（3.5MB）、整读 `references/index.md`（236KB）、一次性加载全部 references。详见第 15 节上下文预算铁律。
 
 不得再把“核心模块 15 个”当成全部能力清单。完整注册表（342 资源）由脚本维护；找不到目标资源时运行 `scripts/audit_package.py` 排查，不得默认为“不需要”。
 
@@ -409,28 +409,30 @@ PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v
 
 发生冲突时，生成冲突记录，标明冲突字段、来源、影响的下游产物和候选修复。只重跑受影响的阶段与相关 QA，不对无关已通过产物做全局重写。所有状态变更写入 `production_state` 或项目变更日志。
 
-## 15. References 知识库与检索规则
+## 15. References 知识库与上下文预算铁律
 
-`references/` 含 303 篇专业知识库，所有独有知识正文完整保留在规范源文件中，重复正文只存一份，历史别名仍有资源与章节路由。完整触发词、章节索引、SHA-256、别名关系和机器可执行路由规则以 `routing/route-registry.json` 与 `routing/route-graph.json` 为准。
+> ⚠️ **上下文预算铁律（最高优先级）**：本 Skill 含 **303 篇知识库 / 7.5MB**，任何情况下都**禁止一次性加载全部 references、禁止整读 `routing/route-registry.json`（3.5MB）、禁止整读 `references/index.md`（236KB）**。违反此条必然导致上下文溢出。
 
-**加载规则：**先按用户请求的交付物与问题领域定位规范正文；命中具体章节时优先读取章节相关部分；历史别名路径跳转至其规范目标，避免重复加载。若某个资源尚未首批加载，不代表它被排除，完整候选和延后读取列表仍可审计。
+### 15.1 逐文件路由目录的位置
 
-> ⚠️ **上下文预算铁律（最高优先级）**：本 Skill 含 **303 篇知识库 / 7.5MB**，任何情况下都**禁止一次性加载全部 references、禁止整读 `routing/route-registry.json`（3.6MB）、禁止整读 `references/index.md`（241KB）**。违反此条必然导致上下文溢出。
+SKILL.md 不内嵌 342 条逐文件清单（那会与 `references/index.md` 和 `routing/route-registry.json` 重复并撑爆上下文）。逐文件导航目录位于 `references/index.md`：每个条目提供用途摘要、能力路由、触发线索和调用方式；所有独有知识正文均完整保留在规范源文件中，字节完全相同的重复正文只存一份，历史别名仍有资源与章节路由。摘要仅用于导航，不替代规范正文。完整触发词、章节索引、SHA-256、别名关系和机器可执行路由规则以 `routing/route-registry.json` 与 `routing/route-graph.json` 为准。
 
-### 15.1 正确的检索方式（三选一，按需）
+**加载规则：**先按用户请求的交付物与问题领域定位规范正文；命中具体章节时优先读取章节相关部分；历史别名路径跳转至其规范目标，避免重复加载。别名记录保存原正文 SHA-256，并复用规范正文的全部章节节点；用户显式指定旧路径时仍能追踪到规范正文。若某个资源尚未首批加载，不代表它被排除，完整候选和延后读取列表仍可审计。
+
+### 15.2 正确的检索方式（三选一，按需）
 
 1. **机器路由（推荐）**：运行 `python scripts/route_request.py "<用户原话>" --json`，脚本只返回与当前请求相关的能力、工作流和资源路径，不加载知识库正文。
 2. **关键词检索**：用 `grep -rn "关键词" references/` 或在 `references/index.md` 中按能力/触发词搜索定位文件，**只读取命中的那 1–2 个文件**。
 3. **直达已知文件**：用户明确指定文件名/章节时，直接 `Read` 该文件对应章节，不连带加载其他文件。
 
-### 15.2 加载上限
+### 15.3 加载上限
 
 - 单次请求**最多同时加载 2 篇 reference**；需要更多时，先产出当前阶段结果，再按依赖顺序读取下一篇。
 - `routing/route-registry.json` 与 `routing/route-graph.json` 是**机器注册表**，仅供脚本（`route_request.py` / `audit_package.py`）读取，LLM 不得直接打开。
 - `references/index.md` 是**目录索引**，只用于搜索定位，不得全文加载。
 - 若路由返回多个候选资源，只读取与用户**交付物直接相关**的规范正文；兼容别名跳转至规范正文，不重复加载。
 
-### 15.3 完整索引位置
+### 15.4 完整索引位置
 
 - 逐文件导航目录：`references/index.md`（按能力浏览 303 篇知识库）
 - 机器可执行路由：`routing/route-registry.json` + `routing/route-graph.json`（342 资源 / 15,244 章节 / 16,718 边）

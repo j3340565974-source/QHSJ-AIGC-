@@ -423,6 +423,90 @@ class RoutingTests(unittest.TestCase):
         self.assertIn("response.raise_for_status()", adapter)
         self.assertIn("official API documentation", adapter)
 
+    def test_local_negation_does_not_fabricate_excluded_capability(self):
+        # A single local negative must not activate the capability it excludes,
+        # while unrelated positive deliverables in the same sentence stay active.
+        cases = [
+            ("做个视频，不要音效", "audio_design"),
+            ("不要运镜", "cinematography"),
+            ("不要打斗", "action_choreography"),
+            ("不要爆炸特效", "vfx_physics"),
+            ("不要配音", "audio_design"),
+            ("别做分镜", "storyboard"),
+            ("不生成图片", "image_prompt"),
+            ("没有运镜要求", "cinematography"),
+            ("把运镜去掉", "cinematography"),
+            ("没有音效", "audio_design"),
+        ]
+        for request, excluded in cases:
+            caps, _, _ = self.route_ids(request)
+            self.assertNotIn(excluded, caps, f"否定泄露：{request} 仍触发了 {excluded}")
+
+    def test_colloquial_short_triggers_route_expected_capability(self):
+        cases = [
+            ("帮我出张图", "image_prompt"),
+            ("给我生图", "image_prompt"),
+            ("只要图片", "image_prompt"),
+            ("帮我做个片子", "video_prompt"),
+            ("做个短视频", "short_video_content"),
+            ("帮我做一个打戏", "action_choreography"),
+            ("锁定角色和场景", "asset_locking"),
+            ("把她锁住别变", "asset_locking"),
+            ("把结果输出成json", "output_formatting"),
+            # 口语直给、行业黑话与自然短语触发
+            ("帮我搞一段能生视频的咒语", "video_prompt"),
+            ("来个赛博朋克妹子的大图", "image_prompt"),
+            ("帮我把这段分个镜", "storyboard"),
+            ("给女主画个立绘", "character_design"),
+            ("这个微表情怎么演", "performance_emotion"),
+            ("照着这张图做一个同款", "reverse_engineering"),
+            ("先出设定图", "asset_first"),
+            ("把脸定型别再变", "asset_locking"),
+            ("小红书怎么发", "platform_adaptation"),
+            ("给我输出json", "output_formatting"),
+        ]
+        for request, expected in cases:
+            caps, _, _ = self.route_ids(request)
+            self.assertIn(expected, caps, f"白话触发未命中：{request} 未触发 {expected}")
+
+    def test_clause_scoped_negation_keeps_later_positive_deliverable(self):
+        # 否定作用域不得跨越分句：前句“不要运镜”不能抹掉后句“静态视频提示词”。
+        caps, workflows, _ = self.route_ids("不要运镜，就要个静态视频提示词")
+        self.assertIn("video_prompt", caps)
+        self.assertIn("visual-prompt", workflows)
+        pn = self.router.phrase_is_negated
+        self.assertFalse(pn("不要运镜，就要个静态视频提示词", "视频提示词"))
+        self.assertFalse(pn("不要图片提示词，只要视频提示词", "视频提示词"))
+        self.assertTrue(pn("不要分镜表", "分镜"))
+        self.assertFalse(pn("要音效，不要分镜", "音效"))
+        self.assertFalse(pn("不要音效，要配音", "配音"))
+
+    def test_positive_occurrence_rescues_trailing_negated_variant_in_same_clause(self):
+        # 同一分句内“只要分镜”与“不要分镜表”并存时，正向请求优先，不应整体否定 storyboard。
+        self.assertFalse(self.router.phrase_is_negated("只要分镜不要分镜表", "分镜"))
+
+    def test_phrase_is_negated_handles_local_scope_and_overlap(self):
+        pn = self.router.phrase_is_negated
+        self.assertTrue(pn("不要音效", "音效"))
+        self.assertTrue(pn("不生成图片", "生成图片"))  # negator overlaps the phrase prefix
+        self.assertTrue(pn("别做分镜", "分镜"))
+        self.assertTrue(pn("不要分镜，只生成图片提示词", "分镜"))
+        self.assertFalse(pn("要音效，不要分镜", "音效"))
+        self.assertFalse(pn("生成图片提示词", "生成图片"))
+        self.assertFalse(pn("只要图片", "图片"))
+
+    def test_phrase_is_negated_covers_none_requirement_and_postfix_removal(self):
+        # “没有X要求” 与 “把X去掉” 都是常见的中文排除表达，必须识别为否定。
+        pn = self.router.phrase_is_negated
+        self.assertTrue(pn("没有运镜要求", "运镜"))
+        self.assertTrue(pn("把运镜去掉", "运镜"))
+        self.assertTrue(pn("运镜删掉", "运镜"))
+        self.assertTrue(pn("别看运镜", "运镜"))
+        self.assertTrue(pn("没有音效，只要画面", "音效"))
+        # 删除动作与正向交付物不相邻时不得误伤正向交付物。
+        self.assertFalse(pn("生成图片然后删除背景", "生成图片"))
+        self.assertFalse(pn("生成图片后删除背景", "生成图片"))
+
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@
     <a href="https://github.com"><img alt="Workflows" src="https://img.shields.io/badge/工作流-16%20条-DC143C.svg" /></a>
     <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-303%20篇-2E8B57.svg" /></a>
     <a href="https://github.com"><img alt="Files" src="https://img.shields.io/badge/文件-345-4682B4.svg" /></a>
-    <a href="https://github.com"><img alt="QC" src="https://img.shields.io/badge/质检-38%2F38%20%E2%9C%93-228B22.svg" /></a>
+    <a href="https://github.com"><img alt="QC" src="https://img.shields.io/badge/质检-44%2F44%20%E2%9C%93-228B22.svg" /></a>
     <a href="https://github.com"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
   </p>
 </div>
@@ -41,7 +41,7 @@
 1. **不漂移** —— 角色 / 场景 / 道具**先锁定再进分镜**（Asset-First），跨镜跨集一致性有据可依；
 2. **不返工** —— 多标签路由 + 依赖闭包 + 硬约束仲裁 + P0~P2 门禁 + 稿件级机检，把错误拦在生成之前；
 3. **能直接投喂** —— 输出结构化提示词，整组复制即可喂给视频/图片模型；支持 Seedance / Kling / Veo / Sora / Runway / Midjourney / Flux / 即梦等全平台适配；
-4. **可审计** —— 所有资源、能力、工作流、章节均有注册数据与路由图，344 文件 / 15,244 章节 / 16,718 条边全量连通。
+4. **可审计** —— 所有资源、能力、工作流、章节均有注册数据与路由图，345 文件 / 15,244 章节 / 16,718 条边全量连通。
 
 > ⚠️ **能力边界诚实规则**：「路由已选择」≠「外部工具已调用」；「项目状态已建立」≠「跨会话永久记忆」。自动化检查通过仅证明当前包内结构与回归样例通过，不构成对所有未见输入或外部模型生成结果的绝对无缺陷保证。
 
@@ -124,7 +124,7 @@
 | 🔌 **适配** | 全模型适配 | Seedance 2.5 / Kling / Veo 3 / Sora 2 / Runway Gen-3 / MJ / Flux / 即梦 |
 | 🔍 **反推** | 反推还原引擎 | 七要素拆图法、1:1 还原 / 风格抽取、置信度标注 |
 | 🎵 **声音** | 声音设计 | 三层声音结构、音色锁定、VO/OS 编织、AI 音乐提示词 |
-| ✅ **质检** | P0~P2 门禁 + 机检 | 提示词静态检查 + 38 单元测试 + 93 路由评估用例 |
+| ✅ **质检** | P0~P2 门禁 + 机检 | 提示词静态检查 + 44 单元测试 + 129 路由评估用例 |
 | 🛡️ **合规** | 安全转译 | 血腥/断肢转译为气浪/火花/重创定格，降低平台风险 |
 
 ## 🖥️ 适用平台与模型
@@ -212,7 +212,7 @@ QHSJ-AIGC-全能影视/
 
 ## 📜 更新历史
 
-- **v3.0.0**（2026-10-18）— 全量路由、资产锁定与空间连续性版。统一命名 QHSJ AIGC 全能影视；344 文件 / 29 能力 / 16 工作流 / 303 篇知识库；87 组字节级重复正文无损去重为兼容别名；新增 `asset_locking` 能力与 `asset-lock` 工作流；空间、距离、朝向、视线账本协议；多角色审查协议；15-qhsj-master-engine.md 结构整改（畸形表格修复、重复精简块去重、目录补全）。
+- **v3.0.0**（2026-10-18）— 全量路由、资产锁定与空间连续性版。统一命名 QHSJ AIGC 全能影视；345 文件 / 29 能力 / 16 工作流 / 303 篇知识库；87 组字节级重复正文无损去重为兼容别名；新增 `asset_locking` 能力与 `asset-lock` 工作流；空间、距离、朝向、视线账本协议；多角色审查协议；15-qhsj-master-engine.md 结构整改（畸形表格修复、重复精简块去重、目录补全）。
 - **v2.2.3** — 全量路由连通与执行边界修复；统一版本号；修正审计依赖过宽。
 - **v2.2.2** — 全量可审计路由闭包版；新增 route-graph.json。
 - **v2.1.x** — 路由与架构整改；新增完整 route-registry.json；六类专业工作流。

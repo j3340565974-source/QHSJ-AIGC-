@@ -141,10 +141,14 @@ def norm_path(p: str) -> str:
 
 
 def list_files() -> dict[str, Path]:
+    # Exclude build/cache/VCS artifacts so the manifest and registry never reference
+    # files that are absent from a clean checkout.
+    ignored_parts = {"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".tox", ".git", ".idea", ".vscode"}
+    ignored_suffixes = {".pyc", ".pyo"}
     return {
         p.relative_to(ROOT).as_posix(): p
         for p in ROOT.rglob("*")
-        if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
+        if p.is_file() and p.suffix not in ignored_suffixes and not ignored_parts.intersection(p.parts)
     }
 
 

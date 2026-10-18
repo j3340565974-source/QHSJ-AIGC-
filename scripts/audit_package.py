@@ -7,6 +7,18 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 META_FILES = {"MANIFEST.json", "routing/route-registry.json", ".gitignore"}
+# Transient caches and VCS/editor dirs are not part of the shipped package.
+IGNORED_DIR_PARTS = {"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".pydantic_cache", ".tox", ".git", ".idea", ".vscode"}
+IGNORED_SUFFIXES = {".pyc", ".pyo"}
+
+
+def is_shipped_file(path: Path) -> bool:
+    """A shipped file is a real source file, not a build/editor/VCS cache artifact."""
+    return (
+        path.is_file()
+        and path.suffix not in IGNORED_SUFFIXES
+        and not IGNORED_DIR_PARTS.intersection(path.parts)
+    )
 
 
 def sha256(path: Path) -> str:
@@ -64,7 +76,7 @@ def main() -> int:
         try: registry=json.loads(registry_path.read_text(encoding="utf-8"))
         except Exception as exc: registry={}; errors.append(f"路由注册表 JSON 解析失败：{exc}")
 
-    files={p.relative_to(ROOT).as_posix():p for p in ROOT.rglob("*") if p.is_file() and "__pycache__" not in p.parts and ".pytest_cache" not in p.parts and p.suffix != ".pyc"}
+    files={p.relative_to(ROOT).as_posix():p for p in ROOT.rglob("*") if is_shipped_file(p)}
     stats["package_files"] = len(files)
 
     # Manifest must cover every shipped file except itself, with current byte sizes and SHA-256.
@@ -226,12 +238,15 @@ def main() -> int:
         try: wf_index=yaml.safe_load(workflow_index_path.read_text(encoding="utf-8")) or {}
         except Exception as exc: errors.append(f"workflows/index.yaml 解析失败：{exc}")
     index_ids=set(); indexed_files=set()
-    for item in wf_index.get("workflows",[]) if isinstance(wf_index,dict) else []:
-        if not isinstance(item,dict): errors.append("workflows/index.yaml 中存在非对象条目"); continue
-        wid=item.get("id"); rel=(Path("workflows")/str(item.get("file",""))).as_posix()
-        if wid in index_ids: errors.append(f"工作流 ID 重复：{wid}")
-        index_ids.add(wid); indexed_files.add(rel)
-        if rel not in files: errors.append(f"工作流索引指向不存在文件：{rel}")
+    # The index cross-checks below require a parsed workflows/index.yaml. When PyYAML is
+    # unavailable they must be skipped, not silently produce false "未登记" errors.
+    if yaml:
+        for item in wf_index.get("workflows",[]) if isinstance(wf_index,dict) else []:
+            if not isinstance(item,dict): errors.append("workflows/index.yaml 中存在非对象条目"); continue
+            wid=item.get("id"); rel=(Path("workflows")/str(item.get("file",""))).as_posix()
+            if wid in index_ids: errors.append(f"工作流 ID 重复：{wid}")
+            index_ids.add(wid); indexed_files.add(rel)
+            if rel not in files: errors.append(f"工作流索引指向不存在文件：{rel}")
     wf_defs=registry.get("workflows",[])
     reg_wf_ids=set()
     for wf in wf_defs:
@@ -239,8 +254,9 @@ def main() -> int:
         if wid in reg_wf_ids: errors.append(f"路由注册表工作流 ID 重复：{wid}")
         reg_wf_ids.add(wid)
         if rel not in files: errors.append(f"路由注册表引用不存在工作流文件：{rel}")
-        if wid not in index_ids: errors.append(f"工作流未登记到 workflows/index.yaml：{wid}")
-    for wid in sorted(index_ids-reg_wf_ids): errors.append(f"workflows/index.yaml 中有工作流未进入路由注册表：{wid}")
+        if yaml and wid not in index_ids: errors.append(f"工作流未登记到 workflows/index.yaml：{wid}")
+    if yaml:
+        for wid in sorted(index_ids-reg_wf_ids): errors.append(f"workflows/index.yaml 中有工作流未进入路由注册表：{wid}")
     yaml_errors=[]; missing_module_refs=[]
     for rel,path in files.items():
         if path.suffix.lower() not in (".yaml", ".yml"): continue
