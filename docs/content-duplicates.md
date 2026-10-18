@@ -2,31 +2,18 @@
 
 | 文件1 | 文件2 | 相似度 | 片段 |
 |---|---|---|---|
-| README.md | docs/readme-before-l2.md | 1.00 | <div align="center">
-  <img src="assets/logo.png" alt="QHSJ  |
-| README.md | docs/readme-before-l2.md | 1.00 | > 🎬 面向 **AIGC 视听创作** 的工业级全流程技能包：**1 总控 + 29 能力 + 16 工作流 + 30 |
 | README.md | docs/readme-before-l2.md | 1.00 | ```
 📋 意图解析 → 🧭 多标签路由 → ✍️ 小说/剧本 → 🖼️ 资产锁定 → 📐 空间连续性 → 🎬 分镜导演 |
 | README.md | docs/readme-before-l2.md | 1.00 | > 🔑 **核心铁律**：资产锁定是分镜资产生成的**硬门禁**。角色图、场景图、道具图未生成/核验/锁定前，工作流必须 |
 | README.md | docs/readme-before-l2.md | 1.00 | 一套**给 AI 助手执行的 AIGC 全流程创作规则库**（Agent Skill）。用户用中文白话描述目标，系统自动 |
-| README.md | docs/readme-before-l2.md | 1.00 | 1. **不漂移** —— 角色 / 场景 / 道具**先锁定再进分镜**（Asset-First），跨镜跨集一致性有据 |
 | README.md | docs/readme-before-l2.md | 1.00 | > ⚠️ **能力边界诚实规则**：「路由已选择」≠「外部工具已调用」；「项目状态已建立」≠「跨会话永久记忆」。自动化检 |
 | README.md | docs/readme-before-l2.md | 1.00 | 管线与题材解耦，凡「**创意 → 剧本 → 资产 → 分镜 → 提示词 → 模型投喂**」的 AIGC 创作都可套用： |
 | README.md | docs/readme-before-l2.md | 1.00 | - **AI 短剧 / 漫剧 / 短视频剧集**（高密度场景）
 - **AI 广告片 / 品牌宣传片 / 概念片**
 - |
-| README.md | docs/readme-before-l2.md | 1.00 | 完整触发词、依赖关系与章节索引以 `routing/route-registry.json` 为准。 |
 | README.md | docs/readme-before-l2.md | 1.00 | **全局仲裁顺序**：安全与适用政策 > 用户明确硬约束 > 来源事实和项目 Canon > 因果/空间/动作/物理连续 |
 | README.md | docs/readme-before-l2.md | 1.00 | > ⚠️ 用户的否定约束（"只要分镜，不要提示词""只写小说，不做视觉设计"）必须被保留，不得由依赖关系偷偷扩大交付范围 |
-| README.md | docs/readme-before-l2.md | 1.00 | 建议使用 **Python 3.10+**。运行包审计和单元测试需要 `PyYAML`；Schema 元验证需要 `js |
-| README.md | docs/readme-before-l2.md | 1.00 | ```bash
-# 安装依赖（审计脚本需要）
-pip install PyYAML jsonschema |
 | README.md | docs/readme-before-l2.md | 1.00 | `/写剧本` · `/台词诊断` · `/数字资产包` · `/素材形态` · `/做分镜` · `/语速自检` · ` |
-| README.md | docs/readme-before-l2.md | 1.00 | ```text
-QHSJ-AIGC-全能影视/
-├── SKILL.md                       # |
-| README.md | docs/readme-before-l2.md | 1.00 | - **v3.0.0**（2026-10-18）— 全量路由、资产锁定与空间连续性版。统一命名 QHSJ AIGC 全能 |
 | README.md | docs/readme-before-l2.md | 1.00 | 本项目采用 **MIT License**，完整条款见 [LICENSE](LICENSE)。 |
 | README.md | docs/readme-before-l2.md | 1.00 | <div align="center">
   <img src="assets/logo.png" alt="作者头像" |
@@ -118,3 +105,11 @@ QHSJ-AIGC-全能影视/
 | references/novel-screenwriting/v322-02-screenwriting.md | references/character-performance/v322-qh-facs-au-dictionary.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
 | references/novel-screenwriting/v322-02-screenwriting.md | references/character-performance/v322-qh-facs-micro-expression.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
 | references/novel-screenwriting/v322-02-screenwriting.md | references/character-performance/v322-06-performance-control.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/audio/v322-qh-audiovisual-aesthetic-presets.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/audio/v322-11-audio-voice.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-comfyui-canvas-automation.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/p1-model-matrix-expanded.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/p1-project-adapter-deep-notes.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/p1-model-adapter-cards.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-seedance-render-engine.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-h3-adapter.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |

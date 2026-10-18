@@ -3,20 +3,20 @@
   <h1>QHSJ AIGC 全能影视</h1>
   <p><strong>面向影视与视觉创作的全路由 Agent Skill · 全维导演创世与双区生成总引擎</strong></p>
   <p>
-    <a href="https://github.com"><img alt="Version" src="https://img.shields.io/badge/版本-3.0.0-5B5BD6.svg" /></a>
+    <a href="https://github.com"><img alt="Version" src="https://img.shields.io/badge/版本-7.0.0-5B5BD6.svg" /></a>
     <a href="https://github.com"><img alt="Language" src="https://img.shields.io/badge/语言-中文优先-0E8A16.svg" /></a>
-    <a href="https://github.com"><img alt="Routing" src="https://img.shields.io/badge/路由-多标签%20%7C%20可审计-8A2BE2.svg" /></a>
+    <a href="https://github.com"><img alt="Routing" src="https://img.shields.io/badge/路由-16%20条-8A2BE2.svg" /></a>
     <a href="https://github.com"><img alt="Pipeline" src="https://img.shields.io/badge/管线-资产先行-FF6B35.svg" /></a>
     <a href="https://github.com"><img alt="Capabilities" src="https://img.shields.io/badge/能力-29%20项-1E90FF.svg" /></a>
     <a href="https://github.com"><img alt="Workflows" src="https://img.shields.io/badge/工作流-16%20条-DC143C.svg" /></a>
-    <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-303%20篇-2E8B57.svg" /></a>
-    <a href="https://github.com"><img alt="Files" src="https://img.shields.io/badge/文件-345-4682B4.svg" /></a>
-    <a href="https://github.com"><img alt="QC" src="https://img.shields.io/badge/质检-46%2F46%20%E2%9C%93-228B22.svg" /></a>
+    <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-684%20篇-2E8B57.svg" /></a>
+    <a href="https://github.com"><img alt="Backend" src="https://img.shields.io/badge/后端-FastAPI-009688.svg" /></a>
+    <a href="https://github.com"><img alt="Frontend" src="https://img.shields.io/badge/前端-Vite%2BTS-646CFF.svg" /></a>
     <a href="https://github.com"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
   </p>
 </div>
 
-> 🎬 面向 **AIGC 视听创作** 的工业级全流程技能包：**1 总控 + 29 能力 + 16 工作流 + 303 篇知识库 + 自动化质检**。
+> 🎬 面向 **AIGC 视听创作** 的工业级全流程技能包：**1 总控 + 29 能力 + 16 工作流 + 684 篇知识库 + 自动化质检 + FastAPI 后端 + Vite 前端**。
 > 从创意立项、小说/剧本、资产锁定、空间连续性、分镜、图片/视频提示词，到模型适配、声音/VFX、API 集成与质量回归——给 AI 助手 / LLM 直接调用。
 
 ---
@@ -41,7 +41,7 @@
 1. **不漂移** —— 角色 / 场景 / 道具**先锁定再进分镜**（Asset-First），跨镜跨集一致性有据可依；
 2. **不返工** —— 多标签路由 + 依赖闭包 + 硬约束仲裁 + P0~P2 门禁 + 稿件级机检，把错误拦在生成之前；
 3. **能直接投喂** —— 输出结构化提示词，整组复制即可喂给视频/图片模型；支持 Seedance / Kling / Veo / Sora / Runway / Midjourney / Flux / 即梦等全平台适配；
-4. **可审计** —— 所有资源、能力、工作流、章节均有注册数据与路由图，345 文件 / 15,244 章节 / 16,718 条边全量连通。
+4. **可审计** —— 所有资源、能力、工作流均有注册数据，29 能力 / 16 工作流 / 684 知识库 / 16 路由全量连通，16 项结构检查持续校验。
 
 > ⚠️ **能力边界诚实规则**：「路由已选择」≠「外部工具已调用」；「项目状态已建立」≠「跨会话永久记忆」。自动化检查通过仅证明当前包内结构与回归样例通过，不构成对所有未见输入或外部模型生成结果的绝对无缺陷保证。
 
@@ -93,7 +93,7 @@
 | `skill_architecture_audit` | Skill 路由/代码审计 | 路由缺失、逻辑矛盾、漏洞、重构 |
 | `full_production` | 全流程制作 | 完整短片、从创意到成片 |
 
-完整触发词、依赖关系与章节索引以 `routing/route-registry.json` 为准。
+完整触发词、依赖关系与路由以 `routes.json` 为准，匹配算法唯一实现见 `backend/app/services/route_matcher.py`。
 
 ## 🔒 路由仲裁与硬约束
 
@@ -140,36 +140,54 @@
 
 ## ⚙️ 快速开始
 
-建议使用 **Python 3.10+**。运行包审计和单元测试需要 `PyYAML`；Schema 元验证需要 `jsonschema`。
+### 结构与内容审计
+
+建议使用 **Python 3.10+**。
 
 ```bash
-# 安装依赖（审计脚本需要）
-pip install PyYAML jsonschema
+# 安装依赖
+pip install -r backend/requirements.txt -r backend/requirements-dev.txt
 
-# 1. 查看一次路由计划（不会调用外部图像/视频模型）
-python scripts/route_request.py "帮我设计角色四视图和场景资产，锁定后引用它们制作分镜图" --json
+# 1. 16 项结构检查（计数、孤儿节点、循环依赖、文件大小、危险指令、悬空引用…）
+python3 scripts/check_package.py
 
-# 2. 读取路由选择、能力证据与资源候选
-python scripts/route_request.py "只要分镜，不要提示词" --json
+# 2. 内容审计（废弃标记、门禁措辞、编号一致性、术语、悬空引用、重复段落）
+python3 scripts/check_content.py
 
-# 3. 检查提示词文件
-python scripts/validate_prompt.py prompt.txt --type video
+# 3. JSON Schema 校验
+python3 scripts/validate_schemas.py
 
-# 4. 运行全包结构、引用、哈希、Schema、路由图审计
-python scripts/audit_package.py
+# 4. 路由评估集回归
+python3 scripts/run_evals.py
 
-# 5. 运行自然语言路由评估集
-python scripts/run_evals.py
-
-# 6. 运行单元回归测试
-python -B -m unittest discover -s tests -v
-
-# 7. 工作流/资源/文档变更后，重建路由注册、图与清单
-python scripts/rebuild_routing_assets.py
-python scripts/audit_package.py
+# 5. 一键全量检查
+make check-all
 ```
 
-**给 AI 助手的最小执行序列**：读 `SKILL.md` → `intent-analysis` 解析意图与硬约束 → 选择主工作流 + 依赖闭包 → 资产锁定（若涉及视觉）→ 空间连续性台账 → 分镜 → 提示词编译与模型适配 → `validate_prompt.py` 机检 → 质量门禁 → 交付。
+### 后端 API（FastAPI）
+
+```bash
+cd /workspace
+python3 -m uvicorn backend.app.main:app --port 8000
+
+# 端点：GET /health | POST /route | GET /manifest
+curl -s http://127.0.0.1:8000/health
+curl -s -X POST http://127.0.0.1:8000/route -H 'Content-Type: application/json' -d '{"query":"帮我做角色资产锁定"}'
+
+# 后端测试
+python3 -m pytest backend/tests/ -v
+```
+
+### 前端路由测试器（Vite + TypeScript）
+
+```bash
+cd frontend
+npm install
+npm run dev      # 开发服务器，代理 /health /route /manifest 到后端 8000
+npm run build    # 生产构建
+```
+
+**给 AI 助手的最小执行序列**：读 `SKILL.md` → 解析意图与硬约束 → 选择主工作流 + 依赖闭包 → 资产锁定（若涉及视觉）→ 空间连续性台账 → 分镜 → 提示词编译与模型适配 → 质量门禁 → 交付。
 
 ### 🧮 常用指令
 
@@ -180,38 +198,48 @@ python scripts/audit_package.py
 ## 📦 项目结构
 
 ```text
-QHSJ-AIGC-全能影视/
-├── SKILL.md                       # 主入口：执行契约、能力路由、工作流、使用说明
+QHSJ-AIGC/
+├── SKILL.md                       # 主入口：执行契约、路由速查、门禁、上下文预算
 ├── README.md                      # 项目说明与快速开始（本文件）
 ├── CHANGELOG.md                   # 版本历史
-├── AUDIT_REPORT.md                # 离线审计与回归结果
-├── MANIFEST.json                  # 文件清单、大小和 SHA-256
+├── AGENTS.md                      # 冲突裁决优先级
+├── CONTRIBUTING.md                # 贡献指南
+├── manifest.json                  # 声明式清单（name/version/declared_counts）
+├── routes.json                    # 16 条路由定义
 ├── LICENSE
 ├── assets/
 │   ├── logo.png                   # QHSJ 品牌标识
 │   └── logo.svg
-├── routing/
-│   ├── route-registry.json        # 能力/工作流/资源/章节/触发词注册表
-│   ├── route-registry.schema.json
-│   └── route-graph.json           # 能力、依赖、工作流、资源与章节关系图
-├── workflows/                     # 16 条宏观工作流（YAML）
-├── references/                    # 303 篇知识库正文（含兼容别名）
-├── schemas/                       # 项目状态与分镜数据契约
-├── templates/                     # 资产锁定台账、空间连续性台账等模板
+├── capabilities/                  # 29 项能力（SPEC.md + inputs/outputs schema）
+├── workflows/                     # 16 条工作流（WORKFLOW.md）
+├── references/                    # 684 篇知识库（按 20 域组织）
+├── schemas/                       # 全局 JSON Schema（manifest/routes/route/run-meta…）
+├── docs/
+│   ├── adr/                       # 架构决策记录（4 篇）
+│   ├── gates.md / routing.md / runs.md / glossary.md / error-codes.md
+│   └── verification/              # 各阶段验证日志
+├── examples/templates/            # 资产锁定台账、空间连续性台账等模板
+├── evals/golden/                  # 6 个 golden 评估样例
 ├── scripts/
-│   ├── route_request.py           # 中文自然语言路由预览
-│   ├── rebuild_routing_assets.py  # 重建注册表、路由图与 Manifest
-│   ├── audit_package.py           # 包结构/哈希/引用/Schema/路由图审计
-│   ├── run_evals.py               # 路由评估集回归
-│   └── validate_prompt.py         # 提示词静态检查
-├── tests/                         # 确定性单元测试
-└── evals/                         # 中文路由与否定约束用例
+│   ├── check_package.py           # 16 项结构检查
+│   ├── check_content.py           # 内容审计（C1-C9）
+│   ├── validate_schemas.py        # JSON Schema 校验
+│   ├── build_routes.py            # 重建路由
+│   └── run_evals.py               # 路由评估集回归
+├── backend/                       # FastAPI 后端
+│   ├── app/main.py                # /health /route /manifest
+│   ├── app/services/route_matcher.py  # 路由匹配唯一数据源
+│   └── tests/test_api.py          # pytest 测试
+└── frontend/                      # Vite + TypeScript 路由测试器
+    ├── src/app.ts
+    └── vite.config.ts
 ```
 
 ---
 
 ## 📜 更新历史
 
+- **v7.0.0**（2026-10-18）— 全量重构版。目录标准化（29 能力 / 16 工作流 / 684 知识库，20 域）；SKILL.md v7.0.0；manifest.json + routes.json（16 路由）；4 全局 JSON Schema；16 项结构检查 + 内容审计；Asset-First P0 硬门禁；路由匹配单一数据源（route_matcher.py）；FastAPI 后端（/health /route /manifest）；Vite + TypeScript 前端路由测试器；45 个超限文件拆分；114 个版本文件标记废弃；4 篇 ADR；CONTRIBUTING.md。
 - **v3.0.0**（2026-10-18）— 全量路由、资产锁定与空间连续性版。统一命名 QHSJ AIGC 全能影视；345 文件 / 29 能力 / 16 工作流 / 303 篇知识库；87 组字节级重复正文无损去重为兼容别名；新增 `asset_locking` 能力与 `asset-lock` 工作流；空间、距离、朝向、视线账本协议；多角色审查协议；15-qhsj-master-engine.md 结构整改（畸形表格修复、重复精简块去重、目录补全）。
 - **v2.2.3** — 全量路由连通与执行边界修复；统一版本号；修正审计依赖过宽。
 - **v2.2.2** — 全量可审计路由闭包版；新增 route-graph.json。
