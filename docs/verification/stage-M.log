@@ -1,0 +1,29 @@
+=== Stage M: Final Regression ===
+Date: 2026-10-18
+Branch: refactor/full-restructure -> main
+Tag: v7.0.0
+
+--- Structural (check_package.py) ---
+PASS: all 16 checks passed
+
+--- Content (check_content.py) ---
+WARNING: C4: 4690 duplicate paragraph pairs (deprecated v322/p1 files, expected)
+PASS: content checks passed
+
+--- Schema (validate_schemas.py) ---
+PASS: all schemas valid
+
+--- Split (verify_split.py) ---
+Split dirs checked: 45, fully covered: 45
+PASS: all split directories have complete index coverage
+
+--- Evals (run_evals.py) ---
+PASS: 6/6 golden cases passed
+
+--- Backend (pytest) ---
+7 passed
+
+--- Frontend (vite build) ---
+✓ built in 80ms
+
+=== Result: ALL GREEN ===
