@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Route",
+  "type": "object",
+  "required": ["id", "triggers", "workflow", "capabilities", "capability_dependencies", "gate_level", "blocks_on_failure", "priority", "deprecated"],
+  "properties": {
+    "id": {"type": "string"},
+    "triggers": {"type": "array", "items": {"type": "string"}},
+    "workflow": {"type": "string"},
+    "capabilities": {"type": "array", "items": {"type": "string"}},
+    "capability_dependencies": {"type": "object"},
+    "gate_level": {"type": "string", "enum": ["P0", "P1", "P2"]},
+    "blocks_on_failure": {"type": "boolean"},
+    "priority": {"type": "integer"},
+    "deprecated": {"type": "boolean"}
+  }
+}

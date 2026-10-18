@@ -1,0 +1,31 @@
+# 能力索引
+
+- [动作/打斗编排](action-choreography/SPEC.md) — 
+- [美学与美术指导](aesthetics-style/SPEC.md) — 
+- [API 工程集成](api-integration/SPEC.md) — 
+- [资产前置管线](asset-first/SPEC.md) — 
+- [资产版本、锁定与分镜资产引用](asset-locking/SPEC.md) — 
+- [声音/配音/音乐](audio-design/SPEC.md) — 
+- [角色及视觉资产](character-design/SPEC.md) — 
+- [摄影与镜头语言](cinematography/SPEC.md) — 
+- [外部 Skill/Agent 集成](external-skill-integration/SPEC.md) — 
+- [全流程制作](full-production/SPEC.md) — 
+- [总控与导演思维](general-orchestration/SPEC.md) — 
+- [图片提示词](image-prompt/SPEC.md) — 
+- [模型与平台适配](model-adaptation/SPEC.md) — 
+- [小说创作](novel-writing/SPEC.md) — 
+- [输出与模板](output-formatting/SPEC.md) — 
+- [表演与情绪外化](performance-emotion/SPEC.md) — 
+- [内容平台适配](platform-adaptation/SPEC.md) — 
+- [项目状态与连续性资产](project-state-management/SPEC.md) — 
+- [提示词工程](prompt-engineering/SPEC.md) — 
+- [质量门禁与修复](quality-assurance/SPEC.md) — 
+- [参考图/视频反推](reverse-engineering/SPEC.md) — 
+- [安全与原创性](safety-originality/SPEC.md) — 
+- [编剧与剧本](screenwriting/SPEC.md) — 
+- [短视频文案与短视频叙事](short-video-content/SPEC.md) — 
+- [Skill 路由/代码审计](skill-architecture-audit/SPEC.md) — 
+- [空间推演与连续性](spatial-continuity/SPEC.md) — 
+- [分镜导演](storyboard/SPEC.md) — 
+- [VFX 与运动物理](vfx-physics/SPEC.md) — 
+- [视频提示词](video-prompt/SPEC.md) — 

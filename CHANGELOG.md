@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0] - 2026-10-18
+
+### 全量重构：目录标准化 · 门禁固化 · 前后端完备
+
+- **目录结构标准化**：29 能力 / 16 工作流 / 684 知识库，按 20 个域组织到 `references/`。
+- **SKILL.md v7.0.0**：13 节、124 行，六步工作法、路由速查表、门禁分级、上下文预算。
+- **manifest.json + routes.json**：16 条路由，声明式清单，`declared_counts` 与实际一致。
+- **4 个全局 schema**：manifest / routes / route / run-meta，`validate_schemas.py` 全通过。
+- **16 项结构检查**：`scripts/check_package.py` 覆盖计数、孤儿节点、循环依赖、文件大小、危险指令、悬空引用等。
+- **Asset-First P0 硬门禁**：`BLOCKED_ASSET_NOT_LOCKED` / `GATE_P0_CANNOT_SKIP` 错误码，全仓库措辞统一。
+- **路由匹配单一数据源**：`backend/app/services/route_matcher.py`，纯标准库，无 fastapi 依赖。
+- **后端 FastAPI**：`/health`、`/route`、`/manifest` 三个端点，7 项 pytest 测试全通过。
+- **前端 Vite + TypeScript**：单页路由测试器，调用后端 API，`tsc + vite build` 通过。
+- **文件拆分**：45 个超限参考文件按 `##` 拆分为子目录分片，无 >300 行文件。
+- **版本废弃**：114 个 `v322-` / `p1-` 文件标记 `> DEPRECATED` 并注明 `替代:`。
+- **ADR 文档**：4 篇架构决策记录（门禁、单一数据源、大小限制、废弃策略）。
+- **CONTRIBUTING.md**：贡献流程、文件上限、门禁规则、提交规范。
+
 ## [3.0.0] - 2026-10-18
 
 ### QHSJ AIGC 全能影视：全量路由、资产锁定与空间连续性
@@ -21,15 +39,15 @@
 - **依赖说明**：明确 `PyYAML` 与 `jsonschema` 为审计脚本可选依赖，未安装时只跳过对应解析不影响其余检查。
 
 ### 上下文瘦身修复（解决"上下窗饱满/无法运行"）
-- **SKILL.md 从 282KB 精简至 48KB**（4065 行 → 451 行）：移除内嵌的 342 条逐文件参考索引（与 `references/index.md`、`route-registry.json` 重复），改为指向索引与脚本检索。
-- **修正加载指令**：禁止整读 3.5MB 的 `route-registry.json` 与 236KB 的 `index.md`；路由改用 `scripts/route_request.py`（机器脚本不占 LLM 上下文），知识库按关键词 `grep` 定位后只读命中的 1–2 篇。
+- **SKILL.md 从 282KB 精简至 48KB**（4065 行 → 451 行）：移除内嵌的 342 条逐文件参考索引（与 `references/novel-screenwriting/01-novel-screenplay/index.md`、`route-registry.json` 重复），改为指向索引与脚本检索。
+- **修正加载指令**：禁止整读 3.5MB 的 `route-registry.json` 与 236KB 的 `references/novel-screenwriting/01-novel-screenplay/index.md`；路由改用 `scripts/route_request.py`（机器脚本不占 LLM 上下文），知识库按关键词 `grep` 定位后只读命中的 1–2 篇。
 - 新增「上下文预算铁律」：单次最多加载 2 篇 reference；机器注册表仅供脚本读取。
-- 更新 `tests/test_skill.py`：双索引校验改为 `references/index.md` + `route-registry.json`，不再强制 SKILL.md 内嵌全量索引。
+- 更新 `tests/test_skill.py`：双索引校验改为 `references/novel-screenwriting/01-novel-screenplay/index.md` + `route-registry.json`，不再强制 SKILL.md 内嵌全量索引。
 
 ### 否定范围与文档一致性加固
 - **否定引擎补齐口语排除表达**：新增「没有/没/莫」「别看/别管/别用」「去掉/删除/删掉/移除/去除/略去/取消」等否定前缀，以及紧贴短语的后置删除动词（如「把运镜去掉」）；仅在与短语直接相邻时判否，避免「生成图片后删除背景」误伤正向交付物。
 - **补充回归用例**：`evals/routing-cases.json` 增至 129 条（新增「没有运镜要求」「把运镜去掉」「别看运镜」「没有音效」「生成图片然后删除背景」等），`tests/test_skill.py` 增至 44 条，并新增后置删除相邻性与「没有 X」作用域断言。
-- **修正文档与实测漂移**：SKILL.md 修正上下文预算体积（3.5MB / 236KB）并改写「逐文件路由目录」说明，指向 `references/index.md`，消除“声称内嵌全部路径却无清单”的结构矛盾；README 与 AUDIT_REPORT 的质检徽章、单测/评估计数更新为 44/129，文件计数对齐 345。
+- **修正文档与实测漂移**：SKILL.md 修正上下文预算体积（3.5MB / 236KB）并改写「逐文件路由目录」说明，指向 `references/novel-screenwriting/01-novel-screenplay/index.md`，消除“声称内嵌全部路径却无清单”的结构矛盾；README 与 AUDIT_REPORT 的质检徽章、单测/评估计数更新为 44/129，文件计数对齐 345。
 
 ### 口语路由补全与一致性守卫（本轮）
 - **补齐实时路由缺口**：将注册表已声明但实时路由器未生效的口语触发补入 `scripts/route_request.py`——`短剧`/`AI短剧` → 编剧与短视频，`图提示词`/`静态图提示词` → 图片提示词，`的片`/`部片`/`微电影` → 视频提示词。

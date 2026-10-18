@@ -1,0 +1,44 @@
+=== Stage B Verification Log ===
+Date: Sun Oct 18 05:44:14 UTC 2026
+
+--- git branch ---
+refactor/full-restructure
+--- git tags ---
+stage/A-done
+v0.9-pre-refactor
+
+--- .gitignore verification ---
+.gitignore:2:runs/	runs/
+runs ignored: OK
+
+--- key files exist ---
+OK: .gitignore
+OK: Makefile
+OK: .nvmrc
+OK: .pre-commit-config.yaml
+OK: backend/requirements.txt
+OK: backend/requirements-dev.txt
+
+--- key dirs exist ---
+OK: core
+OK: capabilities
+OK: workflows
+OK: references/_shared
+OK: references/_unsorted
+OK: assets
+OK: examples
+OK: schemas
+OK: scripts
+OK: evals/golden
+OK: evals/regression
+OK: .github/workflows
+OK: docs/adr
+OK: docs/verification
+OK: backend/app/routers
+OK: backend/app/services
+OK: backend/tests/fixtures
+OK: frontend/src
+OK: runs
+OK: archive
+
+=== Stage B DONE ===

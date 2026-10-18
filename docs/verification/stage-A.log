@@ -1,0 +1,41 @@
+=== Stage A Verification Log ===
+Date: Sun Oct 18 05:27:23 UTC 2026
+
+--- File counts ---
+Total files (excl .git): 351
+MD files: 316
+References md: 303
+Workflow files: 17
+Capabilities dir exists: no
+
+--- Key metrics ---
+Total headings (# lines): 9904
+SKILL.md lines: 451
+references/index.md lines: 2739
+MANIFEST version: 3.0.0
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import yaml;print(yaml.safe_load(open("SKILL.md").read().split("---")[1])["name"])
+    ^^^^^^^^^^^
+ModuleNotFoundError: No module named 'yaml'
+SKILL.md name: 
+
+--- Stage A outputs ---
+total 136
+drwxr-xr-x  3 root root  4096 Oct 18 05:26 .
+drwxrwxrwx 13 root root  4096 Oct 18 05:24 ..
+-rw-r--r--  1 root root 38796 Oct 18 05:25 external-links.md
+-rw-r--r--  1 root root  3026 Oct 18 05:26 issues-found.md
+-rw-r--r--  1 root root 15762 Oct 18 05:25 readme-before-l2.md
+-rw-r--r--  1 root root 58184 Oct 18 05:25 scan-baseline.md
+-rw-r--r--  1 root root   133 Oct 18 05:25 secrets-scan.md
+drwxr-xr-x  2 root root  4096 Oct 18 05:26 verification
+
+--- Secrets scan result ---
+# 敏感信息扫描
+
+正则: `(api[_-]?key|secret|token|password|private[_-]?key)[[:space:]]*[=:][[:space:]]*['"][^'"]+`
+
+未发现
+
+=== Stage A DONE ===

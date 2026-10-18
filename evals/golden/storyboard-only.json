@@ -1,0 +1,6 @@
+{
+  "query": "只要分镜表，不要提示词",
+  "expected_route": "storyboard-only",
+  "expected_gate_level": "P1",
+  "expected_blocks": false
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Manifest",
+  "type": "object",
+  "required": ["name", "version", "entry", "capabilities_dir", "workflows_dir", "references_dir", "routes_file", "schemas_dir", "error_codes_file", "declared_counts"],
+  "properties": {
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "entry": {"type": "string"},
+    "capabilities_dir": {"type": "string"},
+    "workflows_dir": {"type": "string"},
+    "references_dir": {"type": "string"},
+    "routes_file": {"type": "string"},
+    "schemas_dir": {"type": "string"},
+    "error_codes_file": {"type": "string"},
+    "declared_counts": {
+      "type": "object",
+      "required": ["capabilities", "workflows", "references"],
+      "properties": {
+        "capabilities": {"type": "integer"},
+        "workflows": {"type": "integer"},
+        "references": {"type": "integer"}
+      }
+    }
+  }
+}
