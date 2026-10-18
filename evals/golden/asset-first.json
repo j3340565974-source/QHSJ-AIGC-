@@ -1,0 +1,6 @@
+{
+  "query": "先做资产前置，生成角色四视图",
+  "expected_route": "asset-first",
+  "expected_gate_level": "P0",
+  "expected_blocks": true
+}

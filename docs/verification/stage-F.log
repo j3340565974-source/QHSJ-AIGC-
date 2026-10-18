@@ -1,0 +1,17 @@
+=== Stage F Final Verification ===
+--- check_package ---
+PASS: all 16 checks passed
+--- validate_schemas ---
+PASS: all schemas valid
+--- check_content ---
+WARNING: C4: 4228 duplicate paragraph pairs (see docs/content-duplicates.md)
+PASS: content checks passed
+--- run_evals ---
+PASS: 6/6 golden cases passed
+--- CI workflow exists ---
+OK
+--- golden evals count ---
+6
+--- route_matcher no fastapi ---
+OK
+=== Stage F DONE ===

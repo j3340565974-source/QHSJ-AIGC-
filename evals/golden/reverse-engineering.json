@@ -1,0 +1,6 @@
+{
+  "query": "参考图反推一下这张图的提示词",
+  "expected_route": "reverse-engineering",
+  "expected_gate_level": "P1",
+  "expected_blocks": false
+}

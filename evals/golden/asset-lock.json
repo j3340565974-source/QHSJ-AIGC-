@@ -1,0 +1,6 @@
+{
+  "query": "帮我做角色资产锁定和场景资产锁定",
+  "expected_route": "asset-lock",
+  "expected_gate_level": "P0",
+  "expected_blocks": true
+}

@@ -1,0 +1,6 @@
+{
+  "query": "帮我质量检查一下这个分镜",
+  "expected_route": "qa",
+  "expected_gate_level": "P1",
+  "expected_blocks": false
+}

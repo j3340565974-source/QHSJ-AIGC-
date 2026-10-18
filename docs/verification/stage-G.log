@@ -1,0 +1,20 @@
+=== Stage G Verification ===
+docs/content-audit.md:62: dangerous instruction: - 检查结果：Asset-First、P0 不可绕过、依赖闭包三条硬门禁在 SKILL.md、所有 SPEC.md、do
+docs/content-audit.md:81: dangerous instruction: - [x] 所有「跳过/可选」在 P0 上下文中已清除
+AGENTS.md:0: dangling ref: index.md
+docs/content-audit.md:0: dangling ref: capabilities/*/SPEC.md
+docs/content-audit.md:0: dangling ref: workflows/*/WORKFLOW.md
+
+FAILED: 5 errors
+WARNING: C4: 4228 duplicate paragraph pairs (see docs/content-duplicates.md)
+AGENTS.md:0: dangling: index.md
+docs/content-audit.md:0: dangling: capabilities/*/SPEC.md
+docs/content-audit.md:0: dangling: workflows/*/WORKFLOW.md
+
+FAILED: 3 errors
+--- dependency cycle check (already in check_package #5) ---
+--- glossary exists ---
+OK
+--- content-audit P0/P1 status ---
+9
+=== Stage G DONE ===

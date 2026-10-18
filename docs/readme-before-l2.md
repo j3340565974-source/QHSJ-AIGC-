@@ -169,7 +169,7 @@ python scripts/rebuild_routing_assets.py
 python scripts/audit_package.py
 ```
 
-**给 AI 助手的最小执行序列**：读 `SKILL.md` → `intent-analysis` 解析意图与硬约束 → 选择主工作流 + 依赖闭包 → 资产锁定（若涉及视觉）→ 空间连续性台账 → 分镜 → 提示词编译与模型适配 → `validate_prompt.py` 机检 → 质量门禁 → 交付。
+**给 AI 助手的最小执行序列**：读 `../SKILL.md` → `intent-analysis` 解析意图与硬约束 → 选择主工作流 + 依赖闭包 → 资产锁定（若涉及视觉）→ 空间连续性台账 → 分镜 → 提示词编译与模型适配 → `validate_prompt.py` 机检 → 质量门禁 → 交付。
 
 ### 🧮 常用指令
 
@@ -218,7 +218,7 @@ QHSJ-AIGC-全能影视/
 - **v2.1.x** — 路由与架构整改；新增完整 route-registry.json；六类专业工作流。
 - **v2.0.0** — 全能重构版；动态路由引擎；14 个核心 references 模块。
 
-完整历史见 [CHANGELOG.md](CHANGELOG.md)。
+完整历史见 [CHANGELOG.md](../CHANGELOG.md)。
 
 ---
 

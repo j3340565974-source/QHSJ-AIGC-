@@ -1,0 +1,47 @@
+=== capabilities dirs ===
+39
+=== workflows dirs ===
+16
+=== references md (non-unsorted) ===
+303
+=== references/_unsorted ===
+0
+=== capabilities with SPEC.md ===
+missing SPEC: 0
+=== workflows with WORKFLOW.md ===
+missing WORKFLOW: 0
+=== bad naming (misc/other/temp/new/old/tmp/backup) ===
+none (excluding template)
+=== remaining yaml in workflows ===
+=== references structure ===
+_shared
+_unsorted
+action
+aesthetics
+api-integration
+asset
+audio
+character-performance
+cinematography
+core
+director-style
+genre
+index.md
+model-adaptation
+novel-screenwriting
+platform
+production
+prompt-engineering
+quality-safety
+reverse-engineering
+spatial
+storyboard
+vfx
+=== FINAL Stage C Verification ===
+capabilities: 29
+workflows: 16
+references md (non-unsorted): 303
+references/_unsorted: 0
+missing SPEC: 0
+missing WORKFLOW: 0
+=== Stage C DONE ===

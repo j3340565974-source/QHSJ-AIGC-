@@ -1,0 +1,31 @@
+=== Stage D Verification ===
+SKILL.md lines: 124
+
+--- YAML frontmatter parse ---
+name: qhsj-aigc
+version: 7.0.0
+capabilities: 29
+workflows: 16
+references: 303
+license: MIT
+description len: 162
+
+--- 13 sections check ---
+OK: 身份
+OK: 能力边界诚实规则
+OK: 六步工作法
+OK: 路由速查表
+OK: 门禁分级
+OK: 硬门禁（P0）
+OK: 错误码
+OK: 模块清单
+OK: 加载协议
+OK: 上下文预算
+OK: 产物落盘规则
+OK: 路由冲突解决
+OK: 路由未命中行为
+
+--- LICENSE exists ---
+MIT License
+
+=== Stage D DONE ===

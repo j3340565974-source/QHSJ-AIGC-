@@ -1,0 +1,395 @@
+[
+  {
+    "id": "action-design",
+    "triggers": [
+      "打斗设计",
+      "动作戏",
+      "武打分镜",
+      "战斗动作",
+      "动作预演"
+    ],
+    "workflow": "workflows/action-design/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/action-choreography/SPEC.md",
+      "capabilities/cinematography/SPEC.md",
+      "capabilities/spatial-continuity/SPEC.md",
+      "capabilities/vfx-physics/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/action-choreography/SPEC.md": [
+        "capabilities/spatial-continuity/SPEC.md"
+      ]
+    },
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "api-integration",
+    "triggers": [
+      "API集成",
+      "接口请求",
+      "Agent集成",
+      "安装Skill",
+      "外部工具集成"
+    ],
+    "workflow": "workflows/api-integration/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/api-integration/SPEC.md",
+      "capabilities/external-skill-integration/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "asset-first",
+    "triggers": [
+      "资产前置",
+      "角色资产板",
+      "角色四视图",
+      "角色设定图",
+      "先做资产",
+      "先做人物设定图和场景设定图",
+      "先出角色图和场景图",
+      "人物场景图后做分镜",
+      "先出人物和场景图",
+      "先做人物和场景图",
+      "先设计人物和场景图",
+      "资产包",
+      "先锁定人物和场景",
+      "锁定角色资产",
+      "锁定场景资产",
+      "分镜资产引用角色图",
+      "先做人物和场景设定图"
+    ],
+    "workflow": "workflows/asset-first/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/asset-first/SPEC.md",
+      "capabilities/character-design/SPEC.md",
+      "capabilities/aesthetics-style/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/asset-first/SPEC.md": [
+        "capabilities/character-design/SPEC.md"
+      ]
+    },
+    "gate_level": "P0",
+    "blocks_on_failure": true,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "asset-lock",
+    "triggers": [
+      "人物资产锁定",
+      "角色资产锁定",
+      "场景资产锁定",
+      "资产冻结",
+      "锁定人物和场景",
+      "先锁定角色和场景",
+      "分镜资产引用角色图"
+    ],
+    "workflow": "workflows/asset-lock/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/asset-locking/SPEC.md",
+      "capabilities/asset-first/SPEC.md",
+      "capabilities/quality-assurance/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/asset-locking/SPEC.md": [
+        "capabilities/asset-first/SPEC.md"
+      ]
+    },
+    "gate_level": "P0",
+    "blocks_on_failure": true,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "audio-design",
+    "triggers": [
+      "声音设计",
+      "音效设计",
+      "配音设计",
+      "旁白设计",
+      "声音分层"
+    ],
+    "workflow": "workflows/audio-design/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/audio-design/SPEC.md",
+      "capabilities/performance-emotion/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "continuity-repair",
+    "triggers": [
+      "连续性修复",
+      "空间穿帮修复",
+      "人物位置不一致",
+      "角色一致性检查",
+      "镜头接不上"
+    ],
+    "workflow": "workflows/continuity-repair/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/spatial-continuity/SPEC.md",
+      "capabilities/quality-assurance/SPEC.md",
+      "capabilities/project-state-management/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/spatial-continuity/SPEC.md": [
+        "capabilities/project-state-management/SPEC.md"
+      ]
+    },
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "full-production",
+    "triggers": [
+      "完整项目",
+      "完整短片",
+      "从创意到成片",
+      "全流程制作",
+      "一整套",
+      "全链路交付",
+      "从剧本到视频"
+    ],
+    "workflow": "workflows/full-production/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/full-production/SPEC.md",
+      "capabilities/asset-first/SPEC.md",
+      "capabilities/storyboard/SPEC.md",
+      "capabilities/video-prompt/SPEC.md",
+      "capabilities/quality-assurance/SPEC.md",
+      "capabilities/vfx-physics/SPEC.md",
+      "capabilities/output-formatting/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/full-production/SPEC.md": [
+        "capabilities/asset-first/SPEC.md",
+        "capabilities/storyboard/SPEC.md"
+      ]
+    },
+    "gate_level": "P0",
+    "blocks_on_failure": true,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "intent-analysis",
+    "triggers": [
+      "全量路由",
+      "全链路分析",
+      "全面分析",
+      "百分百全路由",
+      "意图解析"
+    ],
+    "workflow": "workflows/intent-analysis/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/general-orchestration/SPEC.md",
+      "capabilities/project-state-management/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 0,
+    "deprecated": false
+  },
+  {
+    "id": "model-adaptation",
+    "triggers": [
+      "模型适配",
+      "平台适配",
+      "适配Seedance",
+      "适配可灵",
+      "适配Veo",
+      "模型语法转换"
+    ],
+    "workflow": "workflows/model-adaptation/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/model-adaptation/SPEC.md",
+      "capabilities/prompt-engineering/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/model-adaptation/SPEC.md": [
+        "capabilities/prompt-engineering/SPEC.md"
+      ]
+    },
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "platform-short-video",
+    "triggers": [
+      "短视频平台方案",
+      "平台短视频脚本",
+      "抖音短剧",
+      "小红书视频文案",
+      "视频号脚本"
+    ],
+    "workflow": "workflows/platform-short-video/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/platform-adaptation/SPEC.md",
+      "capabilities/short-video-content/SPEC.md",
+      "capabilities/audio-design/SPEC.md",
+      "capabilities/safety-originality/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "qa",
+    "triggers": [
+      "检查问题",
+      "质量审查",
+      "质量检查",
+      "查bug",
+      "找漏洞",
+      "逻辑审计",
+      "排查穿帮"
+    ],
+    "workflow": "workflows/qa/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/quality-assurance/SPEC.md",
+      "capabilities/skill-architecture-audit/SPEC.md",
+      "capabilities/safety-originality/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "reverse-engineering",
+    "triggers": [
+      "参考图反推",
+      "参考视频反推",
+      "按图还原",
+      "同风格反推",
+      "反推提示词"
+    ],
+    "workflow": "workflows/reverse-engineering/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/reverse-engineering/SPEC.md",
+      "capabilities/image-prompt/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "script-to-screen",
+    "triggers": [
+      "把剧本拆成分镜",
+      "剧本转分镜",
+      "剧本到分镜",
+      "剧本转视频",
+      "已有剧本做分镜",
+      "每镜生成视频提示词",
+      "分镜图引用角色资产"
+    ],
+    "workflow": "workflows/script-to-screen/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/screenwriting/SPEC.md",
+      "capabilities/storyboard/SPEC.md",
+      "capabilities/asset-locking/SPEC.md",
+      "capabilities/spatial-continuity/SPEC.md",
+      "capabilities/video-prompt/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/storyboard/SPEC.md": [
+        "capabilities/asset-locking/SPEC.md"
+      ]
+    },
+    "gate_level": "P0",
+    "blocks_on_failure": true,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "storyboard-only",
+    "triggers": [
+      "只要分镜",
+      "只做分镜",
+      "分镜表",
+      "镜头表"
+    ],
+    "workflow": "workflows/storyboard-only/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/storyboard/SPEC.md",
+      "capabilities/cinematography/SPEC.md",
+      "capabilities/spatial-continuity/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "visual-prompt",
+    "triggers": [
+      "图片提示词",
+      "图像提示词",
+      "视频提示词",
+      "只要提示词",
+      "prompt"
+    ],
+    "workflow": "workflows/visual-prompt/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/image-prompt/SPEC.md",
+      "capabilities/video-prompt/SPEC.md",
+      "capabilities/prompt-engineering/SPEC.md",
+      "capabilities/model-adaptation/SPEC.md",
+      "capabilities/output-formatting/SPEC.md"
+    ],
+    "capability_dependencies": {
+      "capabilities/video-prompt/SPEC.md": [
+        "capabilities/prompt-engineering/SPEC.md"
+      ]
+    },
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  },
+  {
+    "id": "writing",
+    "triggers": [
+      "写小说",
+      "写剧本",
+      "写大纲",
+      "续写章节"
+    ],
+    "workflow": "workflows/writing/WORKFLOW.md",
+    "capabilities": [
+      "capabilities/novel-writing/SPEC.md",
+      "capabilities/screenwriting/SPEC.md",
+      "capabilities/project-state-management/SPEC.md"
+    ],
+    "capability_dependencies": {},
+    "gate_level": "P1",
+    "blocks_on_failure": false,
+    "priority": 100,
+    "deprecated": false
+  }
+]
