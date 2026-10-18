@@ -40,11 +40,14 @@ metadata:
 |---|---|---|---|---|
 | 角色锁定、资产一致性 | asset-lock | workflows/asset-lock/WORKFLOW.md | capabilities/asset-locking/SPEC.md | P0 |
 | 资产前置、角色图 | asset-first | workflows/asset-first/WORKFLOW.md | capabilities/asset-first/SPEC.md | P0 |
-| 分镜、镜头表 | storyboard | workflows/storyboard-only/WORKFLOW.md | capabilities/storyboard/SPEC.md | P1 |
-| 视频提示词 | video-prompt | workflows/visual-prompt/WORKFLOW.md | capabilities/video-prompt/SPEC.md | P1 |
+| 分镜、镜头表 | storyboard-only | workflows/storyboard-only/WORKFLOW.md | capabilities/storyboard/SPEC.md | P1 |
+| 视频提示词 | visual-prompt | workflows/visual-prompt/WORKFLOW.md | capabilities/video-prompt/SPEC.md | P1 |
 | 参考图反推 | reverse-engineering | workflows/reverse-engineering/WORKFLOW.md | capabilities/reverse-engineering/SPEC.md | P1 |
 | 全流程制作 | full-production | workflows/full-production/WORKFLOW.md | capabilities/full-production/SPEC.md | P0 |
 | 质量审查 | qa | workflows/qa/WORKFLOW.md | capabilities/quality-assurance/SPEC.md | P1 |
+| 小说、剧本 | writing | workflows/writing/WORKFLOW.md | capabilities/novel-writing/SPEC.md | P1 |
+| 剧本转分镜 | script-to-screen | workflows/script-to-screen/WORKFLOW.md | capabilities/screenwriting/SPEC.md | P0 |
+| 任意请求（强制入口） | intent-analysis | workflows/intent-analysis/WORKFLOW.md | capabilities/general-orchestration/SPEC.md | P1 |
 
 完整路由表见 `routes.json`。
 
@@ -72,7 +75,6 @@ metadata:
 | GATE_P0_CANNOT_SKIP | P0 | P0 门禁不可跳过 |
 | DEPENDENCY_UNMET | P0 | 前置依赖未满足 |
 | NO_ROUTE_MATCHED | P1 | 未命中任何路由 |
-| ROUTE_CONFLICT | P1 | 多条路由冲突 |
 
 完整注册表见 [docs/error-codes.md](docs/error-codes.md)。
 
@@ -109,13 +111,15 @@ metadata:
 
 完整约定见 [docs/runs.md](docs/runs.md)。
 
-## 路由冲突解决
+## 路由匹配（多任务）
 
-同一 query 命中多条路由时：
+同一 query 命中多条路由时，不再强制单选，而是**多标签调度**：
+
 1. 排除 `deprecated: true` 的路由
-2. 按 score 降序（score = 大小写不敏感子串命中的 trigger 数量）
-3. score 并列时按 `priority` 降序
-4. 仍并列 → 返回 `ROUTE_CONFLICT`，列出全部并列候选交用户选择，禁止自动择一
+2. `intent-analysis` 作为强制入口始终排入执行计划
+3. 由**显式工作流触发**命中的路由，优先于仅由能力自动派生的路由
+4. 其余命中路由按 `priority` 降序、再按 id 排序，全部排入计划（叠加 / 并行）
+5. 每条路由带 `gate_level`；整体最严门禁为 `strictest_gate_level`
 
 完整算法见 [docs/routing.md](docs/routing.md)。
 

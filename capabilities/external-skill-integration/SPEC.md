@@ -6,7 +6,7 @@
 外部 Skill/Agent 集成。
 
 ## 典型触发
-Claude Code、Codex、Dify、Coze、千问、豆包等
+外部skill、插件集成、智能体集成、Agent集成、Claude Code、Codex、Dify、Coze、扣子、千问、豆包、Bothub、LangChain、AutoGen、CrewAI、Termux、iSH、安装Skill、安装技能、安装这个skill、接入skill、MCP工具、插件接入、工作流接入、宿主适配、技能安装、skill安装、Agent工作流
 
 ## 必要叠加能力
 API/宿主兼容性检查

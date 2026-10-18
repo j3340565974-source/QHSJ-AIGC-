@@ -6,7 +6,7 @@
 模型与平台适配。
 
 ## 典型触发
-Seedance、可灵、Veo、Runway、MJ、ComfyUI
+模型适配、平台适配、适配Seedance、Seedance、即梦、可灵、Kling、Veo、Runway、Sora、Midjourney、ComfyUI、模型参数、模型语法、目标模型、API格式、API调用、兼容矩阵、适配模型、适配平台、模型限制、模型格式、模型专用语法、Pika、Flux、HunyuanVideo、模型兼容、模型调用格式、转成某模型、跨模型转换
 
 ## 必要叠加能力
 提示词编译和适配后回归

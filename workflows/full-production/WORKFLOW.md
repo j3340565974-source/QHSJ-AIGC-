@@ -1,7 +1,7 @@
 # 从创意到影视交付的分阶段生产管线；资产先行，先锁角色和场景，再进入分镜资产/视频提示词阶段。
 > 工作流 ID: `full-production`
 
-**版本**: 3.0.0
+**版本**: 7.0.0
 **描述**: 从创意到影视交付的分阶段生产管线；资产先行，先锁角色和场景，再进入分镜资产/视频提示词阶段。
 ## 触发条件
 - 完整项目
@@ -34,7 +34,7 @@
 **输入**: 原始创意
 **输出**: 结构化意图, 交付矩阵, 技术/资源约束, 制作计划
 **模块**:
-- `workflows/intent-analysis.yaml`
+- 模块: `../../workflows/intent-analysis/WORKFLOW.md`
 - 模块: `../../references/director-style/01-director-thinking-core.md`, `../../references/core/qhsj-multiagent-review-protocol.md`
 **门禁**: 需求拆解无遗漏, 用户禁止项明确
 ### P1 故事开发与剧本门控
@@ -54,7 +54,7 @@
 **输入**: 资产规格
 **输出**: 规范资产图或可投喂提示词, 版本锁, 资产一致性报告
 **模块**:
-- `workflows/asset-first.yaml`
+- 模块: `../../workflows/asset-first/WORKFLOW.md`
 - 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/asset/p1-asset-validation-cases-500.md`, `../../examples/templates/asset-lock-ledger.md`
 **门禁**: 角色多视图一致, 场景拓扑一致, 道具身份一致, P0/P1 已修复
 **失败回退**: 返回 P2 更新规格或重新生成；不允许绕过资产锁进入分镜资产阶段
@@ -97,7 +97,7 @@
 **输出**: 问题分级, 根因, 补丁, 回归报告, 未解决项
 **模块**:
 - 模块: `../../references/quality-safety/16-quality-gates.md`, `../../references/core/qhsj-multiagent-review-protocol.md`
-- `scripts/audit_package.py`
+- `scripts/check_package.py`, `scripts/run_evals.py`
 - `scripts/validate_prompt.py`
 **门禁**: 无未处理 P0/P1, 资源和资产依赖一致, 真实执行状态已记录
 **失败回退**: 按根因返回受影响阶段，不重做无关通过项

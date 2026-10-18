@@ -15,7 +15,7 @@
 - **违反时行为**：警告并要求用户显式确认，确认后可继续
 - **与错误码映射**：
   - 未命中路由 → `NO_ROUTE_MATCHED`
-  - 路由冲突 → `ROUTE_CONFLICT`
+  - 无显式交付物 → `INTENT_ANALYSIS_FALLBACK`
   - Schema 校验失败 → `SCHEMA_VALIDATION_FAILED`
 
 ## P2 — 提示

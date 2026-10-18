@@ -219,13 +219,14 @@ QHSJ-AIGC/
 │   ├── gates.md / routing.md / runs.md / glossary.md / error-codes.md
 │   └── verification/              # 各阶段验证日志
 ├── examples/templates/            # 资产锁定台账、空间连续性台账等模板
-├── evals/golden/                  # 6 个 golden 评估样例
+├── evals/                         # 路由评估：golden/（6 例）+ routing-cases.json（139 例）
 ├── scripts/
 │   ├── check_package.py           # 16 项结构检查
 │   ├── check_content.py           # 内容审计（C1-C9）
 │   ├── validate_schemas.py        # JSON Schema 校验
-│   ├── build_routes.py            # 重建路由
-│   └── run_evals.py               # 路由评估集回归
+│   ├── build_routes.py            # 非破坏性同步 routes.json 与 workflows/
+│   ├── verify_split.py            # 拆分目录索引覆盖校验
+│   └── run_evals.py               # golden + corpus 评估回归
 ├── backend/                       # FastAPI 后端
 │   ├── app/main.py                # /health /route /manifest
 │   ├── app/services/route_matcher.py  # 路由匹配唯一数据源

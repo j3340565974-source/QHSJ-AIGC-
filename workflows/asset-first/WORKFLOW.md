@@ -1,7 +1,7 @@
 # 先建立资产清单与规范，再分别生成角色/场景/道具资产，完成核验锁定后才能生成分镜资产。
 > 工作流 ID: `asset-first`
 
-**版本**: 3.0.0
+**版本**: 7.0.0
 **描述**: 先建立资产清单与规范，再分别生成角色/场景/道具资产，完成核验锁定后才能生成分镜资产。
 ## 触发条件
 - 资产前置
@@ -122,7 +122,7 @@ require_versioned_changes: true
 **输出**: 交付包, 资产依赖图, QA 报告, 变更影响报告
 **模块**:
 - 模块: `../../references/core/qhsj-multiagent-review-protocol.md`, `../../references/quality-safety/16-quality-gates.md`
-- `scripts/audit_package.py`
+- `scripts/check_package.py`, `scripts/run_evals.py`
 **门禁**: 无 P0/P1 未解决项, 所有下游引用版本正确
 ## 最终产物
 - 资产目录与唯一 ID

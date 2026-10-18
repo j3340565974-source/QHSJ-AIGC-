@@ -1,0 +1,1039 @@
+{
+  "version": "7.0.0",
+  "note": "能力机器元数据。触发词以 capabilities/*/SPEC.md「典型触发」为唯一来源；本文件只保存 semantic_triggers / auto / conditional / dependencies / priority（迁移自既有设计）。",
+  "capabilities": {
+    "action_choreography": {
+      "name": "动作设计与打斗编排",
+      "auto": [
+        "action-design"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "full-production"
+      ],
+      "dependencies": [
+        "spatial_continuity",
+        "cinematography",
+        "performance_emotion",
+        "vfx_physics",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "武打",
+        "打斗",
+        "动作戏",
+        "格斗",
+        "搏斗",
+        "拳脚",
+        "攻防节拍",
+        "招式设计",
+        "战斗分镜",
+        "动作捕捉",
+        "动作预演",
+        "打击点",
+        "受击反馈",
+        "格斗编排",
+        "动作连招",
+        "兵器交锋",
+        "战斗动作"
+      ],
+      "priority": "normal"
+    },
+    "aesthetics_style": {
+      "name": "美学风格与美术指导",
+      "auto": [
+        "visual-prompt"
+      ],
+      "conditional": [
+        "asset-first",
+        "full-production"
+      ],
+      "dependencies": [
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "什么画风",
+        "美术风格",
+        "视觉风格",
+        "整体审美",
+        "色彩方案",
+        "配色方案",
+        "色彩体系",
+        "色调",
+        "材质风格",
+        "电影感",
+        "冷暖关系",
+        "视觉语言",
+        "美术指导",
+        "画面质感",
+        "渲染风格",
+        "赛博朋克",
+        "国风",
+        "古风",
+        "新中式",
+        "氛围风格",
+        "视觉基因"
+      ],
+      "priority": "normal"
+    },
+    "api_integration": {
+      "name": "API与工程集成",
+      "auto": [
+        "api-integration"
+      ],
+      "conditional": [
+        "model-adaptation"
+      ],
+      "dependencies": [
+        "model_adaptation",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "接口怎么接",
+        "API请求",
+        "接口调用",
+        "请求参数",
+        "响应结构",
+        "endpoint",
+        "webhook",
+        "SDK集成",
+        "鉴权",
+        "令牌认证",
+        "请求体",
+        "返回值",
+        "HTTP请求",
+        "接口契约",
+        "错误码",
+        "集成测试",
+        "API对接"
+      ],
+      "priority": "normal"
+    },
+    "asset_first": {
+      "name": "资产前置与资产包",
+      "auto": [
+        "asset-first"
+      ],
+      "conditional": [
+        "full-production"
+      ],
+      "dependencies": [
+        "character_design",
+        "spatial_continuity",
+        "quality_assurance",
+        "asset_locking"
+      ],
+      "semantic_triggers": [
+        "资产前置",
+        "角色资产板",
+        "资产包",
+        "资产清单",
+        "场景资产",
+        "道具资产",
+        "人物资产",
+        "资产锚点",
+        "视觉锚点",
+        "角色资产",
+        "场景设定板",
+        "道具设定板",
+        "角色参考板",
+        "资产一致性",
+        "资产库",
+        "先做角色",
+        "多视图资产",
+        "先设计人设图和场景图",
+        "先把人物和场景做出来",
+        "先出人物定妆图与场景设定图",
+        "人物场景图完成后再分镜",
+        "先定角色和场景视觉资产"
+      ],
+      "priority": "normal"
+    },
+    "asset_locking": {
+      "name": "资产版本锁定与分镜资产引用",
+      "auto": [
+        "asset-lock"
+      ],
+      "conditional": [
+        "asset-first",
+        "script-to-screen",
+        "full-production"
+      ],
+      "dependencies": [
+        "character_design",
+        "spatial_continuity",
+        "project_state_management"
+      ],
+      "semantic_triggers": [
+        "先生成并锁定人物和场景资产",
+        "锁定资产后再生成分镜图",
+        "分镜引用已锁定参考图",
+        "人物与场景先定稿",
+        "资产版本不得漂移",
+        "资产依赖影响扫描",
+        "先出人物图场景图再做分镜",
+        "分镜必须引用锁定人物和场景",
+        "人物场景资产定稿后再制作分镜",
+        "把角色图和场景图锁定后做分镜",
+        "先做人物场景图再生成每镜图"
+      ],
+      "priority": "high"
+    },
+    "audio_design": {
+      "name": "声音、配音与音乐设计",
+      "auto": [
+        "audio-design"
+      ],
+      "conditional": [
+        "platform-short-video",
+        "full-production"
+      ],
+      "dependencies": [
+        "performance_emotion",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "音效",
+        "声音设计",
+        "配音",
+        "旁白",
+        "配乐",
+        "背景音乐",
+        "环境音",
+        "拟音",
+        "音轨",
+        "混音",
+        "声场",
+        "音色设计",
+        "人声克隆",
+        "有声书",
+        "对白节奏",
+        "口型同步",
+        "音画同步",
+        "音效分层",
+        "声音提示词"
+      ],
+      "priority": "normal"
+    },
+    "character_design": {
+      "name": "角色与视觉资产设计",
+      "auto": [
+        "asset-first"
+      ],
+      "conditional": [
+        "full-production"
+      ],
+      "dependencies": [
+        "aesthetics_style",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "角色设定",
+        "人物外观",
+        "角色外观",
+        "人物定妆",
+        "角色定妆",
+        "角色三视图",
+        "角色四视图",
+        "人物三视图",
+        "人物四视图",
+        "立绘",
+        "人物造型",
+        "服装造型",
+        "角色卡",
+        "人物小传",
+        "年龄身高",
+        "脸部特征",
+        "形象设计",
+        "角色造型",
+        "人物造型设计",
+        "先设计人物图",
+        "先生成角色图",
+        "人物和场景视觉设定",
+        "角色与场景美术设定"
+      ],
+      "priority": "normal"
+    },
+    "cinematography": {
+      "name": "摄影与镜头语言",
+      "auto": [
+        "storyboard-only"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "action-design",
+        "full-production"
+      ],
+      "dependencies": [
+        "spatial_continuity"
+      ],
+      "semantic_triggers": [
+        "怎么运镜",
+        "镜头怎么拍",
+        "摄影机位",
+        "拍摄角度",
+        "低机位",
+        "高机位",
+        "俯拍",
+        "仰拍",
+        "航拍",
+        "跟拍",
+        "推镜",
+        "拉镜",
+        "摇镜",
+        "移镜",
+        "环绕镜头",
+        "焦段",
+        "景别",
+        "长焦镜头",
+        "广角镜头",
+        "镜头构图",
+        "摄影指导",
+        "光圈快门",
+        "镜头调度"
+      ],
+      "priority": "normal"
+    },
+    "external_skill_integration": {
+      "name": "外部Skill/Agent集成",
+      "auto": [
+        "api-integration"
+      ],
+      "conditional": [],
+      "dependencies": [
+        "api_integration",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "安装这个skill",
+        "接入skill",
+        "外部skill",
+        "Agent集成",
+        "智能体集成",
+        "MCP工具",
+        "插件接入",
+        "Claude Code",
+        "Codex",
+        "Dify",
+        "Coze",
+        "千问",
+        "豆包",
+        "扣子",
+        "工作流接入",
+        "宿主适配",
+        "技能安装",
+        "skill安装",
+        "Agent工作流"
+      ],
+      "priority": "normal"
+    },
+    "full_production": {
+      "name": "完整制作全流程",
+      "auto": [
+        "full-production"
+      ],
+      "conditional": [
+        "writing",
+        "asset-first",
+        "script-to-screen",
+        "visual-prompt",
+        "audio-design",
+        "model-adaptation",
+        "qa",
+        "action-design"
+      ],
+      "dependencies": [
+        "general_orchestration",
+        "novel_writing",
+        "screenwriting",
+        "short_video_content",
+        "asset_first",
+        "storyboard",
+        "spatial_continuity",
+        "video_prompt",
+        "cinematography",
+        "performance_emotion",
+        "aesthetics_style",
+        "prompt_engineering",
+        "model_adaptation",
+        "audio_design",
+        "quality_assurance",
+        "safety_originality",
+        "asset_locking"
+      ],
+      "semantic_triggers": [
+        "从创意到成片",
+        "从零做到成片",
+        "全流程制作",
+        "完整制作",
+        "全链路交付",
+        "完整影视项目",
+        "做成一整套",
+        "剧本到成片",
+        "从创意做到视频",
+        "完整短片制作",
+        "从故事到视频",
+        "全套制作流程",
+        "全流程生产",
+        "一次性完整交付"
+      ],
+      "priority": "high"
+    },
+    "general_orchestration": {
+      "name": "总控与导演思维",
+      "auto": [
+        "intent-analysis"
+      ],
+      "conditional": [
+        "full-production",
+        "qa"
+      ],
+      "dependencies": [],
+      "semantic_triggers": [
+        "帮我做",
+        "帮我处理",
+        "从零开始",
+        "给个方案",
+        "整体规划",
+        "梳理一下",
+        "分析一下需求",
+        "不知道怎么做",
+        "帮我完成",
+        "统筹",
+        "导演思维",
+        "全局分析",
+        "需求拆解",
+        "任务规划"
+      ],
+      "priority": "normal"
+    },
+    "image_prompt": {
+      "name": "AI图片提示词",
+      "auto": [
+        "visual-prompt"
+      ],
+      "conditional": [
+        "reverse-engineering"
+      ],
+      "dependencies": [
+        "aesthetics_style",
+        "prompt_engineering",
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "生成图片",
+        "生成图像",
+        "出一张图",
+        "出图提示词",
+        "绘图提示词",
+        "文生图",
+        "图像生成",
+        "图片生成",
+        "静帧图",
+        "单张图片",
+        "角色图",
+        "场景图",
+        "封面图",
+        "图像prompt",
+        "绘画prompt",
+        "出图",
+        "生图"
+      ],
+      "priority": "normal"
+    },
+    "model_adaptation": {
+      "name": "模型/平台适配",
+      "auto": [
+        "model-adaptation"
+      ],
+      "conditional": [
+        "visual-prompt",
+        "api-integration",
+        "full-production"
+      ],
+      "dependencies": [
+        "prompt_engineering",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "适配模型",
+        "适配平台",
+        "模型语法",
+        "模型参数",
+        "模型限制",
+        "模型格式",
+        "模型专用语法",
+        "Seedance",
+        "可灵",
+        "Kling",
+        "Veo",
+        "Runway",
+        "Sora",
+        "Pika",
+        "Midjourney",
+        "ComfyUI",
+        "Flux",
+        "HunyuanVideo",
+        "模型兼容",
+        "模型调用格式",
+        "转成某模型",
+        "跨模型转换"
+      ],
+      "priority": "normal"
+    },
+    "novel_writing": {
+      "name": "小说创作",
+      "auto": [
+        "writing"
+      ],
+      "conditional": [
+        "full-production"
+      ],
+      "dependencies": [
+        "general_orchestration",
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "故事怎么写",
+        "长篇小说",
+        "网文",
+        "小说正文",
+        "章节正文",
+        "续写",
+        "接着写",
+        "续写下一章",
+        "剧情大纲",
+        "人物弧光",
+        "世界观设定",
+        "伏笔回收",
+        "主线支线",
+        "叙事节奏",
+        "网文创作",
+        "故事梗概",
+        "人物动机",
+        "章节规划"
+      ],
+      "priority": "normal"
+    },
+    "output_formatting": {
+      "name": "交付格式与模板",
+      "auto": [
+        "qa"
+      ],
+      "conditional": [
+        "storyboard-only",
+        "visual-prompt"
+      ],
+      "dependencies": [
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "输出成表格",
+        "按模板输出",
+        "交付格式",
+        "输出格式",
+        "格式规范",
+        "字段定义",
+        "JSON格式",
+        "Markdown格式",
+        "代码块格式",
+        "双区输出",
+        "可复制格式",
+        "表格模板",
+        "结构化输出",
+        "导出格式",
+        "模板填充"
+      ],
+      "priority": "normal"
+    },
+    "performance_emotion": {
+      "name": "角色表演与情绪外化",
+      "auto": [
+        "asset-first"
+      ],
+      "conditional": [
+        "action-design",
+        "audio-design",
+        "full-production"
+      ],
+      "dependencies": [
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "微表情",
+        "面部表情",
+        "眼神戏",
+        "情绪表演",
+        "表演节奏",
+        "肢体反应",
+        "呼吸节奏",
+        "肌肉反应",
+        "情感外化",
+        "恐惧反应",
+        "愤怒反应",
+        "哭戏",
+        "表演指导",
+        "情绪变化",
+        "说话气口",
+        "身体语言",
+        "演员调度"
+      ],
+      "priority": "normal"
+    },
+    "platform_adaptation": {
+      "name": "平台内容适配与发布策略",
+      "auto": [
+        "platform-short-video"
+      ],
+      "conditional": [
+        "model-adaptation"
+      ],
+      "dependencies": [
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "发布到平台",
+        "适配平台规格",
+        "竖屏横屏",
+        "字幕安全区",
+        "标题封面",
+        "平台发布",
+        "平台规格",
+        "画幅比例",
+        "发布包装",
+        "账号定位",
+        "平台分发",
+        "多平台适配",
+        "各个平台",
+        "平台格式"
+      ],
+      "priority": "normal"
+    },
+    "project_state_management": {
+      "name": "项目状态与连续记忆",
+      "auto": [
+        "continuity-repair"
+      ],
+      "conditional": [
+        "writing",
+        "qa"
+      ],
+      "dependencies": [
+        "general_orchestration",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "项目记忆",
+        "跨轮次",
+        "跨对话",
+        "设定锁",
+        "状态文件",
+        "人物关系表",
+        "设定集",
+        "Canon",
+        "前情提要",
+        "连续创作",
+        "长期设定",
+        "版本记录",
+        "制作台账",
+        "世界观连续性",
+        "记忆管理",
+        "状态机",
+        "项目状态",
+        "前文设定"
+      ],
+      "priority": "normal"
+    },
+    "prompt_engineering": {
+      "name": "提示词工程与编译",
+      "auto": [
+        "visual-prompt"
+      ],
+      "conditional": [
+        "model-adaptation",
+        "script-to-screen",
+        "full-production"
+      ],
+      "dependencies": [
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "提示词怎么写",
+        "优化提示词",
+        "改提示词",
+        "正向提示词",
+        "负面提示词",
+        "反向提示词",
+        "提示词结构",
+        "提示词编译",
+        "提示词优化",
+        "prompt优化",
+        "prompt engineering",
+        "生成提示词",
+        "提示词模板",
+        "提示词公式",
+        "约束提示词",
+        "防跑偏提示"
+      ],
+      "priority": "normal"
+    },
+    "quality_assurance": {
+      "name": "质量门禁与错误修复",
+      "auto": [
+        "qa"
+      ],
+      "conditional": [
+        "continuity-repair",
+        "full-production"
+      ],
+      "dependencies": [
+        "general_orchestration"
+      ],
+      "semantic_triggers": [
+        "帮我检查",
+        "检查一下",
+        "哪里有问题",
+        "找出漏洞",
+        "查找bug",
+        "debug",
+        "排查错误",
+        "修复问题",
+        "逻辑是否通顺",
+        "检查自洽",
+        "校验一遍",
+        "质检",
+        "质量检查",
+        "回归测试",
+        "自动化测试",
+        "错误定位",
+        "找矛盾",
+        "一致性审查",
+        "有没有遗漏",
+        "完整性检查",
+        "检查断链"
+      ],
+      "priority": "high"
+    },
+    "reverse_engineering": {
+      "name": "参考图/参考视频反推",
+      "auto": [
+        "reverse-engineering"
+      ],
+      "conditional": [
+        "visual-prompt"
+      ],
+      "dependencies": [
+        "aesthetics_style",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "参考图反推",
+        "参考视频反推",
+        "反推提示词",
+        "反向拆解",
+        "拉片分析",
+        "拆解参考图",
+        "拆解参考视频",
+        "按图还原",
+        "照着参考图",
+        "复刻构图",
+        "逆向分析",
+        "还原镜头",
+        "参考素材分析",
+        "镜头拆解",
+        "视觉反推",
+        "风格反推"
+      ],
+      "priority": "normal"
+    },
+    "safety_originality": {
+      "name": "安全合规与原创性",
+      "auto": [
+        "qa"
+      ],
+      "conditional": [
+        "platform-short-video",
+        "full-production"
+      ],
+      "dependencies": [],
+      "semantic_triggers": [
+        "版权风险",
+        "原创度",
+        "查重",
+        "涉嫌抄袭",
+        "侵权风险",
+        "肖像权",
+        "商标风险",
+        "合规审查",
+        "平台规则",
+        "内容安全",
+        "敏感内容",
+        "合法合规",
+        "授权范围",
+        "版权检查",
+        "原创性检查"
+      ],
+      "priority": "high"
+    },
+    "screenwriting": {
+      "name": "剧本编剧",
+      "auto": [
+        "writing"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "platform-short-video",
+        "full-production"
+      ],
+      "dependencies": [
+        "general_orchestration",
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "写个剧本",
+        "剧本创作",
+        "分场剧本",
+        "场次表",
+        "电影剧本",
+        "短剧本",
+        "对白台词",
+        "台词打磨",
+        "戏剧冲突",
+        "场景戏",
+        "场面调度剧本",
+        "开场戏",
+        "结尾戏",
+        "剧情转剧本",
+        "编剧方案"
+      ],
+      "priority": "normal"
+    },
+    "short_video_content": {
+      "name": "短视频文案与短视频叙事",
+      "auto": [
+        "platform-short-video"
+      ],
+      "conditional": [
+        "full-production"
+      ],
+      "dependencies": [
+        "screenwriting",
+        "platform_adaptation",
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "短视频文案",
+        "口播文案",
+        "开头三秒",
+        "前三秒钩子",
+        "完播率",
+        "转粉",
+        "转化率",
+        "爆款短视频",
+        "竖屏视频",
+        "短视频脚本",
+        "视频标题",
+        "短视频选题",
+        "直播切片",
+        "平台网感",
+        "视频号文案"
+      ],
+      "priority": "normal"
+    },
+    "skill_architecture_audit": {
+      "name": "Skill架构审计与路由修复",
+      "auto": [
+        "qa"
+      ],
+      "conditional": [],
+      "dependencies": [
+        "general_orchestration",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "全量路由",
+        "漏路由",
+        "没有连通",
+        "技能整改",
+        "Skill整改",
+        "skill重构",
+        "路由覆盖",
+        "路由完整性",
+        "注册表检查",
+        "全包审计",
+        "架构整改",
+        "系统级重构",
+        "代码漏洞",
+        "脚本bug",
+        "打包修复",
+        "模块没有触发",
+        "板块没有路由",
+        "技能无法运行",
+        "安装失败排查",
+        "依赖冲突",
+        "用户白话全自动分析路由",
+        "所有板块全部覆盖并连通",
+        "百分百全路由覆盖",
+        "全面分析理解用户的要求",
+        "理解用户全部要求并自动选择模块",
+        "每个板块都必须有调用入口",
+        "所有知识文件和章节都能按需路由",
+        "全量能力工作流资源闭环",
+        "补齐所有漏路由板块",
+        "任何合理需求都不能静默漏路由"
+      ],
+      "priority": "high"
+    },
+    "spatial_continuity": {
+      "name": "空间推演与连续性",
+      "auto": [
+        "continuity-repair"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "storyboard-only",
+        "action-design",
+        "full-production"
+      ],
+      "dependencies": [
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "人物走位",
+        "左右站位",
+        "前后位置",
+        "越轴",
+        "180度轴线",
+        "轴线关系",
+        "人物位置变化",
+        "道具状态",
+        "视线方向",
+        "空间位置",
+        "空间关系",
+        "动作连续",
+        "镜头接不上",
+        "动作接不上",
+        "场景布局",
+        "场面调度",
+        "人物朝向",
+        "人物方位",
+        "空间连续性",
+        "穿帮",
+        "空间推演"
+      ],
+      "priority": "normal"
+    },
+    "storyboard": {
+      "name": "分镜导演",
+      "auto": [
+        "storyboard-only"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "full-production"
+      ],
+      "dependencies": [
+        "general_orchestration",
+        "spatial_continuity",
+        "cinematography",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "画分镜",
+        "分镜图",
+        "分镜头脚本",
+        "镜头列表",
+        "镜头清单",
+        "逐镜头",
+        "一镜一条",
+        "故事板",
+        "story board",
+        "镜头脚本",
+        "镜头拆分",
+        "分镜稿",
+        "分镜表格",
+        "关键帧表",
+        "连续镜头设计",
+        "先有角色场景图再制作每镜画面",
+        "将人物场景资产用于分镜画面"
+      ],
+      "priority": "normal"
+    },
+    "vfx_physics": {
+      "name": "VFX与运动物理",
+      "auto": [
+        "action-design"
+      ],
+      "conditional": [
+        "full-production"
+      ],
+      "dependencies": [
+        "cinematography",
+        "spatial_continuity",
+        "quality_assurance"
+      ],
+      "semantic_triggers": [
+        "视觉特效",
+        "特效设计",
+        "粒子效果",
+        "粒子特效",
+        "爆炸效果",
+        "烟雾效果",
+        "火焰效果",
+        "物理模拟",
+        "运动物理",
+        "惯性反馈",
+        "碰撞反馈",
+        "碎片模拟",
+        "布料模拟",
+        "流体模拟",
+        "魔法特效",
+        "穿模修复",
+        "重力效果",
+        "受力反馈"
+      ],
+      "priority": "normal"
+    },
+    "video_prompt": {
+      "name": "AI视频提示词",
+      "auto": [
+        "visual-prompt"
+      ],
+      "conditional": [
+        "script-to-screen",
+        "full-production"
+      ],
+      "dependencies": [
+        "prompt_engineering",
+        "cinematography",
+        "spatial_continuity",
+        "quality_assurance",
+        "safety_originality"
+      ],
+      "semantic_triggers": [
+        "生成视频",
+        "视频生成提示",
+        "AI视频",
+        "视频投喂",
+        "文生视频",
+        "图生视频",
+        "视频续写",
+        "视频提示词",
+        "视频prompt",
+        "动态视频",
+        "镜头视频提示",
+        "视频生成词",
+        "一段视频",
+        "视频生成方案",
+        "图转视频"
+      ],
+      "priority": "normal"
+    }
+  }
+}

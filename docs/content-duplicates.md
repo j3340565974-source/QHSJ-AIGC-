@@ -2,25 +2,9 @@
 
 | 文件1 | 文件2 | 相似度 | 片段 |
 |---|---|---|---|
-| README.md | docs/readme-before-l2.md | 1.00 | ```
-📋 意图解析 → 🧭 多标签路由 → ✍️ 小说/剧本 → 🖼️ 资产锁定 → 📐 空间连续性 → 🎬 分镜导演 |
-| README.md | docs/readme-before-l2.md | 1.00 | > 🔑 **核心铁律**：资产锁定是分镜资产生成的**硬门禁**。角色图、场景图、道具图未生成/核验/锁定前，工作流必须 |
-| README.md | docs/readme-before-l2.md | 1.00 | 一套**给 AI 助手执行的 AIGC 全流程创作规则库**（Agent Skill）。用户用中文白话描述目标，系统自动 |
-| README.md | docs/readme-before-l2.md | 1.00 | > ⚠️ **能力边界诚实规则**：「路由已选择」≠「外部工具已调用」；「项目状态已建立」≠「跨会话永久记忆」。自动化检 |
-| README.md | docs/readme-before-l2.md | 1.00 | 管线与题材解耦，凡「**创意 → 剧本 → 资产 → 分镜 → 提示词 → 模型投喂**」的 AIGC 创作都可套用： |
-| README.md | docs/readme-before-l2.md | 1.00 | - **AI 短剧 / 漫剧 / 短视频剧集**（高密度场景）
-- **AI 广告片 / 品牌宣传片 / 概念片**
-- |
-| README.md | docs/readme-before-l2.md | 1.00 | **全局仲裁顺序**：安全与适用政策 > 用户明确硬约束 > 来源事实和项目 Canon > 因果/空间/动作/物理连续 |
-| README.md | docs/readme-before-l2.md | 1.00 | > ⚠️ 用户的否定约束（"只要分镜，不要提示词""只写小说，不做视觉设计"）必须被保留，不得由依赖关系偷偷扩大交付范围 |
-| README.md | docs/readme-before-l2.md | 1.00 | `/写剧本` · `/台词诊断` · `/数字资产包` · `/素材形态` · `/做分镜` · `/语速自检` · ` |
-| README.md | docs/readme-before-l2.md | 1.00 | 本项目采用 **MIT License**，完整条款见 [LICENSE](LICENSE)。 |
-| README.md | docs/readme-before-l2.md | 1.00 | <div align="center">
-  <img src="assets/logo.png" alt="作者头像" |
-| README.md | docs/readme-before-l2.md | 1.00 | 如果在使用中遇到 **bug、逻辑漏洞、路由缺失、模型适配问题**，或有 **功能建议、合作意向**，欢迎通过以下方式联 |
-| README.md | docs/readme-before-l2.md | 1.00 | > 💡 **反馈建议**：提交问题时请附上触发的自然语言原文、期望行为、实际行为，以及（若涉及生成）目标模型与画幅。作者 |
-| README.md | docs/readme-before-l2.md | 1.00 | <div align="center">
-  <p><strong>Made with ❤️ for AIGC Crea |
+| .pytest_cache/README.md | backend/.pytest_cache/README.md | 1.00 | This directory contains data from the pytest's cache plugin, |
+| .pytest_cache/README.md | backend/.pytest_cache/README.md | 1.00 | **Do not** commit this to version control. |
+| .pytest_cache/README.md | backend/.pytest_cache/README.md | 1.00 | See [the docs](https://docs.pytest.org/en/stable/how-to/cach |
 | references/novel-screenwriting/qh-mxshell-narrative-method.md | references/novel-screenwriting/v322-qh-mxshell-narrative-method.md | 1.00 | **Mx-Shell的解法**（《丧尸清道夫》海外播放破2亿）：
 - 主角用**机器人**（不需要人脸一致性，金属质感A |
 | references/novel-screenwriting/qh-mxshell-narrative-method.md | references/novel-screenwriting/v322-qh-mxshell-narrative-method.md | 1.00 | - 全片几乎没有对白，靠画面、动作、表情、环境叙事
@@ -113,3 +97,14 @@
 | references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/p1-model-adapter-cards.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
 | references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-seedance-render-engine.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
 | references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-h3-adapter.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-qh-agent-platform-adapters.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/model-adaptation/v322-model-atlas.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/api-integration/p1-api-request-patterns-160.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/api-integration/p1-api-contracts.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/api-integration/p1-route-grammar.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/aesthetics/v322-07-visual-language.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/aesthetics/p1-visuals-style-library.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/v322-02-screenwriting.md | references/aesthetics/v322-21-style-genome.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/p1-film-language-library.md | references/novel-screenwriting/v322-qh-dialogue-speed-check.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/p1-film-language-library.md | references/novel-screenwriting/p1-creative-theory.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |
+| references/novel-screenwriting/p1-film-language-library.md | references/novel-screenwriting/v322-qh-screenplay-gate-engine.md | 1.00 | > 路由、工作流和显式旧路径仍可通过此别名定位规范正文；需要执行任何规则时，必须继续读取上方规范正文，不得把本页当作完整 |

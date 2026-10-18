@@ -22,7 +22,7 @@
     },
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 70,
     "deprecated": false
   },
   {
@@ -42,7 +42,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 70,
     "deprecated": false
   },
   {
@@ -63,7 +63,6 @@
       "先锁定人物和场景",
       "锁定角色资产",
       "锁定场景资产",
-      "分镜资产引用角色图",
       "先做人物和场景设定图"
     ],
     "workflow": "workflows/asset-first/WORKFLOW.md",
@@ -79,7 +78,7 @@
     },
     "gate_level": "P0",
     "blocks_on_failure": true,
-    "priority": 100,
+    "priority": 90,
     "deprecated": false
   },
   {
@@ -91,7 +90,15 @@
       "资产冻结",
       "锁定人物和场景",
       "先锁定角色和场景",
-      "分镜资产引用角色图"
+      "分镜资产引用角色图",
+      "分镜图引用场景图",
+      "资产版本锁定",
+      "先做人设和场景再分镜",
+      "人物场景资产定稿后再分镜",
+      "分镜图引用已锁定场景图",
+      "分镜图引用已锁定人物图",
+      "角色外观不要变化",
+      "场景布局不要变化"
     ],
     "workflow": "workflows/asset-lock/WORKFLOW.md",
     "capabilities": [
@@ -106,7 +113,7 @@
     },
     "gate_level": "P0",
     "blocks_on_failure": true,
-    "priority": 100,
+    "priority": 85,
     "deprecated": false
   },
   {
@@ -126,7 +133,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 70,
     "deprecated": false
   },
   {
@@ -151,7 +158,7 @@
     },
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 75,
     "deprecated": false
   },
   {
@@ -203,8 +210,10 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 0,
-    "deprecated": false
+    "priority": 1000,
+    "deprecated": false,
+    "entrypoint": true,
+    "always_run": true
   },
   {
     "id": "model-adaptation",
@@ -228,7 +237,7 @@
     },
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 75,
     "deprecated": false
   },
   {
@@ -250,7 +259,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 70,
     "deprecated": false
   },
   {
@@ -273,7 +282,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 70,
     "deprecated": false
   },
   {
@@ -293,7 +302,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 90,
     "deprecated": false
   },
   {
@@ -322,7 +331,7 @@
     },
     "gate_level": "P0",
     "blocks_on_failure": true,
-    "priority": 100,
+    "priority": 80,
     "deprecated": false
   },
   {
@@ -342,7 +351,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 60,
     "deprecated": false
   },
   {
@@ -369,7 +378,7 @@
     },
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 60,
     "deprecated": false
   },
   {
@@ -389,7 +398,7 @@
     "capability_dependencies": {},
     "gate_level": "P1",
     "blocks_on_failure": false,
-    "priority": 100,
+    "priority": 60,
     "deprecated": false
   }
 ]
