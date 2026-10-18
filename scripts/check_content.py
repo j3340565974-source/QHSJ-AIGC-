@@ -14,7 +14,7 @@ def read(p):
 def check_deprecated():
     """C9: files with deprecation marker must have 替代:"""
     for md in ROOT.rglob("*.md"):
-        if ".git" in str(md): continue
+        if ".git" in str(md) or "node_modules" in str(md): continue
         txt = read(md)
         # Only flag actual deprecation markers: blockquote DEPRECATED or Chinese 已废弃
         has_marker = bool(re.search(r'(^|\n)>\s*DEPRECATED|已废弃', txt, re.IGNORECASE))
@@ -37,7 +37,7 @@ def check_numbers():
     manifest = json.loads(read(ROOT / "manifest.json"))
     dc = manifest["declared_counts"]
     for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "scan-baseline" in str(md): continue
+        if ".git" in str(md) or "scan-baseline" in str(md) or "node_modules" in str(md): continue
         txt = read(md)
         for wrong in [f"{dc['capabilities']-1} 能力", f"{dc['capabilities']+1} 能力",
                       f"{dc['workflows']-1} 工作流", f"{dc['workflows']+1} 工作流",
@@ -58,7 +58,7 @@ def check_terms():
                     if a and a != "—" and len(a) > 1:
                         forbidden.add(a)
     for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "glossary" in str(md): continue
+        if ".git" in str(md) or "glossary" in str(md) or "node_modules" in str(md): continue
         txt = read(md)
         for a in forbidden:
             if a in txt:
@@ -70,7 +70,7 @@ def check_dangling_refs():
     link_re = re.compile(r'\[[^\]]+\]\(([^)]+\.md[^)]*)\)')
     code_re = re.compile(r'`([^`{}]+\.md)`')
     for md in ROOT.rglob("*.md"):
-        if ".git" in str(md): continue
+        if ".git" in str(md) or "node_modules" in str(md): continue
         txt = read(md)
         for m in link_re.findall(txt) + code_re.findall(txt):
             ref = m.split("#")[0]
@@ -83,7 +83,7 @@ def check_duplicates():
     import hashlib
     para_map = {}  # hash -> [(file, para)]
     for md in ROOT.rglob("*.md"):
-        if ".git" in str(md): continue
+        if ".git" in str(md) or "node_modules" in str(md): continue
         txt = read(md)
         for para in re.split(r'\n\s*\n', txt):
             para = para.strip()

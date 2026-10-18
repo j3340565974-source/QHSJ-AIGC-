@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0] - 2026-10-18
+
+### 全量重构：目录标准化 · 门禁固化 · 前后端完备
+
+- **目录结构标准化**：29 能力 / 16 工作流 / 684 知识库，按 20 个域组织到 `references/`。
+- **SKILL.md v7.0.0**：13 节、124 行，六步工作法、路由速查表、门禁分级、上下文预算。
+- **manifest.json + routes.json**：16 条路由，声明式清单，`declared_counts` 与实际一致。
+- **4 个全局 schema**：manifest / routes / route / run-meta，`validate_schemas.py` 全通过。
+- **16 项结构检查**：`scripts/check_package.py` 覆盖计数、孤儿节点、循环依赖、文件大小、危险指令、悬空引用等。
+- **Asset-First P0 硬门禁**：`BLOCKED_ASSET_NOT_LOCKED` / `GATE_P0_CANNOT_SKIP` 错误码，全仓库措辞统一。
+- **路由匹配单一数据源**：`backend/app/services/route_matcher.py`，纯标准库，无 fastapi 依赖。
+- **后端 FastAPI**：`/health`、`/route`、`/manifest` 三个端点，7 项 pytest 测试全通过。
+- **前端 Vite + TypeScript**：单页路由测试器，调用后端 API，`tsc + vite build` 通过。
+- **文件拆分**：45 个超限参考文件按 `##` 拆分为子目录分片，无 >300 行文件。
+- **版本废弃**：114 个 `v322-` / `p1-` 文件标记 `> DEPRECATED` 并注明 `替代:`。
+- **ADR 文档**：4 篇架构决策记录（门禁、单一数据源、大小限制、废弃策略）。
+- **CONTRIBUTING.md**：贡献流程、文件上限、门禁规则、提交规范。
+
 ## [3.0.0] - 2026-10-18
 
 ### QHSJ AIGC 全能影视：全量路由、资产锁定与空间连续性

@@ -138,7 +138,7 @@ for domain in (ROOT / "references").iterdir():
 # 10. dangerous instructions scan
 danger_re = re.compile(r'(跳过|绕过|忽略).{0,10}(资产锁定|Asset-First|P0|门禁)')
 for md in ROOT.rglob("*.md"):
-    if ".git" in str(md): continue
+    if ".git" in str(md) or "node_modules" in str(md): continue
     for i, line in enumerate(read(md).split("\n"), 1):
         if danger_re.search(line):
             if "违反时行为" not in line and "禁止" not in line:
@@ -148,7 +148,7 @@ for md in ROOT.rglob("*.md"):
 link_re = re.compile(r'\[[^\]]+\]\(([^)]+\.md[^)]*)\)')
 code_re = re.compile(r'`([^`]+\.md)`')
 for md in ROOT.rglob("*.md"):
-    if ".git" in str(md): continue
+    if ".git" in str(md) or "node_modules" in str(md): continue
     txt = read(md)
     for m in link_re.findall(txt) + code_re.findall(txt):
         ref = m.split("#")[0]
@@ -180,7 +180,7 @@ for line in glossary.split("\n"):
                 if a and a != "—" and len(a) > 1:
                     forbidden.add(a)
 for md in ROOT.rglob("*.md"):
-    if ".git" in str(md) or "glossary" in str(md): continue
+    if ".git" in str(md) or "glossary" in str(md) or "node_modules" in str(md): continue
     txt = read(md)
     for a in forbidden:
         if a in txt:
@@ -189,7 +189,7 @@ for md in ROOT.rglob("*.md"):
 
 # 14. number consistency (29/16/303 across repo, excluding scan-baseline)
 for md in ROOT.rglob("*.md"):
-    if ".git" in str(md) or "scan-baseline" in str(md): continue
+    if ".git" in str(md) or "scan-baseline" in str(md) or "node_modules" in str(md): continue
     txt = read(md)
     # Check for wrong counts
     for wrong in ["28 能力", "30 能力", "15 工作流", "17 工作流", "302 知识库", "304 知识库"]:
