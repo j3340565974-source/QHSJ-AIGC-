@@ -3,20 +3,20 @@
   <h1>QHSJ AIGC 全能影视</h1>
   <p><strong>面向影视与视觉创作的全路由 Agent Skill · 全维导演创世与双区生成总引擎</strong></p>
   <p>
-    <a href="https://github.com"><img alt="Version" src="https://img.shields.io/badge/版本-7.0.0-5B5BD6.svg" /></a>
+    <a href="https://github.com"><img alt="Version" src="https://img.shields.io/badge/版本-8.0.0-5B5BD6.svg" /></a>
     <a href="https://github.com"><img alt="Language" src="https://img.shields.io/badge/语言-中文优先-0E8A16.svg" /></a>
     <a href="https://github.com"><img alt="Routing" src="https://img.shields.io/badge/路由-16%20条-8A2BE2.svg" /></a>
     <a href="https://github.com"><img alt="Pipeline" src="https://img.shields.io/badge/管线-资产先行-FF6B35.svg" /></a>
     <a href="https://github.com"><img alt="Capabilities" src="https://img.shields.io/badge/能力-29%20项-1E90FF.svg" /></a>
     <a href="https://github.com"><img alt="Workflows" src="https://img.shields.io/badge/工作流-16%20条-DC143C.svg" /></a>
-    <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-684%20篇-2E8B57.svg" /></a>
+    <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-527%20篇-2E8B57.svg" /></a>
     <a href="https://github.com"><img alt="Backend" src="https://img.shields.io/badge/后端-FastAPI-009688.svg" /></a>
     <a href="https://github.com"><img alt="Frontend" src="https://img.shields.io/badge/前端-Vite%2BTS-646CFF.svg" /></a>
     <a href="https://github.com"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
   </p>
 </div>
 
-> 🎬 面向 **AIGC 视听创作** 的工业级全流程技能包：**1 总控 + 29 能力 + 16 工作流 + 684 篇知识库 + 自动化质检 + FastAPI 后端 + Vite 前端**。
+> 🎬 面向 **AIGC 视听创作** 的工业级全流程技能包：**1 总控 + 29 能力 + 16 工作流 + 527 篇知识库 + 自动化质检 + FastAPI 后端 + Vite 前端**。
 > 从创意立项、小说/剧本、资产锁定、空间连续性、分镜、图片/视频提示词，到模型适配、声音/VFX、API 集成与质量回归——给 AI 助手 / LLM 直接调用。
 
 ---
@@ -41,7 +41,7 @@
 1. **不漂移** —— 角色 / 场景 / 道具**先锁定再进分镜**（Asset-First），跨镜跨集一致性有据可依；
 2. **不返工** —— 多标签路由 + 依赖闭包 + 硬约束仲裁 + P0~P2 门禁 + 稿件级机检，把错误拦在生成之前；
 3. **能直接投喂** —— 输出结构化提示词，整组复制即可喂给视频/图片模型；支持 Seedance / Kling / Veo / Sora / Runway / Midjourney / Flux / 即梦等全平台适配；
-4. **可审计** —— 所有资源、能力、工作流均有注册数据，29 能力 / 16 工作流 / 684 知识库 / 16 路由全量连通，16 项结构检查持续校验。
+4. **可审计** —— 所有资源、能力、工作流均有注册数据，29 能力 / 16 工作流 / 527 知识库 / 16 路由全量连通，16 项结构检查持续校验。
 
 > ⚠️ **能力边界诚实规则**：「路由已选择」≠「外部工具已调用」；「项目状态已建立」≠「跨会话永久记忆」。自动化检查通过仅证明当前包内结构与回归样例通过，不构成对所有未见输入或外部模型生成结果的绝对无缺陷保证。
 
@@ -212,7 +212,7 @@ QHSJ-AIGC/
 │   └── logo.svg
 ├── capabilities/                  # 29 项能力（SPEC.md + inputs/outputs schema）
 ├── workflows/                     # 16 条工作流（WORKFLOW.md）
-├── references/                    # 684 篇知识库（按 20 域组织）
+├── references/                    # 527 篇知识库（按 20 域组织）
 ├── schemas/                       # 全局 JSON Schema（manifest/routes/route/run-meta…）
 ├── docs/
 │   ├── adr/                       # 架构决策记录（4 篇）
@@ -240,6 +240,7 @@ QHSJ-AIGC/
 
 ## 📜 更新历史
 
+- **v8.0.0**（2026-10-18）— 去壳与去残留版。清除 155 个别名/门户壳文件、3 对 v322-* 重复目录、2 个 vfx 遗留别名；归档 4 个别名独有正文（含重力/动量/接触面/惯性/流体/光学/热力学/生物力学物理锁定层）；全库索引重命名对齐（去 p1-/v322- 前缀残留）、29 能力 SPEC「相关知识库」去重、16 工作流版本统一；10 组字节切分碎片还原为完整正文并按标题边界重切为 ≤290 行可加载单元，删除重复的 04-二-五大台账 组；空间锚点与物理锁定门禁接入图片/视频提示词编译（GATE_SPATIAL_PHYSICS_MISSING）；版本号与计数全库对齐（8.0.0 / 29 / 16 / 527）。
 - **v7.0.0**（2026-10-18）— 全量重构版。目录标准化（29 能力 / 16 工作流 / 684 知识库，20 域）；SKILL.md v7.0.0；manifest.json + routes.json（16 路由）；4 全局 JSON Schema；16 项结构检查 + 内容审计；Asset-First P0 硬门禁；路由匹配单一数据源（route_matcher.py）；FastAPI 后端（/health /route /manifest）；Vite + TypeScript 前端路由测试器；45 个超限文件拆分；114 个版本文件标记废弃；4 篇 ADR；CONTRIBUTING.md。
 - **v3.0.0**（2026-10-18）— 全量路由、资产锁定与空间连续性版。统一命名 QHSJ AIGC 全能影视；345 文件 / 29 能力 / 16 工作流 / 303 篇知识库；87 组字节级重复正文无损去重为兼容别名；新增 `asset_locking` 能力与 `asset-lock` 工作流；空间、距离、朝向、视线账本协议；多角色审查协议；15-qhsj-master-engine.md 结构整改（畸形表格修复、重复精简块去重、目录补全）。
 - **v2.2.3** — 全量路由连通与执行边界修复；统一版本号；修正审计依赖过宽。

@@ -2,7 +2,7 @@
 
 > 工作流 ID: `asset-lock`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 
 **描述**: 专门管理人物、场景、道具资产规格、参考图、版本锁与分镜引用，避免跨镜头漂移。
 
@@ -61,7 +61,7 @@
 **输出**: 身份一致性、拓扑一致性、来源一致性和材质检查
 
 **模块**:
-- 模块: `../../references/asset/p1-asset-validation-cases-500.md`, `../../references/quality-safety/16-quality-gates.md`
+- 模块: `../../references/asset/asset-validation-cases-500/index.md`, `../../references/quality-safety/16-quality-gates.md`
 
 ### L3 锁定资产引用与下游依赖扫描
 **输入**: 通过核验的资产版本, 分镜/提示词/图像产物

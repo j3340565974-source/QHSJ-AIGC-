@@ -28,8 +28,5 @@
 ## 相关知识库
 - `../../references/quality-safety/15-safety-compliance.md`
 - `../../references/quality-safety/18-safety-originality.md`
-- `../../references/prompt-engineering/p1-wording-and-safety.md`
-- `../../references/quality-safety/qh-platform-safety-compliance-guide.md`
-- `../../references/quality-safety/v322-18-safety-originality.md`
-- `../../references/quality-safety/v322-qh-platform-safety-compliance-guide.md`
 - `../../references/prompt-engineering/wording-and-safety.md`
+- `../../references/quality-safety/qh-platform-safety-compliance-guide.md`

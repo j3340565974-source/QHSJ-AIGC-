@@ -163,7 +163,7 @@ individual hair strands, natural flyaways, root transition, hair shine
 
 ## 9. 色彩与风格大师库
 
-> 来源：qh-color-style-master.md
+> 来源：qh-color-style-master/index.md
 
 ### 9.1 视觉风格标签词库（GPT-Image2工业级）
 

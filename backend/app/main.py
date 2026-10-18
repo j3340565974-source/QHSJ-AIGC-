@@ -20,7 +20,7 @@ MANIFEST_PATH = ROOT / "manifest.json"
 
 app = FastAPI(
     title="QHSJ-AIGC Skill API",
-    version="7.0.0",
+    version="8.0.0",
     description="Route matching & manifest service for the QHSJ-AIGC skill.",
 )
 

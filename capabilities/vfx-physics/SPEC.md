@@ -29,9 +29,5 @@ VFX 与运动物理。
 - `../../references/vfx/12-vfx-motion-physics.md`
 - `../../references/vfx/13-vfx-motion-physics.md`
 - `../../references/vfx/qh-anime-ultimate-vfx-paradigm.md`
-- `../../references/vfx/qh-vfx-parametric-library.md`
+- `../../references/vfx/qh-vfx-parametric-library/index.md`
 - `../../references/vfx/qh-video-physics-precision.md`
-- `../../references/vfx/v322-13-vfx-motion-physics.md`
-- `../../references/vfx/v322-qh-anime-ultimate-vfx-paradigm.md`
-- ../../references/vfx/v322-qh-vfx-parametric-library.md
-- `../../references/vfx/v322-qh-video-physics-precision.md`

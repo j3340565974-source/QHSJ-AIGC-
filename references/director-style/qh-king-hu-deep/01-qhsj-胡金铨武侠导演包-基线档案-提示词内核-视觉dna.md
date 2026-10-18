@@ -11,8 +11,8 @@
 
 ## 每次任务先读取
 
-- 处理出图、图片提示词、MJ 或视频提示词前，读取 [references/qh-director-style-genome.md](#胡金铨风格视觉-dna) 与 [references/qh-prompt-feeding-checklist.md](#提示词内核)。
-- 用户要求分析新素材或更新风格时，再读取 [references/qh-king-hu-deep.md](#基线分析档案第三版)。
+- 处理出图、图片提示词、MJ 或视频提示词前，读取 [references/aesthetics/qh-director-style-genome.md](#胡金铨风格视觉-dna) 与 [references/prompt-engineering/qh-prompt-feeding-checklist.md](#提示词内核)。
+- 用户要求分析新素材或更新风格时，再读取 [references/director-style/qh-king-hu-deep/index.md](#基线分析档案第三版)。
 
 ## 输出路由
 

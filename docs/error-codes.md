@@ -4,6 +4,7 @@
 |---|---|---|---|---|
 | BLOCKED_ASSET_NOT_LOCKED | P0 | 资产未锁定 | Asset-First 检查失败 | 先完成资产锁定 |
 | GATE_P0_CANNOT_SKIP | P0 | P0 门禁不可跳过 | 禁止用户跳过 P0 | 强制要求完成 |
+| GATE_SPATIAL_PHYSICS_MISSING | P1 | 图片/视频提示词缺少空间锚点或物理锁定 | visual-prompt 门禁检查失败 | 补齐绝对方位坐标系与物理锁定项 |
 | DEPENDENCY_UNMET | P0 | 前置依赖未满足 | 依赖闭包失败 | 补齐依赖 |
 | NO_ROUTE_MATCHED | P1 | 未命中任何路由 | query 无匹配且无创作线索 | 提示 3 条候选 |
 | INTENT_ANALYSIS_FALLBACK | P1 | 含创作线索但无显式交付物 | 未命中显式路由 | 转入 intent-analysis 意图解析 |

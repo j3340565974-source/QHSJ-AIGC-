@@ -30,5 +30,3 @@
 - `../../references/audio/11-audio-voice.md`
 - `../../references/audio/13-audio-sound.md`
 - `../../references/audio/qh-vo-os-weaving.md`
-- `../../references/audio/v322-11-audio-voice.md`
-- `../../references/audio/v322-qh-vo-os-weaving.md`

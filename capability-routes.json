@@ -1,5 +1,5 @@
 {
-  "version": "7.0.0",
+  "version": "8.0.0",
   "note": "能力机器元数据。触发词以 capabilities/*/SPEC.md「典型触发」为唯一来源；本文件只保存 semantic_triggers / auto / conditional / dependencies / priority（迁移自既有设计）。",
   "capabilities": {
     "action_choreography": {

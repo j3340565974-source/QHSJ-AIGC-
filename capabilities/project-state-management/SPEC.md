@@ -26,9 +26,6 @@
 （见 routes.json capability_dependencies）
 
 ## 相关知识库
-- `../../references/spatial/continuity-state-library.md`
-- `../../references/core/decision-protocol.md`
-- `../../references/spatial/p1-continuity-state-library.md`
-- `../../references/core/p1-decision-protocol.md`
+- `../../references/spatial/continuity-state-library/index.md`
+- `../../references/core/decision-protocol/index.md`
 - `../../references/asset/qh-production-ledger-handbook.md`
-- `../../references/asset/v322-qh-production-ledger-handbook.md`

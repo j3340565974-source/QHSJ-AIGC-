@@ -31,4 +31,3 @@
 - `../../references/reverse-engineering/15-reference-reverse-engineering.md`
 - `../../references/reverse-engineering/qh-image-reverse-engine.md`
 - `../../references/reverse-engineering/qh-video-reverse-engine.md`
-- `../../references/reverse-engineering/v322-15-reference-reverse-engineering.md`

@@ -27,8 +27,7 @@
 
 ## 相关知识库
 - `../../references/director-style/01-director-thinking-core.md`
-- `../../references/core/15-qhsj-master-engine.md`
-- `../../references/core/decision-protocol.md`
-- `../../references/core/p1-decision-protocol.md`
+- `../../references/core/15-qhsj-master-engine/index.md`
+- `../../references/core/decision-protocol/index.md`
 - `../../references/production/qh-fullchain-orchestrator.md`
-- `../../references/core/qh-qhsj-system-core.md`
+- `../../references/core/qh-qhsj-system-core/index.md`

@@ -27,7 +27,13 @@
 
 ## 相关知识库
 - `../../references/prompt-engineering/14-ultimate-video-prompt.md`
-- `../../references/prompt-engineering/p1-prompt-transformation-lab.md`
-- `../../references/prompt-engineering/prompt-transformation-lab.md`
+- `../../references/prompt-engineering/prompt-transformation-lab/index.md`
 - `../../references/prompt-engineering/qh-seedance-prompt-short.md`
 - `../../references/prompt-engineering/qh-seedance-prompt.md`
+- `../../references/spatial/qh-blocking-positioning-master.md`
+- `../../references/spatial/qh-spatial-reference-system-V3.md`
+- `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`
+- `../../references/spatial/qh-segment-splicing.md`
+- `../../references/vfx/qh-video-physics-precision.md`
+- `../../references/vfx/13-vfx-motion-physics.md`
+- `../../references/cinematography/qh-camera-language-complete.md`

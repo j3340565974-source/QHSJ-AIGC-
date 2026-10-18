@@ -2,7 +2,7 @@
 
 > 工作流 ID: `continuity-repair`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 
 **描述**: 针对人物、空间、动作、道具、光线、镜头轴线和段间状态进行定位修复
 
@@ -20,7 +20,7 @@
 **输出**: 项目事实、场景/镜头范围、用户禁止改动项
 
 **模块**:
-- 模块: `../../references/core/decision-protocol.md`, `../../references/spatial/continuity-state-library.md`
+- 模块: `../../references/core/decision-protocol/index.md`, `../../references/spatial/continuity-state-library/index.md`
 
 ### CR1 连续性状态重建
 **输入**: 相关场次、镜头和资产记录
@@ -36,7 +36,7 @@
 **输出**: 根因、影响范围、最小变更方案
 
 **模块**:
-- 模块: `../../references/quality-safety/failure-playbook-220.md`, `../../references/quality-safety/qa-checklist-320.md`, `../../references/quality-safety/qh-quality-gate-review.md`
+- 模块: `../../references/quality-safety/failure-playbook-220/index.md`, `../../references/quality-safety/qa-checklist-320/index.md`, `../../references/quality-safety/qh-quality-gate-review.md`
 
 ### CR3 回归测试与交付
 **输入**: 修复后的内容

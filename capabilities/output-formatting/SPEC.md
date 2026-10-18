@@ -29,5 +29,3 @@
 - `../../references/production/04-dual-output-protocol.md`
 - `../../references/production/19-output-templates.md`
 - `../../references/production/qh-output-frame-protocol.md`
-- `../../references/production/v322-19-output-templates.md`
-- `../../references/production/v322-qh-output-frame-protocol.md`

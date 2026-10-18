@@ -148,8 +148,10 @@ for md in ROOT.rglob("*.md"):
 link_re = re.compile(r'\[[^\]]+\]\(([^)]+\.md[^)]*)\)')
 code_re = re.compile(r'`([^`]+\.md)`')
 glob_chars = set("*?{}[]")
+GEN_REPORTS = {"content-duplicates.md"}  # machine-generated reports quote excerpts, not real links
 for md in ROOT.rglob("*.md"):
     if ".git" in str(md) or "node_modules" in str(md): continue
+    if md.name in GEN_REPORTS: continue
     txt = read(md)
     for m in link_re.findall(txt) + code_re.findall(txt):
         if any(ch in m for ch in glob_chars):

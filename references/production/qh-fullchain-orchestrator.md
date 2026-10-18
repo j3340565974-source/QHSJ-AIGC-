@@ -130,9 +130,9 @@
 对应 QHSJ：
 - `../aesthetics/08-aesthetics-art-direction.md`
 - `../audio/qh-audiovisual-aesthetic-presets.md`
-- `../cinematography/qh-color-style-master.md`
+- `../cinematography/qh-color-style-master/index.md`
 - `../cinematography/qh-color-psychology-master.md`
-- `../genre/qh-gufeng-style.md`
+- `../genre/qh-gufeng-style/index.md`
 
 ## 8. Prompt 工程整合
 
@@ -151,7 +151,7 @@
 对应 QHSJ：
 - `../prompt-engineering/09-prompt-engineering.md`
 - `../prompt-engineering/qh-prompt-feeding-checklist.md`
-- `../prompt-engineering/qh-prompt-template-vault.md`
+- `../prompt-engineering/qh-prompt-template-vault/index.md`
 - `../prompt-engineering/qh-image-prompt-engine.md`
 
 ## 9. 工作流工程整合

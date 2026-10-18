@@ -1,14 +1,14 @@
 # 视频模型三层解耦、双画幅渲染与时长预算协议 (Seedance 2.5 / 2.0 Render Engine)
 
 > 🔗 **本文件是 P4 投喂生成的主模板入口，但非唯一依据**。生成投喂提示词前必须按序过完以下规范（完整执行序列见 `../prompt-engineering/qh-prompt-feeding-checklist.md`）：
-> ⓪ **模型版本强制锁定 → `10-model-adapters.md` 〇节**（Seedance 2.5 / 2.0 强制二选一，未指定不动笔；2.0 禁 `[SFX:]`、禁顿挫词，末尾参数行已废止）① 画幅路由 → `../platform/qh-aspect-ratio-adaptation.md`（★权威）② 镜头规格 → `../cinematography/qh-camera-specs-15rules.md` ③ 有对白 → `../novel-screenwriting/qh-dialogue-speed-check.md` + `../character-performance/qh-wenxi-micro-expression.md` ④ 战斗段 → `../action/qh-xuanhuan-magic-combat.md`（R3玄幻）/ `../action/qh-action-previs-15grid.md`（武侠）⑤ 出稿质检 → `../quality-safety/qh-quality-gate-review.md`。
+> ⓪ **模型版本强制锁定 → `10-model-adapters/index.md` 〇节**（Seedance 2.5 / 2.0 强制二选一，未指定不动笔；2.0 禁 `[SFX:]`、禁顿挫词，末尾参数行已废止）① 画幅路由 → `../platform/qh-aspect-ratio-adaptation.md`（★权威）② 镜头规格 → `../cinematography/qh-camera-specs-15rules.md` ③ 有对白 → `../novel-screenwriting/qh-dialogue-speed-check.md` + `../character-performance/qh-wenxi-micro-expression.md` ④ 战斗段 → `../action/qh-xuanhuan-magic-combat.md`（R3玄幻）/ `../action/qh-action-previs-15grid.md`（武侠）⑤ 出稿质检 → `../quality-safety/qh-quality-gate-review.md`。
 > ⚠️ 2026-09-01 实测教训：仅按本文件直接产出会漏掉语速自检/金句发酵/镜头五要素/微步进/Hit-Stop/R3 蓄力语法，必须全量过检。
 
 ---
 
 ## 一、 物理硬约束与时长预算协议
 
-1. **单单元时长约束**：每个独立生成单元严格控制在 **4 ~ 15 秒**（单镜 3~5 秒，一组 3~4 镜）；⚠️ 官方上限：Seedance 2.5 单次可生成 **4~30s** 并支持多轮延长——本包仍推荐每组 ≤15s（质量实践：节奏更可控、废片成本更低）；若用 15s 以上长段，必须用官方 `[起-止秒]` 时间戳分段且一镜连贯运镜过渡（`10-model-adapters.md` §5）。
+1. **单单元时长约束**：每个独立生成单元严格控制在 **4 ~ 15 秒**（单镜 3~5 秒，一组 3~4 镜）；⚠️ 官方上限：Seedance 2.5 单次可生成 **4~30s** 并支持多轮延长——本包仍推荐每组 ≤15s（质量实践：节奏更可控、废片成本更低）；若用 15s 以上长段，必须用官方 `[起-止秒]` 时间戳分段且一镜连贯运镜过渡（`10-model-adapters/index.md` §5）。
 2. **时长前置预算公式**：
    $$\text{目标视觉单元组数} = \frac{\text{预估成片总时长（秒）}}{12\sim 15 \text{ 秒 / 单元}}$$
    * 3 分钟（180 秒）成片必须拆解为 **14~15 组** 独立提示词，严禁场景 1:1 机械压缩！
@@ -19,7 +19,7 @@
 ## 二、 三层信息解耦框架 (3-Layer Decoupling)
 
 * **Layer 1 全局不变量**：画幅比例（16:9 横屏 / 9:16 竖屏）、模型版本（`Seedance 2.5` / `Seedance 2.0` 强制二选一；即梦次选，不参与锁定）、美术渲染风格、色调基调、核心角色/场景资产短锚点。
-* **Layer 2 空间与镜头变量**：秒级时间轴（官方原生 `[起-止秒]` 分段，见 `10-model-adapters.md` §5）、镜头规格五要素、主体物理发劲动作、接触点受力（Hit-Stop 顿挫感）、台词与声音标记（官方字符：音效 `<>`、台词 `{}`、音乐 `()`、字幕 `【】`；社区兼容写法 `[SFX: ...]` 仍可被识别）。
+* **Layer 2 空间与镜头变量**：秒级时间轴（官方原生 `[起-止秒]` 分段，见 `10-model-adapters/index.md` §5）、镜头规格五要素、主体物理发劲动作、接触点受力（Hit-Stop 顿挫感）、台词与声音标记（官方字符：音效 `<>`、台词 `{}`、音乐 `()`、字幕 `【】`；社区兼容写法 `[SFX: ...]` 仍可被识别）。
   * **Hit-Stop 三件套（打击硬度必写）**：兵刃/肢体相碰瞬间 = ①1~2 帧微停顿（打破平滑插值，杜绝“滑步/空气假打”）+ ②接触点微观火花迸射（枪尖红宝石与剑刃相交处火星）+ ③双刃咬死高频震颤声（Metallic Screech）。三件缺一，打击感发飘。
 * **Layer 3 分层负面排除**：画面防崩 + 题材专项排除 + 镜头动态排除。
 
@@ -97,7 +97,7 @@ $$	ext{锚定} = \text{角色}：\text{粒子色/光效} + \text{护甲材质} +
 
 ## 三、 标准提示词模板（七段式主格式 · 2026-09-15 用户裁定）
 
-> **七段式主格式的唯一权威定义见 `10-model-adapters.md` §5**（段序/站位声明/接续状态/禁写清单均以那里为准）。本节只给出可直接复制的完整示例模板。
+> **七段式主格式的唯一权威定义见 `10-model-adapters/index.md` §5**（段序/站位声明/接续状态/禁写清单均以那里为准）。本节只给出可直接复制的完整示例模板。
 
 ### 1. 16:9 横屏标准模板（电影级宽银幕）
 ```text

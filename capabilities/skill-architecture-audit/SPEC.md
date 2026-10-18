@@ -27,6 +27,4 @@ skill、路由、routing、路由器、缺失路由、没路由、没有路由�
 
 ## 相关知识库
 - `../../references/platform/20-coverage-and-conflicts.md`
-- `../../references/api-integration/p1-route-grammar.md`
 - `../../references/api-integration/route-grammar.md`
-- `../../references/platform/v322-20-coverage-and-conflicts.md`

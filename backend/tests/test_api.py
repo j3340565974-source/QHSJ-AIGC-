@@ -12,10 +12,10 @@ def test_health():
     body = resp.json()
     assert body["status"] == "ok"
     assert body["name"] == "qhsj-aigc"
-    assert body["version"] == "7.0.0"
+    assert body["version"] == "8.0.0"
     assert body["declared_counts"]["capabilities"] == 29
     assert body["declared_counts"]["workflows"] == 16
-    assert body["declared_counts"]["references"] == 684
+    assert body["declared_counts"]["references"] == 527
 
 
 def test_manifest():
@@ -23,7 +23,7 @@ def test_manifest():
     assert resp.status_code == 200
     body = resp.json()
     assert body["name"] == "qhsj-aigc"
-    assert body["version"] == "7.0.0"
+    assert body["version"] == "8.0.0"
     assert "declared_counts" in body
 
 

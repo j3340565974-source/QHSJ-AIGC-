@@ -28,10 +28,6 @@
 ## 相关知识库
 - `../../references/asset/asset-ledger.md`
 - `../../references/asset/asset-package-spec.md`
-- `../../references/asset/asset-validation-cases-500.md`
-- `../../references/asset/p1-asset-ledger.md`
-- `../../references/asset/p1-asset-package-spec.md`
-- `../../references/asset/p1-asset-validation-cases-500.md`
+- `../../references/asset/asset-validation-cases-500/index.md`
 - `../../references/asset/qh-asset-first-pipeline.md`
 - `../../references/asset/qhsj-asset-locking-protocol.md`
-- `../../references/asset/v322-qh-asset-first-pipeline.md`

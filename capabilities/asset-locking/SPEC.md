@@ -27,11 +27,7 @@
 
 ## 相关知识库
 - `../../references/asset/asset-ledger.md`
-- `../../references/asset/asset-validation-cases-500.md`
-- `../../references/asset/p1-asset-ledger.md`
-- `../../references/asset/p1-asset-validation-cases-500.md`
+- `../../references/asset/asset-validation-cases-500/index.md`
 - `../../references/spatial/qh-asset-spatial-ledger.md`
 - `../../references/asset/qh-production-ledger-handbook.md`
 - `../../references/asset/qhsj-asset-locking-protocol.md`
-- `../../references/spatial/v322-qh-asset-spatial-ledger.md`
-- `../../references/asset/v322-qh-production-ledger-handbook.md`

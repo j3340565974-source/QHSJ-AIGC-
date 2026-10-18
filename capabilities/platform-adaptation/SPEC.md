@@ -27,12 +27,7 @@
 
 ## 相关知识库
 - `../../references/platform/22-media-type-atlas.md`
-- `../../references/platform/p1-platform-algorithm-evidence.md`
-- `../../references/platform/p1-platform-playbooks.md`
-- `../../references/platform/p1-platform-script-patterns-180.md`
 - `../../references/platform/platform-algorithm-evidence.md`
 - `../../references/platform/platform-playbooks.md`
-- `../../references/platform/platform-script-patterns-180.md`
+- `../../references/platform/platform-script-patterns-180/index.md`
 - `../../references/platform/qh-aspect-ratio-adaptation.md`
-- `../../references/platform/v322-22-media-type-atlas.md`
-- `../../references/platform/v322-qh-aspect-ratio-adaptation.md`

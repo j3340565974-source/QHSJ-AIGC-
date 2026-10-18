@@ -30,9 +30,5 @@
 - `../../references/aesthetics/08-aesthetics-art-direction.md`
 - `../../references/aesthetics/21-style-genome.md`
 - `../../references/cinematography/qh-color-psychology-master.md`
-- `../../references/cinematography/qh-color-style-master.md`
+- `../../references/cinematography/qh-color-style-master/index.md`
 - `../../references/aesthetics/qh-director-style-genome.md`
-- `../../references/aesthetics/v322-08-aesthetics-art-direction.md`
-- `../../references/aesthetics/v322-21-style-genome.md`
-- `../../references/cinematography/v322-qh-color-style-master.md`
-- `../../references/aesthetics/v322-qh-director-style-genome.md`

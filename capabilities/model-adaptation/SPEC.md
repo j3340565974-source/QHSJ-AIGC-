@@ -28,11 +28,8 @@
 ## 相关知识库
 - `../../references/model-adaptation/06-model-adaptation.md`
 - `../../references/model-adaptation/08-model-adapters.md`
-- `../../references/model-adaptation/10-model-adapters.md`
+- `../../references/model-adaptation/10-model-adapters/index.md`
 - `../../references/core/compatibility-matrix.md`
-- `../../references/model-adaptation/model-adapter-cards.md`
-- `../../references/model-adaptation/model-atlas.md`
-- `../../references/model-adaptation/model-matrix-expanded.md`
-- `../../references/core/p1-compatibility-matrix.md`
-- `../../references/model-adaptation/p1-model-adapter-cards.md`
-- `../../references/model-adaptation/p1-model-matrix-expanded.md`
+- `../../references/model-adaptation/model-adapter-cards/index.md`
+- `../../references/model-adaptation/model-atlas/index.md`
+- `../../references/model-adaptation/model-matrix-expanded/index.md`

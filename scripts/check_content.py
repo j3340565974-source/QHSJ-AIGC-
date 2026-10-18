@@ -7,14 +7,23 @@ ROOT = Path(__file__).resolve().parent.parent
 errors = []
 warnings = []
 
+# Directories never scanned: VCS, dependency caches and build/test artifacts.
+SKIP_PARTS = {".git", "node_modules", ".pytest_cache", ".vite", ".mypy_cache",
+              "dist", "build", "__pycache__", "runs", ".uploads"}
+
+def iter_md():
+    for md in ROOT.rglob("*.md"):
+        if any(part in SKIP_PARTS for part in md.parts):
+            continue
+        yield md
+
 def read(p):
     try: return Path(p).read_text(encoding="utf-8")
     except: return ""
 
 def check_deprecated():
     """C9: files with deprecation marker must have 替代:"""
-    for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "node_modules" in str(md): continue
+    for md in iter_md():
         txt = read(md)
         # Only flag actual deprecation markers: blockquote DEPRECATED or Chinese 已废弃
         has_marker = bool(re.search(r'(^|\n)>\s*DEPRECATED|已废弃', txt, re.IGNORECASE))
@@ -32,12 +41,12 @@ def check_gate_phrases():
                     errors.append(f"{wf.relative_to(ROOT)}:{i}: gate conflict: {line.strip()[:60]}")
 
 def check_numbers():
-    """C6: 29/16/303 consistency"""
+    """C6: declared capability/workflow/reference counts consistency"""
     import json
     manifest = json.loads(read(ROOT / "manifest.json"))
     dc = manifest["declared_counts"]
-    for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "scan-baseline" in str(md) or "node_modules" in str(md): continue
+    for md in iter_md():
+        if "scan-baseline" in str(md): continue
         txt = read(md)
         for wrong in [f"{dc['capabilities']-1} 能力", f"{dc['capabilities']+1} 能力",
                       f"{dc['workflows']-1} 工作流", f"{dc['workflows']+1} 工作流",
@@ -57,8 +66,8 @@ def check_terms():
                     a = a.strip()
                     if a and a != "—" and len(a) > 1:
                         forbidden.add(a)
-    for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "glossary" in str(md) or "node_modules" in str(md): continue
+    for md in iter_md():
+        if "glossary" in str(md): continue
         txt = read(md)
         for a in forbidden:
             if a in txt:
@@ -70,8 +79,9 @@ def check_dangling_refs():
     link_re = re.compile(r'\[[^\]]+\]\(([^)]+\.md[^)]*)\)')
     code_re = re.compile(r'`([^`]+\.md)`')
     glob_chars = set("*?{}[]")
-    for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "node_modules" in str(md): continue
+    gen_reports = {"content-duplicates.md"}  # generated report quotes excerpts, not real links
+    for md in iter_md():
+        if md.name in gen_reports: continue
         txt = read(md)
         for m in link_re.findall(txt) + code_re.findall(txt):
             if any(ch in m for ch in glob_chars):
@@ -87,8 +97,7 @@ def check_duplicates():
     """C4: duplicate paragraphs. Fast hash-based detection."""
     import hashlib
     para_map = {}  # hash -> [(file, para)]
-    for md in ROOT.rglob("*.md"):
-        if ".git" in str(md) or "node_modules" in str(md): continue
+    for md in iter_md():
         txt = read(md)
         for para in re.split(r'\n\s*\n', txt):
             para = para.strip()

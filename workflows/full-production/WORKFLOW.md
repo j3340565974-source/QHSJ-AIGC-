@@ -1,7 +1,7 @@
 # 从创意到影视交付的分阶段生产管线；资产先行，先锁角色和场景，再进入分镜资产/视频提示词阶段。
 > 工作流 ID: `full-production`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 **描述**: 从创意到影视交付的分阶段生产管线；资产先行，先锁角色和场景，再进入分镜资产/视频提示词阶段。
 ## 触发条件
 - 完整项目
@@ -41,7 +41,7 @@
 **输入**: Canon, 创意目标
 **输出**: 故事结构, 剧本, 场次表, 人物与道具变化
 **模块**:
-- 模块: `../../references/novel-screenwriting/01-novel-screenplay.md`, `../../references/novel-screenwriting/qh-screenplay-gate-engine.md`, `../../references/core/qh-cinematic-dramaturgy-rules.md`
+- 模块: `../../references/novel-screenwriting/01-novel-screenplay/index.md`, `../../references/novel-screenwriting/qh-screenplay-gate-engine.md`, `../../references/core/qh-cinematic-dramaturgy-rules.md`
 **门禁**: 叙事因果, 角色动机, 场次目标, 对白可执行性
 ### P2 资产清单、视觉 Bible 与规格
 **输入**: 剧本/场次, 参考图, 用户角色/场景设定
@@ -55,21 +55,21 @@
 **输出**: 规范资产图或可投喂提示词, 版本锁, 资产一致性报告
 **模块**:
 - 模块: `../../workflows/asset-first/WORKFLOW.md`
-- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/asset/p1-asset-validation-cases-500.md`, `../../examples/templates/asset-lock-ledger.md`
+- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/asset/asset-validation-cases-500/index.md`, `../../examples/templates/asset-lock-ledger.md`
 **门禁**: 角色多视图一致, 场景拓扑一致, 道具身份一致, P0/P1 已修复
 **失败回退**: 返回 P2 更新规格或重新生成；不允许绕过资产锁进入分镜资产阶段
 ### P4 空间底图与连续性推演
 **输入**: 锁定的场景/角色/道具资产
 **输出**: 坐标约定, 固定锚点, 角色位置/朝向/视线, 距离约束, 摄影机可行区
 **模块**:
-- 模块: `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`, `../../references/spatial/qh-spatial-deduction-engine.md`, `../../references/spatial/continuity-state-library.md`, `../../examples/templates/spatial-continuity-ledger.md`
+- 模块: `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`, `../../references/spatial/qh-spatial-deduction-engine.md`, `../../references/spatial/continuity-state-library/index.md`, `../../examples/templates/spatial-continuity-ledger.md`
 **门禁**: 空间尺度来源清楚, 人物与场景关系可验证
 ### P5 分镜与动作/表演计划
 **条件**: ['按任务需要调用动作、武术、VFX模块']
 **输入**: 剧本/场次, 锁定资产, 空间底图
 **输出**: 文字分镜, 镜头起终态, 动作/视线/表演/声音标记
 **模块**:
-- 模块: `../../references/storyboard/02-storyboard-directing.md`, `../../references/cinematography/03-cinematography.md`, `../../references/character-performance/05-character-performance.md`, `../../references/action/10-action-choreography.md`, `../../references/vfx/12-vfx-motion-physics.md`
+- 模块: `../../references/storyboard/02-storyboard-directing/index.md`, `../../references/cinematography/03-cinematography.md`, `../../references/character-performance/05-character-performance.md`, `../../references/action/10-action-choreography.md`, `../../references/vfx/12-vfx-motion-physics.md`
 **门禁**: 动作时长可实现, 站位与轴线正确, 表演有可见/可听依据
 ### P6 可选分镜资产构建
 **条件**: 用户需要故事板图片、关键帧或每镜资产图
@@ -83,14 +83,14 @@
 **输入**: 已通过 QA 的分镜, 锁定资产引用, 模型能力证据
 **输出**: 模型中立提示词, 图片/视频提示词, 适配差异和兼容风险
 **模块**:
-- 模块: `../../references/prompt-engineering/07-prompt-engineering.md`, `../../references/model-adaptation/08-model-adapters.md`, `../../references/model-adaptation/model-atlas.md`, `../../references/model-adaptation/model-matrix-expanded.md`, `../../references/prompt-engineering/14-ultimate-video-prompt.md`
+- 模块: `../../references/prompt-engineering/07-prompt-engineering/index.md`, `../../references/model-adaptation/08-model-adapters.md`, `../../references/model-adaptation/model-atlas/index.md`, `../../references/model-adaptation/model-matrix-expanded/index.md`, `../../references/prompt-engineering/14-ultimate-video-prompt.md`
 **门禁**: 不修改 Canon/锁定资产, 时效性声明已核验或标注待验证
 ### P8 声音/VFX/后期计划
 **条件**: 用户要求音频、特效或后期声音/视觉设计
 **输入**: 分镜时间轴, 动作/环境状态, 交付媒介
 **输出**: 声音分层、配音节拍、VFX参数和后期清单
 **模块**:
-- 模块: `../../references/audio/11-audio-voice.md`, `../../references/vfx/12-vfx-motion-physics.md`, `../../references/vfx/qh-vfx-parametric-library.md`
+- 模块: `../../references/audio/11-audio-voice.md`, `../../references/vfx/12-vfx-motion-physics.md`, `../../references/vfx/qh-vfx-parametric-library/index.md`
 **门禁**: 音画时间对齐, 特效有空间/光照/受力因果
 ### P9 多智能体/多角色 QA 与修复回归
 **输入**: 所有实际生成的产物及源文件

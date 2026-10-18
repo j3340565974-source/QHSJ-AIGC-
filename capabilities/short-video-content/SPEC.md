@@ -27,10 +27,6 @@
 
 ## 相关知识库
 - `../../references/platform/03-short-video.md`
-- `../../references/platform/hook-library.md`
-- `../../references/platform/p1-hook-library.md`
-- `../../references/platform/p1-platform-playbooks.md`
-- `../../references/platform/p1-platform-script-patterns-180.md`
+- `../../references/platform/hook-library/index.md`
 - `../../references/platform/platform-playbooks.md`
-- `../../references/platform/platform-script-patterns-180.md`
-- `../../references/platform/v322-03-short-video.md`
+- `../../references/platform/platform-script-patterns-180/index.md`

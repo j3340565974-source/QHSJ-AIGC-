@@ -42,7 +42,7 @@ export function initApp(root: HTMLElement) {
       </section>
     </main>
     <footer class="ftr">
-      <span>v7.0.0 · 路由匹配单一数据源：routes.json</span>
+      <span>v8.0.0 · 路由匹配单一数据源：routes.json</span>
     </footer>
   `;
 

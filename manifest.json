@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/manifest.schema.json",
   "name": "qhsj-aigc",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "entry": "SKILL.md",
   "capabilities_dir": "capabilities/",
   "workflows_dir": "workflows/",
@@ -12,6 +12,6 @@
   "declared_counts": {
     "capabilities": 29,
     "workflows": 16,
-    "references": 684
+    "references": 527
   }
 }

@@ -35,4 +35,3 @@
 - `../../references/cinematography/qh-lighting-and-antifake.md`
 - `../../references/cinematography/qh-seedance-lighting.md`
 - `../../references/cinematography/qh-shot-language-quickref.md`
-- `../../references/cinematography/v322-qh-action-cinematography-breakdown.md`

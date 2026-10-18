@@ -23,7 +23,7 @@
 | **武打空间感** | 横幅利于长距离位移展示（腾空横飞、贴地滑行） | 垂直动势（下劈、贴地滑行、跳起下砸、冲镜） | `../action/qh-action-previs-15grid.md` |
 | **大招运镜** | 三段式横移+广角+低仰（左右冲击波扫场） | 垂直拉升+俯冲+高低位（法相压顶/腾空爆发） | `../action/qh-action-ultimate-finisher.md` / `../vfx/qh-anime-ultimate-vfx-paradigm.md` |
 | **时间轴分镜模板** | `../model-adaptation/qh-seedance-render-engine.md` §三·1（16:9 横屏模板） | §三·2（9:16 竖屏模板） | `../model-adaptation/qh-seedance-render-engine.md` |
-| **三层解耦投喂范式** | 主体/环境/运镜三层全按横屏构图描述 | 按竖屏构图描述 | `../model-adaptation/10-model-adapters.md` |
+| **三层解耦投喂范式** | 主体/环境/运镜三层全按横屏构图描述 | 按竖屏构图描述 | `../model-adaptation/10-model-adapters/index.md` |
 | **API/工作流参数** | `aspect_ratio=16:9` | `aspect_ratio=9:16` | `../model-adaptation/qh-comfyui-canvas-automation.md` |
 | **质检（P0）** | 检查所有输出画幅=用户指定值，混用/回退竖屏=阻断 | 同上 | `../quality-safety/qh-quality-gate-review.md` |
 
@@ -61,6 +61,6 @@
 ## 四、 与各模块联动方式
 
 - `../../SKILL.md`：核心法则第 10 条引用本文件；
-- `../model-adaptation/qh-seedance-render-engine.md` / `../model-adaptation/10-model-adapters.md` / `../model-adaptation/qh-comfyui-canvas-automation.md`：生成时先读本文件锁定画幅再套模板；
+- `../model-adaptation/qh-seedance-render-engine.md` / `../model-adaptation/10-model-adapters/index.md` / `../model-adaptation/qh-comfyui-canvas-automation.md`：生成时先读本文件锁定画幅再套模板；
 - `../cinematography/qh-camera-specs-15rules.md` / `../action/qh-action-previs-15grid.md` / `../action/qh-combat-direction-engine.md`：构图建议按本文件横/竖两套切换；
 - `../quality-safety/qh-quality-gate-review.md`：P0 门禁新增"画幅一致性"检查项。

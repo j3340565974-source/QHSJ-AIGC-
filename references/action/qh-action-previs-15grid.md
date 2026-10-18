@@ -1,4 +1,4 @@
-<!-- 🔎 导航：本文件为「武打动力学权威总纲」（含动作强度三档 R1/R2/R3、11 环动力链、防守三态、闪避大幅化）。v6.5 起新增独立深挖参考文件：combat-direction-engine / combat-rhythm-defense3state / camera-specs-15rules，与本文件协同不冲突。V6.7 起全流程前置「模型版本强制锁定」（Seedance 2.5 / 2.0 强制二选一），见 SKILL.md 〇节与 10-model-adapters.md 〇节。 -->
+<!-- 🔎 导航：本文件为「武打动力学权威总纲」（含动作强度三档 R1/R2/R3、11 环动力链、防守三态、闪避大幅化）。v6.5 起新增独立深挖参考文件：combat-direction-engine / combat-rhythm-defense3state / camera-specs-15rules，与本文件协同不冲突。V6.7 起全流程前置「模型版本强制锁定」（Seedance 2.5 / 2.0 强制二选一），见 SKILL.md 〇节与 10-model-adapters/index.md 〇节。 -->
 
 # 通用打戏动作动力学与 15 秒 PREVIS 导演系统 (Action Previs & Combat Engine)
 

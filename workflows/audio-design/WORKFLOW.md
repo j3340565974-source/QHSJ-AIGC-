@@ -2,7 +2,7 @@
 
 > 工作流 ID: `audio-design`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 
 **描述**: 统一对白、表演节拍、环境音、拟音、配乐与混音层次
 
@@ -36,7 +36,7 @@
 **输出**: 环境底噪、动作拟音、重点音效和空间混响
 
 **模块**:
-- 模块: `../../references/audio/11-audio-sound.md`, `../../references/model-adaptation/qh-seedance-audio.md`
+- 模块: `../../references/audio/11-audio-sound.md`, `../../references/model-adaptation/qh-seedance-audio/index.md`
 
 **并行**: True
 
@@ -46,7 +46,7 @@
 **输出**: 声音时间轴、冲突与缺口清单
 
 **模块**:
-- 模块: `../../references/quality-safety/13-quality-gates.md`, `../../references/quality-safety/qa-checklist-320.md`
+- 模块: `../../references/quality-safety/13-quality-gates.md`, `../../references/quality-safety/qa-checklist-320/index.md`
 
 ## 最终产物
 - 声音设计说明

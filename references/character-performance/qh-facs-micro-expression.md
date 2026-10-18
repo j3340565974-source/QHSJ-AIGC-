@@ -65,7 +65,7 @@
 
 - `qh-wenxi-micro-expression.md`：六阶段管情绪弧线递进，本引擎把每阶段落成 AU 肌肉动作，两者叠加使用；
 - `qh-emotion-beat-curve.md`：12 节拍定全片情绪点位，点位峰值用〔显/强〕档，过渡用〔痕〕档；
-- `../model-adaptation/10-model-adapters.md` 〇节：模型版本锁定后 AU 语法仍全版本可用；Seedance 2.0 文戏表演指令简化时，AU 配方**保留但幅度一律从〔痕〕起**、逐拍极简（配合 `qh-wenxi-micro-expression.md` §三 逐拍分解语法）；
+- `../model-adaptation/10-model-adapters/index.md` 〇节：模型版本锁定后 AU 语法仍全版本可用；Seedance 2.0 文戏表演指令简化时，AU 配方**保留但幅度一律从〔痕〕起**、逐拍极简（配合 `qh-wenxi-micro-expression.md` §三 逐拍分解语法）；
 - `../prompt-engineering/qh-prompt-feeding-checklist.md`：Step 4 有"表情 FACS 化"检查项；负面排除用其 §二 标准负面词清单（脸崩/磨皮塑料感等）；
 - `../quality-safety/qh-platform-safety-compliance-guide.md`：痛苦/哭/伤害类表情按合规转译，禁血腥细节。
 

@@ -2,7 +2,7 @@
 
 > 工作流 ID: `api-integration`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 
 **描述**: 从能力需求到接口契约、参数校验、平台适配、安全边界与集成测试
 
@@ -28,7 +28,7 @@
 **输出**: 请求/响应schema、错误码、重试策略和超时边界
 
 **模块**:
-- 模块: `../../references/api-integration/api-contracts.md`, `../../references/api-integration/api-request-patterns-160.md`
+- 模块: `../../references/api-integration/api-contracts.md`, `../../references/api-integration/api-request-patterns-160/index.md`
 
 ### API2 集成与参数验证
 **输入**: 接口契约
@@ -45,7 +45,7 @@
 **输出**: 测试矩阵、失败回退方案、部署说明
 
 **模块**:
-- 模块: `../../references/quality-safety/15-safety-compliance.md`, `../../references/quality-safety/failure-playbook-220.md`, `../../references/quality-safety/qa-checklist-320.md`
+- 模块: `../../references/quality-safety/15-safety-compliance.md`, `../../references/quality-safety/failure-playbook-220/index.md`, `../../references/quality-safety/qa-checklist-320/index.md`
 
 ## 最终产物
 - 接口契约

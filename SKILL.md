@@ -4,10 +4,10 @@ description: "AIGC 视听创作全流程 Agent Skill。用户用中文白话描�
 license: MIT
 compatibility: "Claude Code / OpenAI Codex / GitHub Copilot / Cursor / 通用 Agent Skill 运行时"
 metadata:
-  version: "7.0.0"
+  version: "8.0.0"
   capabilities: 29
   workflows: 16
-  references: 684
+  references: 527
 ---
 
 # QHSJ-AIGC
@@ -82,7 +82,7 @@ metadata:
 
 - **29 能力**：`capabilities/index.md`
 - **16 工作流**：`workflows/index.md`
-- **684 知识库**：`references/index.md`
+- **527 知识库**：`references/index.md`
 
 ## 加载协议
 

@@ -28,6 +28,4 @@
 ## 相关知识库
 - `../../references/character-performance/05-character-performance.md`
 - `../../references/asset/asset-package-spec.md`
-- `../../references/asset/p1-asset-package-spec.md`
 - `../../references/character-performance/qh-character-lineage-and-sheets.md`
-- `../../references/character-performance/v322-qh-character-lineage-and-sheets.md`

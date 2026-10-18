@@ -26,8 +26,7 @@
 （见 routes.json capability_dependencies）
 
 ## 相关知识库
-- `../../references/core/15-qhsj-master-engine.md`
+- `../../references/core/15-qhsj-master-engine/index.md`
 - `../../references/production/qh-fullchain-orchestrator.md`
 - `../../references/asset/qh-production-ledger-handbook.md`
-- `../../references/core/qh-qhsj-system-core.md`
-- `../../references/asset/v322-qh-production-ledger-handbook.md`
+- `../../references/core/qh-qhsj-system-core/index.md`

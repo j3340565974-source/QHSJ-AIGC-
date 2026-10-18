@@ -1,7 +1,7 @@
 # 先建立资产清单与规范，再分别生成角色/场景/道具资产，完成核验锁定后才能生成分镜资产。
 > 工作流 ID: `asset-first`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 **描述**: 先建立资产清单与规范，再分别生成角色/场景/道具资产，完成核验锁定后才能生成分镜资产。
 ## 触发条件
 - 资产前置
@@ -60,7 +60,7 @@ require_versioned_changes: true
 **输入**: 用户需求, 剧本/场次, 参考素材, 项目状态
 **输出**: 硬约束表, Canon, 缺失变量表, 资产来源表
 **模块**:
-- 模块: `../../references/director-style/01-director-thinking-core.md`, `../../references/novel-screenwriting/01-novel-screenplay.md`, `../../references/asset/qhsj-asset-locking-protocol.md`
+- 模块: `../../references/director-style/01-director-thinking-core.md`, `../../references/novel-screenwriting/01-novel-screenplay/index.md`, `../../references/asset/qhsj-asset-locking-protocol.md`
 **门禁**: 资产范围已明确, 用户硬约束已保留
 ### A1 建立资产目录与稳定 ID
 **输入**: Canon, 角色/场景/道具线索
@@ -72,7 +72,7 @@ require_versioned_changes: true
 **输入**: 资产清单, 用户视觉要求
 **输出**: 视觉 Bible, 角色规格卡, 锁定字段/可变字段, 场景美术规格
 **模块**:
-- 模块: `../../references/character-performance/05-character-performance.md`, `../../references/aesthetics/06-aesthetics-style.md`, `../../references/cinematography/qh-color-style-master.md`, `../../references/asset/qhsj-asset-locking-protocol.md`
+- 模块: `../../references/character-performance/05-character-performance.md`, `../../references/aesthetics/06-aesthetics-style.md`, `../../references/cinematography/qh-color-style-master/index.md`, `../../references/asset/qhsj-asset-locking-protocol.md`
 **并行**: True
 **门禁**: 角色身份字段齐全, 视觉风格不与 Canon 冲突
 ### A3 角色资产图生成或提示词交付
@@ -100,7 +100,7 @@ require_versioned_changes: true
 **输入**: 角色/场景/道具产物, 原始 Canon
 **输出**: 规范资产版本, 锁定台账, 质量报告, 未解决项
 **模块**:
-- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/asset/p1-asset-validation-cases-500.md`, `../../references/quality-safety/16-quality-gates.md`, `../../examples/templates/asset-lock-ledger.md`
+- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/asset/asset-validation-cases-500/index.md`, `../../references/quality-safety/16-quality-gates.md`, `../../examples/templates/asset-lock-ledger.md`
 **门禁**: 身份门禁, 结构门禁, 材质门禁, 约束门禁, 来源门禁
 **失败回退**: 将缺陷归因到规格或生成阶段，修复后重验；禁止跳过锁定门禁
 ### A7 空间拓扑与连续性底图
@@ -114,7 +114,7 @@ require_versioned_changes: true
 **输入**: 锁定角色资产, 锁定场景资产, 道具资产, 空间账本, 分镜设计
 **输出**: 逐镜资产图/提示词, 资产引用矩阵, 每镜 allowed_variations
 **模块**:
-- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`, `../../references/storyboard/02-storyboard-directing.md`, `../../references/cinematography/qh-shot-language-quickref.md`, `../../examples/templates/storyboard-board.md`
+- 模块: `../../references/asset/qhsj-asset-locking-protocol.md`, `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`, `../../references/storyboard/02-storyboard-directing/index.md`, `../../references/cinematography/qh-shot-language-quickref.md`, `../../examples/templates/storyboard-board.md`
 **门禁**: 每镜引用角色/场景/道具 ID 与版本, 未授权变化字段为空, 视线/距离/相机/动作检查通过
 **失败回退**: 回退到 A2-A7 对应阶段；不得通过提示词重复“保持一致”掩盖根因
 ### A9 最终资产与依赖回归

@@ -28,8 +28,7 @@
 ## 相关知识库
 - `../../references/spatial/04-spatial-continuity.md`
 - `../../references/spatial/05-spatial-continuity.md`
-- `../../references/spatial/continuity-state-library.md`
-- `../../references/spatial/p1-continuity-state-library.md`
+- `../../references/spatial/continuity-state-library/index.md`
 - `../../references/spatial/qh-blocking-positioning-master.md`
 - `../../references/spatial/qh-spatial-deduction-engine.md`
 - `../../references/spatial/qh-spatial-reference-system-V3.md`

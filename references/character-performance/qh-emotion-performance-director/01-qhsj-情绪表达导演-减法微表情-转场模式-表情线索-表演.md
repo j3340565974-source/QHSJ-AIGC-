@@ -37,7 +37,7 @@
 5. 保留 A 与 B 短暂并存的桥接状态。
 6. 让目标情绪完成转折并停留片刻。
 
-优先使用眼神、眼睑、眉间、嘴角、嘴唇、下巴、呼吸和头部的细微变化。需要细化表情时读取 [references/qh-facs-micro-expression.md](#表情动作参考)；需要选择转折结构和时长分配时读取 [references/qh-emotion-beat-curve.md](#情绪转折与时间轴)。每次生成或改写人物表情视频提示词时，读取 [references/qh-facs-micro-expression.md](#减法式微表情提示词)，用“强度控制 + 动作归因 + 时间顺序”检查并精简表演。遇到长镜头、演技派、情绪层层失守、边执行任务边发生情绪变化或参考视频式表演时，必须读取 [references/qh-acting-systems.md](#双轨长镜头与演技连续性)。
+优先使用眼神、眼睑、眉间、嘴角、嘴唇、下巴、呼吸和头部的细微变化。需要细化表情时读取 [references/character-performance/qh-facs-micro-expression.md](#表情动作参考)；需要选择转折结构和时长分配时读取 [references/character-performance/qh-emotion-beat-curve.md](#情绪转折与时间轴)。每次生成或改写人物表情视频提示词时，读取 [references/character-performance/qh-facs-micro-expression.md](#减法式微表情提示词)，用“强度控制 + 动作归因 + 时间顺序”检查并精简表演。遇到长镜头、演技派、情绪层层失守、边执行任务边发生情绪变化或参考视频式表演时，必须读取 [references/character-performance/qh-acting-systems.md](#双轨长镜头与演技连续性)。
 
 ## 设计双轨表演
 

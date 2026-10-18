@@ -81,7 +81,7 @@
 - 公开项目强调 Intake → Director Decisions → Character/Scene Anchors → Storyboard → Platform Prompts → QC → Execution Package。
 - 项目公开许可为 MIT。
 - QHSJ 对应：
-  `../director-style/qh-director-master-v4.md`
+  `../director-style/qh-director-master-v4/index.md`
   `../asset/qh-asset-first-pipeline.md`
   `../production/qh-output-frame-protocol.md`
 

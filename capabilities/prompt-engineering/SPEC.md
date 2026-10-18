@@ -26,13 +26,11 @@
 （见 routes.json capability_dependencies）
 
 ## 相关知识库
-- `../../references/prompt-engineering/07-prompt-engineering.md`
+- `../../references/prompt-engineering/07-prompt-engineering/index.md`
 - `../../references/prompt-engineering/09-prompt-engineering.md`
 - `../../references/prompt-engineering/11-prompt-engineering.md`
 - `../../references/prompt-engineering/23-prompt-operator-engineering.md`
 - `../../references/prompt-engineering/bonsai-context-engineering.md`
-- `../../references/prompt-engineering/p1-bonsai-context-engineering.md`
-- `../../references/prompt-engineering/p1-prompt-formulas.md`
-- `../../references/prompt-engineering/p1-wording-and-safety.md`
 - `../../references/prompt-engineering/prompt-formulas.md`
-- `../../references/prompt-engineering/qh-prompt-template-vault.md`
+- `../../references/prompt-engineering/wording-and-safety.md`
+- `../../references/prompt-engineering/qh-prompt-template-vault/index.md`

@@ -26,12 +26,13 @@
 （见 routes.json capability_dependencies）
 
 ## 相关知识库
-- `../../references/prompt-engineering/07-prompt-engineering.md`
+- `../../references/prompt-engineering/07-prompt-engineering/index.md`
 - `../../references/prompt-engineering/09-prompt-engineering.md`
 - `../../references/prompt-engineering/11-prompt-engineering.md`
-- `../../references/prompt-engineering/p1-prompt-formulas.md`
-- `../../references/aesthetics/p1-visuals-style-library.md`
 - `../../references/prompt-engineering/prompt-formulas.md`
+- `../../references/aesthetics/visuals-style-library/index.md`
 - `../../references/prompt-engineering/qh-image-prompt-engine.md`
-- `../../references/prompt-engineering/v322-09-prompt-engineering.md`
-- `../../references/aesthetics/visuals-style-library.md`
+- `../../references/spatial/qh-blocking-positioning-master.md`
+- `../../references/spatial/qh-spatial-reference-system-V3.md`
+- `../../references/spatial/qhsj-spatial-gaze-distance-ledger.md`
+- `../../references/vfx/qh-video-physics-precision.md`

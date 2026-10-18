@@ -26,13 +26,10 @@
 （见 routes.json capability_dependencies）
 
 ## 相关知识库
-- `../../references/storyboard/02-storyboard-directing.md`
+- `../../references/storyboard/02-storyboard-directing/index.md`
 - `../../references/storyboard/04-storyboard-directing.md`
 - `../../references/storyboard/08-storyboard-directing.md`
-- `../../references/storyboard/p1-scene-atom-library.md`
-- `../../references/storyboard/p1-shot-recipe-library.md`
+- `../../references/storyboard/scene-atom-library/index.md`
+- `../../references/storyboard/shot-recipe-library/index.md`
 - `../../references/storyboard/qh-fight-storyboard-dsl.md`
 - `../../references/storyboard/qh-storyboard-board-lite.md`
-- `../../references/storyboard/scene-atom-library.md`
-- `../../references/storyboard/shot-recipe-library.md`
-- `../../references/storyboard/v322-04-storyboard-directing.md`

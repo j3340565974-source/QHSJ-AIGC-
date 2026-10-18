@@ -29,10 +29,8 @@
 - `../../references/quality-safety/13-quality-gates.md`
 - `../../references/quality-safety/14-quality-evolution.md`
 - `../../references/quality-safety/16-quality-gates.md`
-- `../../references/quality-safety/failure-playbook-220.md`
-- `../../references/quality-safety/p1-failure-playbook-220.md`
-- `../../references/quality-safety/p1-qa-checklist-320.md`
-- `../../references/quality-safety/qa-checklist-320.md`
+- `../../references/quality-safety/failure-playbook-220/index.md`
+- `../../references/quality-safety/qa-checklist-320/index.md`
 - `../../references/prompt-engineering/qh-prompt-feeding-checklist.md`
 - `../../references/quality-safety/qh-quality-gate-review.md`
 - `../../references/novel-screenwriting/qh-screenplay-gate-engine.md`

@@ -1,3 +1,0 @@
-# prompt-transformation-lab
-
-> 本文件已拆分为子目录，详见 [prompt-transformation-lab/](../novel-screenwriting/01-novel-screenplay/index.md)

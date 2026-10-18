@@ -2,7 +2,7 @@
 
 > 工作流 ID: `platform-short-video`
 
-**版本**: 7.0.0
+**版本**: 8.0.0
 
 **描述**: 从受众与平台目标到短视频脚本、镜头节奏、声音和发布包装
 
@@ -28,7 +28,7 @@
 **输出**: 开场钩子、冲突节拍、完整脚本
 
 **模块**:
-- 模块: `../../references/platform/hook-library.md`, `../../references/platform/platform-script-patterns-180.md`, `../../references/platform/03-short-video.md`
+- 模块: `../../references/platform/hook-library/index.md`, `../../references/platform/platform-script-patterns-180/index.md`, `../../references/platform/03-short-video.md`
 
 ### SV2 视觉节奏与声音设计（并行）
 **输入**: 脚本和目标时长

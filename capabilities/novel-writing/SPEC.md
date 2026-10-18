@@ -27,9 +27,6 @@
 
 ## 相关知识库
 - `../../references/novel-screenwriting/01-novel-engine.md`
-- `../../references/novel-screenwriting/01-novel-screenplay.md`
+- `../../references/novel-screenwriting/01-novel-screenplay/index.md`
 - `../../references/novel-screenwriting/02-screenwriting.md`
 - `../../references/novel-screenwriting/creative-theory.md`
-- `../../references/novel-screenwriting/p1-creative-theory.md`
-- `../../references/novel-screenwriting/v322-01-novel-engine.md`
-- `../../references/novel-screenwriting/v322-02-screenwriting.md`

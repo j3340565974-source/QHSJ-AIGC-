@@ -2,7 +2,7 @@
 
 > ⭐ **全局总控流程（★权威）**：本文件定义本 skill 从立项到成片的**唯一生产顺序**。所有模块（剧本/资产/分镜/渲染/质检）都挂载在这六阶段上，禁止跳步、禁止以文字描述替代资产图。
 >
-> 🔗 联动：画幅/风格/平台锁定 → `../platform/qh-aspect-ratio-adaptation.md`；剧本门控 → `../novel-screenwriting/qh-screenplay-gate-engine.md`；资产图执行 → `../spatial/qh-asset-spatial-ledger.md` / `../character-performance/qh-character-lineage-and-sheets.md` / `qh-production-ledger-handbook.md`；分镜 → `../cinematography/qh-spatial-topview-camera.md` / `../action/qh-action-previs-15grid.md`；渲染 → `../model-adaptation/qh-seedance-render-engine.md` / `../model-adaptation/10-model-adapters.md`；质检 → `../quality-safety/qh-quality-gate-review.md`。
+> 🔗 联动：画幅/风格/平台锁定 → `../platform/qh-aspect-ratio-adaptation.md`；剧本门控 → `../novel-screenwriting/qh-screenplay-gate-engine.md`；资产图执行 → `../spatial/qh-asset-spatial-ledger.md` / `../character-performance/qh-character-lineage-and-sheets.md` / `qh-production-ledger-handbook.md`；分镜 → `../cinematography/qh-spatial-topview-camera.md` / `../action/qh-action-previs-15grid.md`；渲染 → `../model-adaptation/qh-seedance-render-engine.md` / `../model-adaptation/10-model-adapters/index.md`；质检 → `../quality-safety/qh-quality-gate-review.md`。
 
 ---
 

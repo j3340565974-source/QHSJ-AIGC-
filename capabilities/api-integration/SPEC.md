@@ -27,9 +27,6 @@ API、接口契约、请求示例、接口集成、自动化接口、HTTP请求�
 
 ## 相关知识库
 - `../../references/api-integration/api-contracts.md`
-- `../../references/api-integration/api-request-patterns-160.md`
-- `../../references/api-integration/p1-api-contracts.md`
-- `../../references/api-integration/p1-api-request-patterns-160.md`
+- `../../references/api-integration/api-request-patterns-160/index.md`
 - `../../references/model-adaptation/qh-agent-platform-adapters.md`
 - `../../references/api-integration/qh-external-skill-integration.md`
-- `../../references/model-adaptation/v322-qh-agent-platform-adapters.md`

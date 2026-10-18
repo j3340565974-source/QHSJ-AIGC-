@@ -30,9 +30,7 @@
 - `../../references/character-performance/06-performance-control.md`
 - `../../references/character-performance/12-performance-emotion.md`
 - `../../references/character-performance/emotion-curves.md`
-- `../../references/character-performance/p1-emotion-curves.md`
-- `../../references/character-performance/p1-performance-recipes.md`
-- `../../references/character-performance/performance-recipes.md`
+- `../../references/character-performance/performance-recipes/index.md`
 - `../../references/character-performance/qh-emotion-beat-curve.md`
 - `../../references/character-performance/qh-facs-au-dictionary.md`
 - `../../references/character-performance/qh-facs-emotion-recipes.md`
