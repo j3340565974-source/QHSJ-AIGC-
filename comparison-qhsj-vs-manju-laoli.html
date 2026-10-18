@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QHSJ v8.0.0 vs 漫剧老李 V7.4.20 全维度对比</title>
+<style>
+  :root{
+    --bg:#0f1115;--panel:#161a21;--panel2:#1d232c;--line:#2a313d;
+    --txt:#e6e9ef;--muted:#9aa4b2;--accent:#7c5cff;--good:#3ecf8e;--warn:#ffb547;--bad:#ff6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:32px 16px}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:28px;margin-bottom:8px}
+  h1 .sub{color:var(--muted);font-size:15px;font-weight:400;display:block;margin-top:6px}
+  h2{font-size:20px;margin:40px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;flex:1;min-width:240px}
+  .card h3{font-size:14px;color:var(--muted);margin-bottom:6px;font-weight:500}
+  .card .v{font-size:22px;font-weight:700}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;background:var(--panel);border-radius:12px;overflow:hidden}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+  tr:last-child td{border-bottom:none}
+  .dim{width:18%;color:var(--accent);font-weight:600;white-space:nowrap}
+  .ml{width:41%}
+  .qh{width:41%}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;margin-right:4px}
+  .tag-good{background:rgba(62,207,142,.15);color:var(--good)}
+  .tag-warn{background:rgba(255,181,71,.15);color:var(--warn)}
+  .tag-bad{background:rgba(255,107,107,.15);color:var(--bad)}
+  .note{background:var(--panel2);border-left:3px solid var(--accent);padding:14px 18px;border-radius:8px;margin:16px 0;font-size:14px;color:var(--muted)}
+  .verdict{margin-top:32px;padding:24px;background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(62,207,142,.08));border:1px solid var(--line);border-radius:14px}
+  .verdict h2{border:none;margin:0 0 14px;padding:0}
+  ul{padding-left:22px}
+  li{margin:4px 0}
+  code{background:var(--panel2);padding:2px 6px;border-radius:4px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>QHSJ-AIGC v8.0.0 vs 漫剧老李 V7.4.20<span class="sub">AIGC 短剧/漫剧全流程 Skill 全维度对比 · 2026-01</span></h1>
+
+  <div class="meta">
+    <div class="card"><h3>QHSJ 版本</h3><div class="v">v8.0.0</div></div>
+    <div class="card"><h3>漫剧老李版本</h3><div class="v">V7.4.20</div></div>
+    <div class="card"><h3>QHSJ 能力 / 工作流 / 知识库</h3><div class="v">29 / 16 / 527</div></div>
+    <div class="card"><h3>漫剧老李 技能 / 规则库</h3><div class="v">1 总控 + 12 子 / 48 份</div></div>
+  </div>
+
+  <div class="note">
+    数据来源：QHSJ 仓库 <code>/workspace</code>（SKILL.md / capabilities / workflows / references）；漫剧老李来源 GitHub
+    <a href="https://github.com/lixiaoxiao9888-create/manju-laoli-skill" style="color:var(--accent)">lixiaoxiao9888-create/manju-laoli-skill</a>
+    README（V7.4.20）与 ColaSkill 介绍页。对比以"工业级全流程 AIGC 视听创作"为共同锚点。
+  </div>
+
+  <h2>一、架构与组织形态</h2>
+  <table>
+    <tr><th class="dim">维度</th><th class="ml">漫剧老李 V7.4.20</th><th class="qh">QHSJ v8.0.0</th></tr>
+    <tr>
+      <td class="dim">组织形态</td>
+      <td>多技能套装：1 总控 <code>short-drama-director</code> + 12 个子技能 <code>sd-*-engine</code>，四层纵深（L0 总控 / L1 决策 / L2 生产 / L3 交付）。子技能需同级部署。</td>
+      <td>单 Skill 包 + 能力路由：1 个 <code>SKILL.md</code> 总控，29 个 <code>capabilities/*</code> 能力 + 16 个 <code>workflows/*</code> 工作流，通过 <code>capability-routes.json</code> 做多标签调度与依赖闭包。</td>
+    </tr>
+    <tr>
+      <td class="dim">调度核心</td>
+      <td>总控内建六道前置锁（〇·0 赛道 / 〇·1 素材来源 / A 模型 / B 画幅 / C 交付形态 / D 段缝）+ 画风锁，未指定必须停下询问。</td>
+      <td>六步工作法：意图解析 → 多标签路由 → 工作流匹配 → 能力叠加 → 依赖闭包 → 质量门禁；<code>intent-analysis</code> 强制入口，多命中按 priority 并行叠加。</td>
+    </tr>
+    <tr>
+      <td class="dim">上下文工程</td>
+      <td>48 份规则库，单层 references，未显式分层加载协议。</td>
+      <td><span class="tag tag-good">优势</span> 三层加载协议：L0 索引 ≤4KB / L1 单单元 ≤12KB / L2 全文不整载；单次 ≤4 文件；产物 >20 行强制落盘 <code>runs/</code>，上下文只留摘要。</td>
+    </tr>
+    <tr>
+      <td class="dim">工程化自检</td>
+      <td>Python 脚本 <code>check_package.py</code> / <code>validate_prompt.py</code>（C1~C26，子码 98 条）/ <code>gate_check.py</code> / <code>build_board_lite.py</code>。</td>
+      <td><code>Makefile</code> + <code>make check-all</code>：结构检查 16/16、内容检查、分片覆盖 42/42、evals 145/145、pytest 35/35、frontend vite build；含 ADR、路由构建脚本、golden 样例。</td>
+    </tr>
+  </table>
+
+  <h2>二、门禁与质量体系</h2>
+  <table>
+    <tr><th class="dim">维度</th><th class="ml">漫剧老李 V7.4.20</th><th class="qh">QHSJ v8.0.0</th></tr>
+    <tr>
+      <td class="dim">硬门禁</td>
+      <td>Asset-First（资产先于分镜）；P0 门禁；六道前置锁未指定则停下。</td>
+      <td><span class="tag tag-good">优势</span> Asset-First + P0 不可绕过 + 依赖闭包三重 P0；每条 P0 违反必须停止并返回错误码，禁止降级为警告。错误码注册表 <code>docs/error-codes.md</code>。</td>
+    </tr>
+    <tr>
+      <td class="dim">空间/物理门禁</td>
+      <td>无显式独立空间/物理门禁；空间以"一行式站位 + S0~S4 分级"形式存在于分镜规则内。</td>
+      <td><span class="tag tag-good">独有</span> 独立 <code>GATE_SPATIAL_PHYSICS_MISSING</code> 错误码：visual-prompt 工作流强制叠加 V2.5 空间锚点（绝对坐标、单实例、镜头半径匹配、5 拍闭合）+ 物理锁定（重力/动量/接触/惯性/流体/光学/热力学/生物力学）。</td>
+    </tr>
+    <tr>
+      <td class="dim">机检粒度</td>
+      <td>C1~C26（98 子码）+ H1~H12（H3 支线）+ 投喂六道闸门。</td>
+      <td>错误码体系 + 路由覆盖回归 + golden 样例断言（evals/golden/*.json）+ pytest 后端测试。</td>
+    </tr>
+  </table>
+
+  <h2>三、核心生产管线能力对比</h2>
+  <table>
+    <tr><th class="dim">维度</th><th class="ml">漫剧老李 V7.4.20</th><th class="qh">QHSJ v8.0.0</th></tr>
+    <tr>
+      <td class="dim">管线阶段</td>
+      <td>立项锁定 → 赛道分流 → 五阶门控剧本 → 资产锁定 → 文武双模分镜 → 提示词封装 → 独立质检 → 离线看板</td>
+      <td>意图解析 → 路由匹配 → 工作流选择 → 能力叠加 → 依赖闭包 → 质量门禁（六步）；具体工作流覆盖 asset-first / asset-lock / storyboard / visual-prompt / reverse-engineering / full-production / writing / script-to-screen / qa 等 16 条。</td>
+    </tr>
+    <tr>
+      <td class="dim">编剧</td>
+      <td>六阶段编剧链 + 五席圆桌审核 + 台词七维诊断 + 拟人化引擎 + 外来剧本润色；Premise→Structure→Beat→Entity→Page 五阶门控。</td>
+      <td><code>novel-writing</code> + <code>screenwriting</code> 双能力；参考库含写作引擎、电影级视听文法、台词七维诊断 <code>qh-dialogue-doctor-7d</code>、语速检查 <code>qh-dialogue-speed-check</code>、门控编剧引擎。</td>
+    </tr>
+    <tr>
+      <td class="dim">资产</td>
+      <td>A/B/C 分级锁定；CHR/AUD/PRP/SCN/Uxx 台账；T1→T2 亲缘遗传推导；素材形态 M0/M1/M2 + 接线单。</td>
+      <td><code>asset-first</code> + <code>asset-locking</code> 双能力；资产验证案例 500 例库、资产台账、资产包规范、生产台账手册；空间台账联动。</td>
+    </tr>
+    <tr>
+      <td class="dim">情绪</td>
+      <td>12 节拍情绪张力曲线 + 折线图脚本；波峰/波谷与第 9 节拍反杀峰值校验。</td>
+      <td><code>performance-emotion</code> 能力；参考库含情绪曲线、FACS AU 词典、FACS 情绪配方、微表情、武侠国风情绪、文戏微表情导演。</td>
+    </tr>
+    <tr>
+      <td class="dim">分镜</td>
+      <td>文戏微表情六阶段 / 武戏 PREVIS 完播 R1/R2/R3 评分；故事板图·面板链；剧情分镜格；段内衔接 5 维 / 运镜 5 模式。</td>
+      <td><code>storyboard</code> 能力；参考库含分镜导演系统、武打分镜 DSL、场景原子库 500、镜头分配、导演风格镜头库、动作速度与冲击、对白情绪与力度。</td>
+    </tr>
+    <tr>
+      <td class="dim">打戏/动作</td>
+      <td><span class="tag tag-good">优势</span> 三大独立打戏子技能：通用（sd-combat）、玄幻仙侠（sd-xuanhuan，23 门武学/9 套剑法/法宝五行）、真人写实（sd-real，R1 克制/11 环动力链）。</td>
+      <td><code>action-choreography</code> 能力 + 丰富参考库：武学动作百科、武侠武学库、武侠格斗库、玄幻魔法战斗、动作预演 15 格、终极收尾招、真实武学分类、战斗导演引擎、防御三态节奏。</td>
+    </tr>
+    <tr>
+      <td class="dim">空间连续性</td>
+      <td>一行式站位四要素 + 轴线锁 + 位移链；空间 S0~S4；180° 轴线。</td>
+      <td><span class="tag tag-good">优势</span> 独立 <code>spatial-continuity</code> 能力；参考库含空间推演引擎、空间参考系统 V3、空间沙盘模拟、顶视图机位、站位调度大师、凝视距离台账、连续性状态库 300。</td>
+    </tr>
+    <tr>
+      <td class="dim">VFX 与物理</td>
+      <td>未单列；散见于玄幻引擎与提示词禁令。</td>
+      <td><span class="tag tag-good">独有</span> 独立 <code>vfx-physics</code> 能力：重力/动量/接触/惯性/流体/光学/热力学/生物力学八类物理锁定；VFX 参数库、动画终极范式、视频物理精度。</td>
+    </tr>
+    <tr>
+      <td class="dim">提示词</td>
+      <td>七段式（画幅风格→场景资产→核心人物→站位声明→时间轴分镜→音效→强制禁止项）；H3 自动转 Ref2VA 六段式。</td>
+      <td><code>image-prompt</code> + <code>video-prompt</code> 双能力 + <code>prompt-engineering</code>；参考库含提示词模板金库、提示词转换实验室 300、Seedance 提示词、投喂前检查清单、 bonsai 上下文工程。</td>
+    </tr>
+    <tr>
+      <td class="dim">模型适配</td>
+      <td>Seedance 2.5 / 2.0（强制二选一）+ MiniMax H3（格式支线）；即梦次选/legacy。</td>
+      <td><span class="tag tag-good">优势</span> <code>model-adaptation</code> 能力；参考库含模型 Atlas（Veo3/Luma/MJv7/即梦/Suno/CosyVoice/Gemini/Imagen4/Tripo3D…）、模型适配器卡（Sora2/Pixverse/SDXL/豆包…）、兼容矩阵、H3 适配器、ComfyUI 自动化。跨模型自动转译。</td>
+    </tr>
+    <tr>
+      <td class="dim">平台/赛道适配</td>
+      <td>〇·0 赛道分流：国内剧 / 海外剧 / 解说叙事 / 其他；各赛道规则集与语速标准。</td>
+      <td><code>platform-adaptation</code> + <code>short-video-content</code>；参考库含平台剧本模式 180（抖音/快手/小红书/视频号/YT Shorts/TikTok/IG）、钩子库 300、画幅适配、平台算法证据。</td>
+    </tr>
+    <tr>
+      <td class="dim">声音设计</td>
+      <td>BGM Cue Sheet / 音乐搜索词 / AI 音乐提示词 / 版权检查（sd-qc-engine）。</td>
+      <td><code>audio-design</code> 能力；参考库含声音设计、配音、视听美学预设、VO/OS 编织。</td>
+    </tr>
+    <tr>
+      <td class="dim">安全合规</td>
+      <td>安全转译词典：血腥/断肢 → 气浪震散/火花消散/重创定格。</td>
+      <td><code>safety-originality</code> 能力 + <code>quality-assurance</code>；参考库含质检清单 320、故障剧本 220、平台安全合规指南、安全原创性。</td>
+    </tr>
+    <tr>
+      <td class="dim">反推/逆向</td>
+      <td>无独立反推模块。</td>
+      <td><span class="tag tag-good">独有</span> <code>reverse-engineering</code> 能力：参考图/视频反推引擎，参考图必跑。</td>
+    </tr>
+    <tr>
+      <td class="dim">美学与导演风格</td>
+      <td>style-bible 画风锁知识库 10 份；画风锁候选卡。</td>
+      <td><code>aesthetics-style</code> 能力；参考库含视觉风格库 300、导演风格基因、色彩风格大师库、胡金铨/诺兰/昆汀/韦斯安德森深度导演包、古风国风包。</td>
+    </tr>
+    <tr>
+      <td class="dim">外部集成</td>
+      <td>Agent 平台：OpenClaw / WorkBuddy / 豆包 Coze / Dify。</td>
+      <td><code>external-skill-integration</code> + <code>api-integration</code> 双能力；API 请求模式库 160、路由文法、外部 Skill 集成规范。</td>
+    </tr>
+  </table>
+
+  <h2>四、知识库规模与纵深</h2>
+  <table>
+    <tr><th class="dim">维度</th><th class="ml">漫剧老李 V7.4.20</th><th class="qh">QHSJ v8.0.0</th></tr>
+    <tr><td class="dim">知识条目</td><td>48 份规则库（含 style-bible 10 份）</td><td>527 篇（526 内容 + 根索引），覆盖 14+ 领域</td></tr>
+    <tr><td class="dim">领域覆盖</td><td>编剧/资产/分镜/打戏/提示词/质检/空间/声音/合规</td><td>写作/编剧/资产/角色表演/摄影/空间/分镜/动作/美学/导演风格/模型适配/平台/提示词工程/质量安全/反推/制作/核心引擎 等</td></tr>
+    <tr><td class="dim">案例库</td><td>无显式案例库计数</td><td>资产验证 500 例、场景原子 500、质检清单 320、钩子库 300、提示词转换 300、连续性状态 300、失败剧本 220、平台剧本 180、API 模式 160、表演配方 240、视觉风格 300 等</td></tr>
+  </table>
+
+  <h2>五、关键差异汇总</h2>
+  <table>
+    <tr><th class="dim">QHSJ 独有/领先</th><th class="ml">漫剧老李独有/领先</th></tr>
+    <tr>
+      <td>
+        <ul>
+          <li><span class="tag tag-good">物理锁定层</span>：重力/动量/接触/惯性/流体/光学/热力学/生物力学八类独立门禁，漫剧老李无对应层</li>
+          <li><span class="tag tag-good">空间锚点 V2.5</span>：绝对坐标系 + 单实例规则 + 镜头半径匹配 + 5 拍闭合，作为视频提示词硬门禁</li>
+          <li><span class="tag tag-good">三层加载协议</span>：L0/L1/L2 分层，产物落盘，防上下文膨胀</li>
+          <li><span class="tag tag-good">模型广度</span>：Atlas 覆盖 Veo3/Luma/MJv7/即梦/Suno/CosyVoice/Gemini/Imagen4/Tripo3D 等，跨模型自动转译</li>
+          <li><span class="tag tag-good">反推引擎</span>：参考图/参考片反推独立能力</li>
+          <li><span class="tag tag-good">多标签路由 + 依赖闭包</span>：一 query 命中多能力自动叠加，依赖图无环校验</li>
+          <li><span class="tag tag-good">527 篇知识库</span>：纵深与案例库规模显著更大</li>
+          <li><span class="tag tag-good">CI 工程化</span>：make check-all 全套（结构/内容/分片/evals/pytest/frontend）</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li><span class="tag tag-warn">打戏三引擎分域专精</span>：sd-combat / sd-xuanhuan / sd-real 独立子技能，玄幻含 23 门武学 9 套剑法，真人含 11 环动力链——QHSJ 为单一 action-choreography 能力 + 参考库，分域专精度略弱</li>
+          <li><span class="tag tag-warn">六道前置锁用户交互</span>：强制弹出让用户勾选赛道/素材/模型/画幅/交付/段缝，交互约束更显式</li>
+          <li><span class="tag tag-warn">素材形态 M0/M1/M2 + 接线单</span>："本包不持有图"的素材存在形态声明机制更明确</li>
+          <li><span class="tag tag-warn">离线分镜看板</span>：项目 md → 单文件 HTML，导出 SRT/CSV/JSON 交付件</li>
+          <li><span class="tag tag-warn">机检码体系 C1~C26/H1~H12</span>：条目化机检码（98 子码）命名更直观</li>
+          <li><span class="tag tag-warn">赛道分流 〇·0</span>：海外剧/解说叙事独立子技能，语言与语速合同显式</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <div class="verdict">
+    <h2>总结判定</h2>
+    <p>
+      QHSJ v8.0.0 与漫剧老李 V7.4.20 同属"Asset-First 工业化全流程 AIGC 视听 Skill"，核心理念一致（资产前置、硬门禁、结构化投喂）。
+    </p>
+    <p style="margin-top:10px">
+      <strong>QHSJ 的结构性领先</strong>在于：① 独立的<strong>物理锁定层</strong>（八类物理定律作为视频提示词硬门禁）与<strong>空间锚点 V2.5</strong>，这是漫剧老李完全缺失的纵深；② 三层加载协议与产物落盘机制，上下文工程更成熟；③ 模型适配广度（Atlas 覆盖 Veo/Luma/MJ/Suno 等十数模型）远超老李的 Seedance+H3 双模型；④ 527 篇知识库与多案例库提供更深的领域纵深；⑤ 多标签路由+依赖闭包的调度架构比单总控更灵活。
+    </p>
+    <p style="margin-top:10px">
+      <strong>漫剧老李的相对优势</strong>在于：① 打戏三引擎分域专精（玄幻/写实/通用各成体系）；② 六道前置锁的用户交互约束更显式；③ 素材形态 M0/M1/M2 + 接线单的"不持有图"机制；④ 离线分镜看板交付件；⑤ 机检码 C1~C26 命名体系直观。
+    </p>
+    <p style="margin-top:10px">
+      结论：在"物理真实感 + 空间连续性 + 跨模型适配 + 上下文工程"四个工业级关键维度上，QHSJ v8.0.0 已超出漫剧老李；在"打戏分域专精 + 素材形态交付 + 看板输出"上，漫剧老李仍有值得借鉴的显式机制，可作为 QHSJ 后续增量项。
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
