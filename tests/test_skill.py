@@ -464,10 +464,31 @@ class RoutingTests(unittest.TestCase):
             ("把脸定型别再变", "asset_locking"),
             ("小红书怎么发", "platform_adaptation"),
             ("给我输出json", "output_formatting"),
+            # 新增：短剧/短片/角色一致性口语触发变体
+            ("帮我做个AI短剧", "short_video_content"),
+            ("帮我做个AI短剧", "screenwriting"),
+            ("就想做个酷炫的片", "video_prompt"),
+            ("来部微电影", "video_prompt"),
+            ("这个角色每集都要长得一样", "asset_locking"),
+            ("这个角色每集都要长得一样", "character_design"),
+            ("就要个静态图提示词", "image_prompt"),
+            ("帮我把这段动作描写转成镜头", "storyboard"),
+            ("帮我做一版竖屏版和横屏版", "platform_adaptation"),
+            ("给我来张封面图", "image_prompt"),
         ]
         for request, expected in cases:
             caps, _, _ = self.route_ids(request)
             self.assertIn(expected, caps, f"白话触发未命中：{request} 未触发 {expected}")
+
+    def test_consistency_defect_wording_is_not_treated_as_asset_locking(self):
+        # “人物位置不一致”是问题描述而非“锁定资产”意图，不得误触发 asset_locking。
+        caps, _, _ = self.route_ids("修复分镜里人物位置不一致")
+        self.assertIn("spatial_continuity", caps)
+        self.assertNotIn("asset_locking", caps)
+
+    def test_consistency_fix_request_reaches_quality_gate(self):
+        caps, _, _ = self.route_ids("角色前后不一致，怎么修")
+        self.assertIn("quality_assurance", caps)
 
     def test_clause_scoped_negation_keeps_later_positive_deliverable(self):
         # 否定作用域不得跨越分句：前句“不要运镜”不能抹掉后句“静态视频提示词”。

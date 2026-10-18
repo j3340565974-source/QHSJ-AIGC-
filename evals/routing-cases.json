@@ -1347,6 +1347,84 @@
       "must_include_capabilities": [
         "image_prompt"
       ]
+    },
+    {
+      "id": "colloquial-short-drama-001",
+      "request": "帮我做个AI短剧",
+      "must_include_capabilities": [
+        "screenwriting",
+        "short_video_content"
+      ]
+    },
+    {
+      "id": "colloquial-cool-film-001",
+      "request": "我有个想法但很模糊，就想做个酷炫的片",
+      "must_include_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "colloquial-micro-film-001",
+      "request": "来部微电影",
+      "must_include_capabilities": [
+        "video_prompt"
+      ]
+    },
+    {
+      "id": "character-consistency-colloquial-001",
+      "request": "这个角色每集都要长得一样，怎么保证一致性",
+      "must_include_capabilities": [
+        "character_design",
+        "asset_locking"
+      ]
+    },
+    {
+      "id": "image-prompt-static-cue-001",
+      "request": "不要运镜，就要个静态图提示词",
+      "must_include_capabilities": [
+        "image_prompt"
+      ],
+      "must_exclude_capabilities": [
+        "cinematography"
+      ]
+    },
+    {
+      "id": "consistency-problem-not-locking-001",
+      "request": "修复分镜里人物位置不一致",
+      "must_include_capabilities": [
+        "spatial_continuity"
+      ],
+      "must_exclude_capabilities": [
+        "asset_locking"
+      ]
+    },
+    {
+      "id": "qa-consistency-fix-001",
+      "request": "角色前后不一致，怎么修",
+      "must_include_capabilities": [
+        "quality_assurance"
+      ]
+    },
+    {
+      "id": "colloquial-turn-into-shots-001",
+      "request": "帮我把这段动作描写转成镜头",
+      "must_include_capabilities": [
+        "storyboard"
+      ]
+    },
+    {
+      "id": "colloquial-vertical-horizontal-001",
+      "request": "帮我做一版竖屏版和横屏版",
+      "must_include_capabilities": [
+        "platform_adaptation"
+      ]
+    },
+    {
+      "id": "colloquial-cover-image-001",
+      "request": "给我来张封面图",
+      "must_include_capabilities": [
+        "image_prompt"
+      ]
     }
   ],
   "coverage_note": "静态资源/章节/能力/工作流闭包与已收录的白话用例可验证；对任意未见自然语言的理解仍由宿主模型的 intent-analysis 语义层负责，不能以固定关键词测试宣称数学意义上的百分之百语义准确。"

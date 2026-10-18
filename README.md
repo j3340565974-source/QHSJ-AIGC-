@@ -11,7 +11,7 @@
     <a href="https://github.com"><img alt="Workflows" src="https://img.shields.io/badge/工作流-16%20条-DC143C.svg" /></a>
     <a href="https://github.com"><img alt="References" src="https://img.shields.io/badge/知识库-303%20篇-2E8B57.svg" /></a>
     <a href="https://github.com"><img alt="Files" src="https://img.shields.io/badge/文件-345-4682B4.svg" /></a>
-    <a href="https://github.com"><img alt="QC" src="https://img.shields.io/badge/质检-44%2F44%20%E2%9C%93-228B22.svg" /></a>
+    <a href="https://github.com"><img alt="QC" src="https://img.shields.io/badge/质检-46%2F46%20%E2%9C%93-228B22.svg" /></a>
     <a href="https://github.com"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
   </p>
 </div>
@@ -124,7 +124,7 @@
 | 🔌 **适配** | 全模型适配 | Seedance 2.5 / Kling / Veo 3 / Sora 2 / Runway Gen-3 / MJ / Flux / 即梦 |
 | 🔍 **反推** | 反推还原引擎 | 七要素拆图法、1:1 还原 / 风格抽取、置信度标注 |
 | 🎵 **声音** | 声音设计 | 三层声音结构、音色锁定、VO/OS 编织、AI 音乐提示词 |
-| ✅ **质检** | P0~P2 门禁 + 机检 | 提示词静态检查 + 44 单元测试 + 129 路由评估用例 |
+| ✅ **质检** | P0~P2 门禁 + 机检 | 提示词静态检查 + 46 单元测试 + 139 路由评估用例 |
 | 🛡️ **合规** | 安全转译 | 血腥/断肢转译为气浪/火花/重创定格，降低平台风险 |
 
 ## 🖥️ 适用平台与模型

@@ -25,13 +25,13 @@
     {
       "path": "AUDIT_REPORT.md",
       "size_bytes": 4381,
-      "sha256": "7cffc6594a361c5e9a547e422cb575f1dd02e72a1db689b45082f37e7c5c5b37",
+      "sha256": "7e37e60181bd7b6d7261841c7f75c574a26d9f64fcf23d7ef27ba3672c5f0a28",
       "category": "md"
     },
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 11343,
-      "sha256": "75dd12a93851a6583de67cc6c3b14d72ec2b7a7a92260765db1ce80ffc826af0",
+      "size_bytes": 12531,
+      "sha256": "36fa66603749cd0643128afd249d15c5a1e7e34d37ec971f4ded7ca1648222ee",
       "category": "md"
     },
     {
@@ -43,7 +43,7 @@
     {
       "path": "README.md",
       "size_bytes": 15762,
-      "sha256": "656b61b21943dc9ec3fc4c80e67761b1f84f42820cc11f5431fb09965a7468c9",
+      "sha256": "aad1371bc0739d94cf166db3d696889efd78176d1068de5c3dbdde6d665927ea",
       "category": "md"
     },
     {
@@ -66,8 +66,8 @@
     },
     {
       "path": "evals/routing-cases.json",
-      "size_bytes": 36610,
-      "sha256": "4dd15cbbf6262d15a8cb33524f992d876858e86b5c1f960d486231204325d45e",
+      "size_bytes": 38649,
+      "sha256": "838bde4d5b229697f190ccb365c363a58a77fe57eb58468fa65b33a183116d29",
       "category": "data"
     },
     {
@@ -1897,7 +1897,7 @@
     {
       "path": "routing/route-registry.json",
       "size_bytes": 3615685,
-      "sha256": "7709e50821c01604fdc178d7ae41ddd69f4f33c8b3788bde52f8986a6dd7c645",
+      "sha256": "0903cdf6ca07ca73f2ac8229d4abcf940850fdedcece96398310cdac20d00e90",
       "category": "data"
     },
     {
@@ -1932,8 +1932,8 @@
     },
     {
       "path": "scripts/route_request.py",
-      "size_bytes": 62109,
-      "sha256": "0c164bbffc4edc9339e276286462d0b933979819e1f1e7294af27840e7ce52b4",
+      "size_bytes": 63224,
+      "sha256": "47d9442c3c8961aeb191c6e4aac4adc8eceb55c235c006296332b369ad8bfa0a",
       "category": "script"
     },
     {
@@ -1974,8 +1974,8 @@
     },
     {
       "path": "tests/test_skill.py",
-      "size_bytes": 33316,
-      "sha256": "c980a3a50267e9d019211643416d307202dfd04fc7c822775712d0cbd26218bb",
+      "size_bytes": 34579,
+      "sha256": "63964261da9f1a2201a11e8adaadc6618c5ec2ffbb8899f3a0cae15d7d520396",
       "category": "file"
     },
     {

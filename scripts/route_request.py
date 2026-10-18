@@ -426,18 +426,20 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
 
     if pos("小说", "长篇小说", "网文", "章节", "故事大纲", "小说大纲"):
         direct.add("novel_writing")
-    if pos("剧本", "剧作", "分场", "对白", "台词", "编剧") and not constraints["writing_only"]:
+    if pos("剧本", "剧作", "分场", "对白", "台词", "编剧", "短剧") and not constraints["writing_only"]:
         direct.add("screenwriting")
     if pos("分镜", "逐镜", "镜头表", "镜头脚本", "故事板", "storyboard", "shot list",
-           "分个镜", "分一下镜", "做分镜", "出分镜", "拆镜", "拆成分镜") and not constraints["explicit_no_storyboard"]:
+           "分个镜", "分一下镜", "做分镜", "出分镜", "拆镜", "拆成分镜",
+           "转成镜头", "转镜头", "改成镜头", "转成分镜", "镜头化") and not constraints["explicit_no_storyboard"]:
         direct.add("storyboard")
     if pos("视频提示词", "视频prompt", "文生视频", "图生视频", "视频生成提示词", "视频续写", "视频投喂",
            "做个片子", "做片子", "拍个片子", "做个视频", "做视频", "生成视频", "一段视频", "做条视频", "拍个视频",
-           "做一个视频", "做个小视频", "小视频", "搞个片子", "片子", "来段视频", "整段视频", "做段视频", "生视频") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
+           "做一个视频", "做个小视频", "小视频", "搞个片子", "片子", "来段视频", "整段视频", "做段视频", "生视频",
+           "的片", "部片", "来部片", "微电影") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_video_prompt", False):
         direct.add("video_prompt")
-    if pos("图片提示词", "图像提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词",
+    if pos("图片提示词", "图像提示词", "图提示词", "静态图提示词", "绘图提示词", "出图提示词", "静帧提示词", "一张图片提示词", "一张图的提示词",
            "只要图片", "只要图", "出张图", "出一张图", "生图", "出图", "生成图片", "生成图像", "画一张", "画张图",
-           "来张图", "来一张图", "来图", "大图", "插画", "插图", "画个图", "画一幅") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
+           "来张图", "来一张图", "来图", "大图", "插画", "插图", "画个图", "画一幅", "封面图", "海报") and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_image_prompt", False):
         direct.add("image_prompt")
     if (pos("提示词工程", "负面提示词", "正向提示词", "灯光方案", "视觉基因") or (has("提示词") and not phrase_is_negated(text, "提示词")) or (has("prompt") and not phrase_is_negated(text, "prompt"))) and not constraints["explicit_no_prompt"] and not constraints.get("explicit_no_prompt_engineering", False):
         direct.add("prompt_engineering")
@@ -448,12 +450,20 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         direct.add("storyboard")
     if pos("站位", "轴线", "越轴", "人物位置", "位置不一致", "空间关系", "场面调度", "镜头接不上", "走位", "连续性"):
         direct.add("spatial_continuity")
-    if pos("检查", "审查", "质检", "找bug", "查bug", "找漏洞", "修复", "排查", "逻辑矛盾", "一致性检查", "是否自洽", "避免漂浮", "避免穿模"):
+    if pos("检查", "审查", "质检", "找bug", "查bug", "找漏洞", "修复", "排查", "逻辑矛盾", "一致性检查", "是否自洽", "避免漂浮", "避免穿模",
+           "不一致", "对不上", "怎么修", "怎么改", "修一下", "修正"):
         direct.add("quality_assurance")
     if pos("角色四视图", "角色卡", "角色设定", "人物设定", "角色脸型", "发色", "服装和配饰", "角色定妆", "人物外观", "角色一致性", "人物服装", "角色服装", "服饰造型", "人物造型",
            "角色图", "人物图", "人设图", "角色立绘", "人物立绘", "角色资产图", "人物资产图", "角色造型图", "角色三视图", "人物三视图",
            "立绘", "三视图", "角色设定图", "人物设定图") or (pos("角色") and pos("恐惧", "愤怒", "微表情", "表演", "眼神", "呼吸")):
         direct.add("character_design")
+    # Cross-shot / cross-episode character consistency is an asset-locking intent even when the
+    # user never says the words "资产" or "锁定". Requires a character noun AND a positive
+    # consistency phrase, so problem reports like "人物位置不一致" are NOT treated as locking.
+    if pos("角色", "人物", "主角", "男主角", "女主角", "主人公") and pos(
+           "长得一样", "保持一致", "前后一致", "跨镜一致", "跨镜头一致", "跨集一致", "每集一样",
+           "形象一致", "外观一致", "模样一样", "形象统一", "不能变", "别变", "不要变", "保持不变"):
+        direct.update({"character_design", "asset_locking"})
     if pos("微表情", "演技", "怎么演", "情绪转折", "情绪曲线", "表演层次", "情绪外化", "身体表演", "表演调度"):
         direct.add("performance_emotion")
     if pos("资产包", "资产板", "资产前置", "先做资产", "先做角色", "四视图资产", "场景和道具",
@@ -492,10 +502,11 @@ def detect_capabilities(text: str, registry: dict[str, Any], constraints: dict[s
         or (pos("短视频") and pos("文案", "脚本", "选题", "开头三秒", "黄金三秒", "完播率", "转粉", "转化率", "口播"))
         or (pos("抖音", "小红书", "视频号", "tiktok") and pos("脚本", "文案", "口播", "开头三秒", "短视频发布"))
         or pos("做个短视频", "做条短视频", "做一条短视频", "拍个短视频", "拍条短视频", "做个短剧", "做条短剧", "生成短视频", "制作短视频")
+        or pos("短剧", "ai短剧", "竖屏短剧")
     )
     if short_video_content_intent:
         direct.add("short_video_content")
-    if pos("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配") or (
+    if pos("平台适配", "发布策略", "字幕安全区", "比例适配", "视频内容适配", "竖屏", "横屏", "竖版", "横版", "画幅", "尺寸适配") or (
         pos("抖音", "小红书", "视频号", "tiktok", "b站", "快手", "油管", "youtube") and pos("发布", "怎么发", "上传", "运营", "投放", "适配", "涨粉", "引流")
     ):
         direct.add("platform_adaptation")
